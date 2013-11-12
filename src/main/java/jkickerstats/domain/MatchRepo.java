@@ -7,43 +7,48 @@ import jkickerstats.types.Game;
 import jkickerstats.types.Match;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class MatchRepo implements MatchRepoInterface {
 
 	@Autowired
-	private MongoDb mongoDb;
+	private MongoTemplate mongoTemplate;
 
 	@Override
 	public boolean isNewMatch(Match match) {
-		long numberOfMatches = mongoDb.getDatastore().find(MatchFromDb.class)
-				.field("matchDate").equal(match.getMatchDate())
-				.field("homeTeam").equal(match.getHomeTeam())
-				.field("guestTeam").equal(match.getGuestTeam()).countAll();
 
+		Query q = new Query(Criteria.where("matchDate")
+				.is(match.getMatchDate()).and("homeTeam")
+				.is(match.getHomeTeam()).and("guestTeam")
+				.is(match.getGuestTeam()));
+		long numberOfMatches = mongoTemplate.count(q, MatchFromDb.class);
 		return numberOfMatches > 0;
 	}
 
 	@Override
 	public void save(Match match) {
-		mongoDb.getDatastore().save(convertToMatchFromDb(match));
+		mongoTemplate.save(convertToMatchFromDb(match));
 	}
 
 	@Override
 	public void save(List<Match> matches) {
-		mongoDb.getDatastore().save(convertToMatchFromDbList(matches));
+		mongoTemplate.save(convertToMatchFromDbList(matches));
 	}
 
 	@Override
 	public boolean noMatchesAvailable() {
-		long numberOfMatches = mongoDb.getDatastore().getCount(
+		long numberOfMatches = mongoTemplate.count(new Query(new Criteria()),
 				MatchFromDb.class);
 		return numberOfMatches == 0;
 	}
 
 	@Override
 	public List<Match> getAllMatches() {
-		List<MatchFromDb> matches = mongoDb.getDatastore()
-				.find(MatchFromDb.class).asList();
+		List<MatchFromDb> matches = mongoTemplate.findAll(MatchFromDb.class);
 		return convertToMatchList(matches);
 	}
 
@@ -90,7 +95,7 @@ public class MatchRepo implements MatchRepoInterface {
 		match.setGames(convertToGameList(matchFromDb.getGames()));
 		return match;
 	}
-	
+
 	protected List<GameFromDb> convertToGameFromDbList(List<Game> games) {
 		List<GameFromDb> gameFromDbList = new ArrayList<>();
 		for (Game game : games) {

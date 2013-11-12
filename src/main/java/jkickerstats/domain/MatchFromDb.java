@@ -3,11 +3,10 @@ package jkickerstats.domain;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity("matches")
+@Document(collection = "matches")
 public class MatchFromDb {
-	@Id
 	private String id;
 	private String homeTeam;
 	private String guestTeam;
@@ -17,7 +16,6 @@ public class MatchFromDb {
 	private int guestScore;
 	private Date matchDate;
 	private int matchDay;
-	@Embedded
 	private List<GameFromDb> games;
 
 	public String getHomeTeam() {

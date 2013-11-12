@@ -1,7 +1,5 @@
 package jkickerstats.domain;
 
-
-@Embedded
 public class GameFromDb {
 	private String homePlayer1;
 	private String homePlayer2;
@@ -52,7 +50,6 @@ public class GameFromDb {
 		this.guestPlayer2 = guestPlayer2;
 	}
 
-
 	public int getGuestScore() {
 		return guestScore;
 	}
@@ -68,7 +65,6 @@ public class GameFromDb {
 	public void setPosition(int position) {
 		this.position = position;
 	}
-
 
 	public boolean isDoubleMatch() {
 		return doubleMatch;
