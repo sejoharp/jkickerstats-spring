@@ -6,7 +6,9 @@ import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.springframework.stereotype.Component;
 
+@Component
 class PageDownloader {
 	private static int TIMEOUT = 10 * 1000;
 

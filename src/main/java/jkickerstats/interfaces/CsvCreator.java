@@ -14,6 +14,9 @@ import java.util.List;
 import jkickerstats.types.Game;
 import jkickerstats.types.Match;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CsvCreator {
 	public void createCsvFile(List<String> csvRowList) {
 		Path path = Paths.get("allGames.csv");

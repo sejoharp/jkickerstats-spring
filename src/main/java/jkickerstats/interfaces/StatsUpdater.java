@@ -10,7 +10,9 @@ import jkickerstats.usecases.MatchServiceInterface;
 
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class StatsUpdater {
 	private static final Logger LOG = Logger.getLogger(StatsUpdater.class
 			.getName());

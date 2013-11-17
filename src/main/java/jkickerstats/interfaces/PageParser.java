@@ -12,7 +12,9 @@ import jkickerstats.types.Game;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
 
+@Component
 class PageParser {
 	public static final String DOMAIN = "http://www.kickern-hamburg.de";
 
@@ -259,7 +261,7 @@ class PageParser {
 	}
 
 	protected boolean isMatchUnconfirmed(String scoreDescription) {
-		return "unbest??tigt".equals(scoreDescription);
+		return "unbestätigt".equals(scoreDescription);
 	}
 
 	protected Boolean isDoubleMatch(Element gameDoc) {

@@ -6,7 +6,9 @@ import jkickerstats.domain.MatchRepoInterface;
 import jkickerstats.types.Match;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MatchService implements MatchServiceInterface {
 
 	@Autowired
