@@ -33,6 +33,7 @@ public class StatsUpdater {
 		} else {
 			updateData();
 		}
+		LOG.info("updater batch finished.");
 	}
 
 	protected List<Game> downloadAllGames() {
