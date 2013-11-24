@@ -21,8 +21,17 @@ public class CsvController {
 	private MatchServiceInterface matchService;
 
 	@Autowired
+	private StatsUpdater statsUpdater;
+	
+	@Autowired
 	private CsvCreator csvCreator;
 
+	@RequestMapping("/start")
+	public void collectMatches(HttpSession session, HttpServletRequest request,
+	HttpServletResponse response) throws IOException {
+		statsUpdater.updateStats();
+	}
+	
 	@RequestMapping("/csvexport")
 	public void exportAsCSV(HttpSession session, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
