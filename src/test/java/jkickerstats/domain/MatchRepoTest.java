@@ -38,6 +38,15 @@ public class MatchRepoTest {
 	}
 
 	@Test
+	public void countesTheNumberOfMatches() {
+		assertThat(matchRepo.countMatches(), is(0L));
+		matchRepo.save(MatchTestdata.createMatch());
+		assertThat(matchRepo.countMatches(), is(1L));
+		matchRepo.save(MatchTestdata.createMatchWithSinglegame());
+		assertThat(matchRepo.countMatches(), is(2L));
+	}
+	
+	@Test
 	public void detectsAlreadyPersistedMatches() {
 		matchRepo.save(MatchTestdata.createMatch());
 		assertThat(matchRepo.isNewMatch(MatchTestdata.createMatch()), is(false));

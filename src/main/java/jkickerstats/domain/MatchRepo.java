@@ -138,4 +138,9 @@ public class MatchRepo implements MatchRepoInterface {
 		return game;
 	}
 
+	@Override
+	public long countMatches() {
+		return mongoTemplate.count(new Query(new Criteria()), MatchFromDb.class);
+	}
+
 }

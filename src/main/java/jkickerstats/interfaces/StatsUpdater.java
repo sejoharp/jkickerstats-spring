@@ -28,12 +28,17 @@ public class StatsUpdater {
 
 	public void updateStats() {
 		LOG.info("updater batch started.");
+		long matchesCountBefore = matchService.countMatches();
 		if (matchService.noDataAvailable()) {
 			getAllData();
 		} else {
 			updateData();
 		}
-		LOG.info("updater batch finished.");
+
+		long matchesCountAfter = matchService.countMatches();
+		LOG.info("updater batch finished and found "
+				+ (matchesCountAfter - matchesCountBefore)
+				+ " new matches.");
 	}
 
 	protected List<Game> downloadAllGames() {

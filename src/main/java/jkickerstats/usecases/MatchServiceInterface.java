@@ -14,4 +14,6 @@ public interface MatchServiceInterface {
 	public boolean noDataAvailable();
 	
 	public List<Match> getAllMatches();
+	
+	public long countMatches();
 }

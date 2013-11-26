@@ -40,4 +40,9 @@ public class MatchService implements MatchServiceInterface {
 		return matchRepo.getAllMatches();
 	}
 
+	@Override
+	public long countMatches() {
+		return matchRepo.countMatches();
+	}
+
 }

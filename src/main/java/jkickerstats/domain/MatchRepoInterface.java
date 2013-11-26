@@ -14,4 +14,6 @@ public interface MatchRepoInterface {
 	public boolean noMatchesAvailable();
 	
 	public List<Match> getAllMatches();
+	
+	public long countMatches();
 }
