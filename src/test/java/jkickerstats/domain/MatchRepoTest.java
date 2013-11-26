@@ -38,6 +38,13 @@ public class MatchRepoTest {
 	}
 
 	@Test
+	public void detectsAlreadyPersistedMatches() {
+		matchRepo.save(MatchTestdata.createMatch());
+		assertThat(matchRepo.isNewMatch(MatchTestdata.createMatch()), is(false));
+		assertThat(matchRepo.isNewMatch(MatchTestdata.createMatchWithSinglegame()), is(true));
+	}
+	
+	@Test
 	public void dbHasMatches() {
 		matchRepo.save(MatchTestdata.createMatch());
 

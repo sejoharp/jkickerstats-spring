@@ -26,7 +26,7 @@ public class MatchRepo implements MatchRepoInterface {
 				.is(match.getHomeTeam()).and("guestTeam")
 				.is(match.getGuestTeam()));
 		long numberOfMatches = mongoTemplate.count(q, MatchFromDb.class);
-		return numberOfMatches > 0;
+		return numberOfMatches == 0;
 	}
 
 	@Override

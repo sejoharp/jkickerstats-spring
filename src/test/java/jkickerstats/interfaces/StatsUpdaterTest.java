@@ -2,15 +2,19 @@ package jkickerstats.interfaces;
 
 import java.util.List;
 
+import jkickerstats.Application;
 import jkickerstats.types.Match;
 
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationContextLoader;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
 public class StatsUpdaterTest {
 	@Autowired
 	private StatsUpdater statsUpdater;
@@ -26,8 +30,8 @@ public class StatsUpdaterTest {
 		csvCreator.createCsvFile(gameStrings);
 	}
 	
-	@Ignore
 	@Test
+	@Ignore
 	public void savesAllMatchesWithGames() {
 		statsUpdater.getAllData();
 	}
