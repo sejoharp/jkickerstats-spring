@@ -7,6 +7,7 @@ import jkickerstats.types.Game;
 import jkickerstats.types.Match;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -48,7 +49,10 @@ public class MatchRepo implements MatchRepoInterface {
 
 	@Override
 	public List<Match> getAllMatches() {
-		List<MatchFromDb> matches = mongoTemplate.findAll(MatchFromDb.class);
+		Criteria criteria = new Criteria().all(MatchFromDb.class);
+		Query query = new Query(criteria);
+		query.with(new Sort(Sort.Direction.DESC, "matchDate"));
+		List<MatchFromDb> matches = mongoTemplate.find(query ,MatchFromDb.class);
 		return convertToMatchList(matches);
 	}
 
