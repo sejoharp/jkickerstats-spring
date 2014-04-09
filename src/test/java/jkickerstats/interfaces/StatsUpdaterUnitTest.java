@@ -12,9 +12,9 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import jkickerstats.domain.MatchRepoInterface;
 import jkickerstats.types.Game;
 import jkickerstats.types.Match;
-import jkickerstats.usecases.MatchServiceInterface;
 
 import org.jsoup.nodes.Document;
 import org.junit.Before;
@@ -34,7 +34,7 @@ public class StatsUpdaterUnitTest {
 	@Mock
 	private PageDownloader pageDownloaderMock;
 	@Mock
-	private MatchServiceInterface matchServiceMock;
+	private MatchRepoInterface matchRepoMock;
 	@InjectMocks
 	private StatsUpdater statsUpdater;
 	@Captor
@@ -45,9 +45,9 @@ public class StatsUpdaterUnitTest {
 	@Before
 	public void setup() {
 		when(pageParserMock.findGames(any(Document.class))).thenReturn(
-				Arrays.asList(new Game()));
+				Arrays.asList(new Game.GameBuilder().build()));
 		when(pageParserMock.findMatches(any(Document.class))).thenReturn(
-				Arrays.asList(new MatchWithLink()));
+				Arrays.asList(new Match.MatchBuilder().build()));
 		when(pageParserMock.findSeasonIDs(any(Document.class))).thenReturn(
 				Arrays.asList(7));
 		when(pageParserMock.findLigaLinks(any(Document.class))).thenReturn(
@@ -69,52 +69,52 @@ public class StatsUpdaterUnitTest {
 
 	@Test
 	public void downloadsAllGamesAndMatchesWhenDBisEmpty() {
-		when(matchServiceMock.noDataAvailable()).thenReturn(true);
+		when(matchRepoMock.noMatchesAvailable()).thenReturn(true);
 
 		statsUpdater.updateStats();
 
-		verify(matchServiceMock, times(0)).isNewMatch(any(Match.class));
+		verify(matchRepoMock, times(0)).isNewMatch(any(Match.class));
 	}
 
 	@Test
 	public void downloadsNewGamesAndMatchesWhenDBisFilled() {
-		when(matchServiceMock.noDataAvailable()).thenReturn(false);
-		when(matchServiceMock.isNewMatch(any(Match.class))).thenReturn(true);
+		when(matchRepoMock.noMatchesAvailable()).thenReturn(false);
+		when(matchRepoMock.isNewMatch(any(Match.class))).thenReturn(true);
 
 		statsUpdater.updateStats();
 
-		verify(matchServiceMock, times(1)).isNewMatch(any(Match.class));
+		verify(matchRepoMock, times(1)).isNewMatch(any(Match.class));
 	}
 
 	@Test
 	public void savesOneMatchWhenDBisFilled() {
-		when(matchServiceMock.noDataAvailable()).thenReturn(false);
-		when(matchServiceMock.isNewMatch(any(Match.class))).thenReturn(true);
+		when(matchRepoMock.noMatchesAvailable()).thenReturn(false);
+		when(matchRepoMock.isNewMatch(any(Match.class))).thenReturn(true);
 
 		statsUpdater.updateStats();
 
-		verify(matchServiceMock).saveMatch(matchCaptor.capture());
+		verify(matchRepoMock).save(matchCaptor.capture());
 		assertThat(matchCaptor.getValue(), is(not(nullValue())));
 	}
 
 	@Test
 	public void savesOneMatchWhenDBisEmpty() {
-		when(matchServiceMock.noDataAvailable()).thenReturn(true);
-		when(matchServiceMock.isNewMatch(any(Match.class))).thenReturn(true);
+		when(matchRepoMock.noMatchesAvailable()).thenReturn(true);
+		when(matchRepoMock.isNewMatch(any(Match.class))).thenReturn(true);
 
 		statsUpdater.updateStats();
 
-		verify(matchServiceMock).saveMatch(matchCaptor.capture());
+		verify(matchRepoMock).save(matchCaptor.capture());
 		assertThat(matchCaptor.getValue(), is(not(nullValue())));
 	}
 
 	@Test
 	public void doesNotSaveOldMatches() {
-		when(matchServiceMock.noDataAvailable()).thenReturn(false);
-		when(matchServiceMock.isNewMatch(any(Match.class))).thenReturn(false);
+		when(matchRepoMock.noMatchesAvailable()).thenReturn(false);
+		when(matchRepoMock.isNewMatch(any(Match.class))).thenReturn(false);
 
 		statsUpdater.updateStats();
 
-		verify(matchServiceMock, times(0)).saveMatch(matchCaptor.capture());
+		verify(matchRepoMock, times(0)).save(matchCaptor.capture());
 	}
 }

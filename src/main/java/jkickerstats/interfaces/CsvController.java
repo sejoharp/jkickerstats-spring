@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import jkickerstats.usecases.MatchServiceInterface;
+import jkickerstats.domain.MatchRepoInterface;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CsvController {
 
+
 	@Autowired
-	private MatchServiceInterface matchService;
+	private MatchRepoInterface matchRepo;
 
 	@Autowired
 	private StatsUpdater statsUpdater;
@@ -35,7 +36,7 @@ public class CsvController {
 	@RequestMapping("/csvexport")
 	public void exportAsCSV(HttpSession session, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
-		List<String> csvList = csvCreator.createCsvRowList(matchService
+		List<String> csvList = csvCreator.createCsvRowList(matchRepo
 				.getAllMatches());
 
 		response.setContentType("text/csv;charset=UTF-8");

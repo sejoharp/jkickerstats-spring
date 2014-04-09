@@ -8,6 +8,9 @@ import java.util.Date;
 import java.util.List;
 
 import jkickerstats.types.Game;
+import jkickerstats.types.Game.GameBuilder;
+import jkickerstats.types.Match;
+import jkickerstats.types.Match.MatchBuilder;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -24,12 +27,12 @@ class PageParser {
 		if (isValidGameList(gameSnippets)) {
 			final boolean imagesAvailable = hasImages(gameSnippets);
 			for (Element gameSnippet : gameSnippets) {
-				Game game = new Game();
-				game.setDoubleMatch(isDoubleMatch(gameSnippet));
-				game.setPosition(parseGamePosition(gameSnippet));
-				addPlayerNames(game, gameSnippet, game.isDoubleMatch());
-				game.setHomeScore(parseHomeScore(gameSnippet, imagesAvailable));
-				game.setGuestScore(parseGuestScore(gameSnippet, imagesAvailable));
+				GameBuilder builder = new Game.GameBuilder();
+				builder.withDoubleMatch(isDoubleMatch(gameSnippet));
+				builder.withPosition(parseGamePosition(gameSnippet));
+				builder.withHomeScore(parseHomeScore(gameSnippet, imagesAvailable));
+				builder.withGuestScore(parseGuestScore(gameSnippet, imagesAvailable));
+				Game game = addPlayerNames(builder.build(), gameSnippet);
 				games.add(game);
 			}
 		}
@@ -158,8 +161,8 @@ class PageParser {
 		return DOMAIN + element.select("a[href]").attr("href");
 	}
 
-	public List<MatchWithLink> findMatches(Document doc) {
-		final List<MatchWithLink> matches = new ArrayList<>();
+	public List<Match> findMatches(Document doc) {
+		final List<Match> matches = new ArrayList<>();
 		Elements elements = filterMatchSnippets(doc);
 		int matchDay = 0;
 		for (Element element : elements) {
@@ -178,22 +181,22 @@ class PageParser {
 				&& element.select("i").text().isEmpty() == false;
 	}
 
-	protected MatchWithLink parseMatch(Element element, int matchDay) {
-		MatchWithLink match = new MatchWithLink();
-		match.setMatchDate(parseMatchDate(element));
-		match.setMatchDay(matchDay);
-		match.setHomeScore(parseMatchHomeScore(element));
-		match.setGuestScore(parseMatchGuestScore(element));
-		match.setHomeTeam(removeTeamDescriptions(element.children().eq(1)
+	protected Match parseMatch(Element element, int matchDay) {
+		MatchBuilder builder = new Match.MatchBuilder();
+		builder.withMatchDate(parseMatchDate(element));
+		builder.withMatchDay(matchDay);
+		builder.withHomeScore(parseMatchHomeScore(element));
+		builder.withGuestScore(parseMatchGuestScore(element));
+		builder.withHomeTeam(removeTeamDescriptions(element.children().eq(1)
 				.text()));
-		match.setGuestTeam(removeTeamDescriptions(element.children().eq(2)
+		builder.withGuestTeam(removeTeamDescriptions(element.children().eq(2)
 				.text()));
 		if (isNewMatchFormat(element)) {
-			match.setGuestGoals(parseMatchGuestGoals(element));
-			match.setHomeGoals(parseMatchHomeGoals(element));
+			builder.withGuestGoals(parseMatchGuestGoals(element));
+			builder.withHomeGoals(parseMatchHomeGoals(element));
 		}
-		match.setMatchLink(parseMatchLink(element));
-		return match;
+		builder.withMatchLink(parseMatchLink(element));
+		return builder.build();
 	}
 
 	protected boolean isNewMatchFormat(Element element) {
@@ -272,19 +275,19 @@ class PageParser {
 		return Integer.parseInt(gameDoc.children().first().text());
 	}
 
-	protected void addPlayerNames(Game game, Element gameDoc,
-			boolean doubleMatch) {
+	protected Game addPlayerNames(Game game, Element gameDoc) {
 		Elements rawPlayerNames = gameDoc.select("td a");
-		if (doubleMatch) {
-			game.setHomePlayer1(parsePlayerName(rawPlayerNames, 0));
-			game.setHomePlayer2(parsePlayerName(rawPlayerNames, 1));
-			game.setGuestPlayer1(parsePlayerName(rawPlayerNames, 2));
-			game.setGuestPlayer2(parsePlayerName(rawPlayerNames, 3));
+		GameBuilder builder = new Game.GameBuilder(game);
+		if (game.isDoubleMatch()) {
+			builder.withHomePlayer1(parsePlayerName(rawPlayerNames, 0));
+			builder.withHomePlayer2(parsePlayerName(rawPlayerNames, 1));
+			builder.withGuestPlayer1(parsePlayerName(rawPlayerNames, 2));
+			builder.withGuestPlayer2(parsePlayerName(rawPlayerNames, 3));
 		} else {
-			game.setHomePlayer1(parsePlayerName(rawPlayerNames, 0));
-			game.setGuestPlayer1(parsePlayerName(rawPlayerNames, 1));
+			builder.withHomePlayer1(parsePlayerName(rawPlayerNames, 0));
+			builder.withGuestPlayer1(parsePlayerName(rawPlayerNames, 1));
 		}
-
+		return builder.build();
 	}
 
 	protected String parsePlayerName(Elements rawPlayerNames, int position) {

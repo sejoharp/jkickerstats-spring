@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jkickerstats.types.Game;
+import jkickerstats.types.Game.GameBuilder;
 import jkickerstats.types.Match;
+import jkickerstats.types.Match.MatchBuilder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -52,7 +54,8 @@ public class MatchRepo implements MatchRepoInterface {
 		Criteria criteria = new Criteria().all(MatchFromDb.class);
 		Query query = new Query(criteria);
 		query.with(new Sort(Sort.Direction.DESC, "matchDate"));
-		List<MatchFromDb> matches = mongoTemplate.find(query ,MatchFromDb.class);
+		List<MatchFromDb> matches = mongoTemplate
+				.find(query, MatchFromDb.class);
 		return convertToMatchList(matches);
 	}
 
@@ -87,17 +90,17 @@ public class MatchRepo implements MatchRepoInterface {
 	}
 
 	protected Match convertToMatch(MatchFromDb matchFromDb) {
-		Match match = new Match();
-		match.setGuestGoals(matchFromDb.getGuestGoals());
-		match.setGuestScore(matchFromDb.getGuestScore());
-		match.setGuestTeam(matchFromDb.getGuestTeam());
-		match.setHomeGoals(matchFromDb.getHomeGoals());
-		match.setHomeScore(matchFromDb.getHomeScore());
-		match.setHomeTeam(matchFromDb.getHomeTeam());
-		match.setMatchDate(matchFromDb.getMatchDate());
-		match.setMatchDay(matchFromDb.getMatchDay());
-		match.setGames(convertToGameList(matchFromDb.getGames()));
-		return match;
+		return new MatchBuilder()//
+				.withGuestGoals(matchFromDb.getGuestGoals())//
+				.withGuestScore(matchFromDb.getGuestScore())//
+				.withGuestTeam(matchFromDb.getGuestTeam())//
+				.withHomeGoals(matchFromDb.getHomeGoals())//
+				.withHomeScore(matchFromDb.getHomeScore())//
+				.withHomeTeam(matchFromDb.getHomeTeam())//
+				.withMatchDate(matchFromDb.getMatchDate())//
+				.withMatchDay(matchFromDb.getMatchDay())//
+				.withGames(convertToGameList(matchFromDb.getGames()))//
+		.build();
 	}
 
 	protected List<GameFromDb> convertToGameFromDbList(List<Game> games) {
@@ -130,21 +133,22 @@ public class MatchRepo implements MatchRepoInterface {
 	}
 
 	protected Game convertToGame(GameFromDb gameCouchDb) {
-		Game game = new Game();
-		game.setDoubleMatch(gameCouchDb.isDoubleMatch());
-		game.setGuestPlayer1(gameCouchDb.getGuestPlayer1());
-		game.setGuestPlayer2(gameCouchDb.getGuestPlayer2());
-		game.setGuestScore(gameCouchDb.getGuestScore());
-		game.setHomePlayer1(gameCouchDb.getHomePlayer1());
-		game.setHomePlayer2(gameCouchDb.getHomePlayer2());
-		game.setHomeScore(gameCouchDb.getHomeScore());
-		game.setPosition(gameCouchDb.getPosition());
-		return game;
+		GameBuilder builder = new Game.GameBuilder();
+		builder.withDoubleMatch(gameCouchDb.isDoubleMatch());
+		builder.withGuestPlayer1(gameCouchDb.getGuestPlayer1());
+		builder.withGuestPlayer2(gameCouchDb.getGuestPlayer2());
+		builder.withGuestScore(gameCouchDb.getGuestScore());
+		builder.withHomePlayer1(gameCouchDb.getHomePlayer1());
+		builder.withHomePlayer2(gameCouchDb.getHomePlayer2());
+		builder.withHomeScore(gameCouchDb.getHomeScore());
+		builder.withPosition(gameCouchDb.getPosition());
+		return builder.build();
 	}
 
 	@Override
 	public long countMatches() {
-		return mongoTemplate.count(new Query(new Criteria()), MatchFromDb.class);
+		return mongoTemplate
+				.count(new Query(new Criteria()), MatchFromDb.class);
 	}
 
 }

@@ -13,6 +13,8 @@ import java.util.List;
 import jkickerstats.GameTestdata;
 import jkickerstats.MatchTestdata;
 import jkickerstats.types.Game;
+import jkickerstats.types.Game.GameBuilder;
+import jkickerstats.types.Match;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -288,9 +290,10 @@ public class PageParserUnitTest {
 	@Test
 	public void parsesPlayerNamesOfLastGame() throws IOException {
 		Elements rawGames = parser.filterGameSnippets(begegnungDoc);
-		Game game = new Game();
-
-		parser.addPlayerNames(game, rawGames.last(), true);
+		GameBuilder builder = new GameBuilder();
+		builder.withDoubleMatch(true);
+		
+		Game game = parser.addPlayerNames(builder.build(), rawGames.last());
 
 		assertThat(game.getHomePlayer1(), is("Sommer, Sebastian"));
 		assertThat(game.getHomePlayer2(), is("Hölzer, Heinz"));
@@ -301,9 +304,10 @@ public class PageParserUnitTest {
 	@Test
 	public void parsesPlayerNamesOfFirstGame() throws IOException {
 		Elements rawGames = parser.filterGameSnippets(begegnungDoc);
-		Game game = new Game();
+		GameBuilder builder = new GameBuilder();
+		builder.withDoubleMatch(false);
 
-		parser.addPlayerNames(game, rawGames.first(), false);
+		Game game = parser.addPlayerNames(builder.build(), rawGames.first());
 
 		assertThat(game.getHomePlayer1(), is("Technau, Jerome"));
 		assertThat(game.getGuestPlayer1(), is("Hojas, René"));
@@ -325,34 +329,34 @@ public class PageParserUnitTest {
 
 	@Test
 	public void returnsAFullFilledSingleGame() {
-		Game game = new Game();
-		game.setDoubleMatch(false);
-		game.setGuestPlayer1("Matheuszik, Sven");
-		game.setGuestScore(7);
-		game.setHomePlayer1("Kränz, Ludwig");
-		game.setHomeScore(5);
-		game.setPosition(2);
+		GameBuilder builder = new GameBuilder();
+		builder.withDoubleMatch(false);
+		builder.withGuestPlayer1("Matheuszik, Sven");
+		builder.withGuestScore(7);
+		builder.withHomePlayer1("Kränz, Ludwig");
+		builder.withHomeScore(5);
+		builder.withPosition(2);
 
 		List<Game> games = parser.findGames(begegnungDoc);
 
-		assertThat(games.get(1), is(game));
+		assertThat(games.get(1), is(builder.build()));
 	}
 
 	@Test
 	public void returnsAFullFilledDoubleGame() {
-		Game game = new Game();
-		game.setDoubleMatch(true);
-		game.setGuestPlayer1("Zierott, Ulli");
-		game.setGuestPlayer2("Hojas, René");
-		game.setGuestScore(5);
-		game.setHomePlayer1("Fischer, Harro");
-		game.setHomePlayer2("Kränz, Ludwig");
-		game.setHomeScore(4);
-		game.setPosition(3);
+		GameBuilder builder = new GameBuilder();
+		builder.withDoubleMatch(true);
+		builder.withGuestPlayer1("Zierott, Ulli");
+		builder.withGuestPlayer2("Hojas, René");
+		builder.withGuestScore(5);
+		builder.withHomePlayer1("Fischer, Harro");
+		builder.withHomePlayer2("Kränz, Ludwig");
+		builder.withHomeScore(4);
+		builder.withPosition(3);
 
 		List<Game> games = parser.findGames(begegnungDoc);
 
-		assertThat(games.get(2), is(game));
+		assertThat(games.get(2), is(builder.build()));
 	}
 
 	@Test
@@ -416,16 +420,16 @@ public class PageParserUnitTest {
 
 	@Test
 	public void returnsAFilledMatch() {
-		List<MatchWithLink> matches = parser.findMatches(begegnungenDoc);
-		MatchWithLink match = matches.get(0);
+		List<Match> matches = parser.findMatches(begegnungenDoc);
+		Match match = matches.get(0);
 
 		assertThat(match, is(MatchTestdata.createMatchLink()));
 	}
 
 	@Test
 	public void returnsAllMatchesWithoutNumberFormatException() {
-		List<MatchWithLink> matches = parser.findMatches(begegnungenNumberFormatExceptionDoc);
-		MatchWithLink match = matches.get(0);
+		List<Match> matches = parser.findMatches(begegnungenNumberFormatExceptionDoc);
+		Match match = matches.get(0);
 
 		assertThat(match.getHomeGoals(), is(0));
 		assertThat(match.getGuestGoals(), is(0));
@@ -435,23 +439,23 @@ public class PageParserUnitTest {
 	
 	@Test
 	public void returnsTeamNamesWithoutDescriptions() {
-		List<MatchWithLink> matches = parser.findMatches(begegnungenLiveDoc);
-		MatchWithLink match = matches.get(0);
+		List<Match> matches = parser.findMatches(begegnungenLiveDoc);
+		Match match = matches.get(0);
 
 		assertThat(match.getHomeTeam(), is("2-5-3 kiggern.de Stade"));
 	}
 	
 	@Test
 	public void returnsAFilledMatchWithoutDate() {
-		List<MatchWithLink> matches = parser.findMatches(begegnungenNoDateDoc);
-		MatchWithLink match = matches.get(25);
+		List<Match> matches = parser.findMatches(begegnungenNoDateDoc);
+		Match match = matches.get(25);
 
 		assertThat(match, is(MatchTestdata.createMatchLinkWithoutDate()));
 	}
 
 	@Test
 	public void returnsAllMatches() {
-		List<MatchWithLink> matches = parser.findMatches(begegnungenDoc);
+		List<Match> matches = parser.findMatches(begegnungenDoc);
 		assertThat(matches.size(), is(14));
 	}
 

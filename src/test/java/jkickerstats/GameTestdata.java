@@ -5,46 +5,47 @@ import java.util.Date;
 
 import jkickerstats.domain.GameFromDb;
 import jkickerstats.types.Game;
+import jkickerstats.types.Game.GameBuilder;
 
 public class GameTestdata {
 
 	public static Game createSingleGame() {
-		Game singleGame = new Game();
-		singleGame.setDoubleMatch(false);
-		singleGame.setGuestPlayer1("Matheuszik, Sven");
-		singleGame.setGuestScore(7);
-		singleGame.setHomePlayer1("Kränz, Ludwig");
-		singleGame.setHomeScore(5);
-		singleGame.setPosition(2);
-		return singleGame;
+		return new GameBuilder()//
+				.withDoubleMatch(false)//
+				.withGuestPlayer1("Matheuszik, Sven")//
+				.withGuestScore(7)//
+				.withHomePlayer1("Kränz, Ludwig")//
+				.withHomeScore(5)//
+				.withPosition(2)//
+				.build();
 	}
 
 	public static Game createSecondSingleGame() {
-		Game game = new Game();
-		game.setDoubleMatch(false);
-		game.setGuestPlayer1("Bai, Minyoung");
-		game.setGuestScore(7);
-		game.setHomePlayer1("Arslan, Mehmet Emin");
-		game.setHomeScore(4);
-		game.setPosition(1);
-		return game;
+		return new GameBuilder()//
+				.withDoubleMatch(false)//
+				.withGuestPlayer1("Bai, Minyoung")//
+				.withGuestScore(7)//
+				.withHomePlayer1("Arslan, Mehmet Emin")//
+				.withHomeScore(4)//
+				.withPosition(1)//
+				.build();
 	}
 
 	public static Game createDoubleGame() {
-		Game doubleGame = new Game();
-		doubleGame.setDoubleMatch(true);
-		doubleGame.setHomePlayer1("Arslan, Mehmet Emin");
-		doubleGame.setHomePlayer2("Böckeler, Frank");
-		doubleGame.setHomeScore(4);
-		doubleGame.setGuestPlayer1("Bai, Minyoung");
-		doubleGame.setGuestPlayer2("Linnenberg, Sebastian");
-		doubleGame.setGuestScore(5);
-		doubleGame.setPosition(16);
-		return doubleGame;
+		return new GameBuilder()//
+				.withDoubleMatch(true)//
+				.withHomePlayer1("Arslan, Mehmet Emin")//
+				.withHomePlayer2("Böckeler, Frank")//
+				.withHomeScore(4)//
+				.withGuestPlayer1("Bai, Minyoung")//
+				.withGuestPlayer2("Linnenberg, Sebastian")//
+				.withGuestScore(5)//
+				.withPosition(16)//
+				.build();
 	}
 
-	public static Date createDate(int year, int month, int day,
-			int hour, int min) {
+	public static Date createDate(int year, int month, int day, int hour,
+			int min) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.clear();
 		calendar.set(Calendar.YEAR, year);
@@ -75,15 +76,14 @@ public class GameTestdata {
 	}
 
 	public Game createDoubleGame2() {
-		Game game = new Game();
-		game.setDoubleMatch(true);
-		game.setGuestPlayer1("guest player1");
-		game.setGuestPlayer2("guest player2");
-		game.setGuestScore(10);
-		game.setHomePlayer1("home player1");
-		game.setHomePlayer2("home player2");
-		game.setHomeScore(22);
-		game.setPosition(2);
-		return game;
+		return new GameBuilder().withDoubleMatch(true)//
+				.withGuestPlayer1("guest player1")//
+				.withGuestPlayer2("guest player2")//
+				.withGuestScore(10)//
+				.withHomePlayer1("home player1")//
+				.withHomePlayer2("home player2")//
+				.withHomeScore(22)//
+				.withPosition(2)//
+				.build();
 	}
 }

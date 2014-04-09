@@ -2,77 +2,81 @@ package jkickerstats;
 
 import java.util.Arrays;
 
-import jkickerstats.interfaces.MatchWithLink;
 import jkickerstats.types.Match;
+import jkickerstats.types.Match.MatchBuilder;
 
 public class MatchTestdata {
 	public static Match createMatch() {
-		Match match = new Match();
-		match.setGuestScore(10);
-		match.setGuestTeam("guestteam");
-		match.setHomeScore(22);
-		match.setHomeTeam("hometeam");
-		match.setMatchDate(GameTestdata.createDate(2013, 01, 27, 19, 1));
-		match.setMatchDay(1);
-		match.setHomeGoals(10);
-		match.setGuestGoals(11);
-		match.setGames(Arrays.asList(GameTestdata.createSingleGame(), GameTestdata.createDoubleGame()));
-		return match;
+		return new MatchBuilder()//
+				.withGuestScore(10)//
+				.withGuestTeam("guestteam")//
+				.withHomeScore(22)//
+				.withHomeTeam("hometeam")//
+				.withMatchDate(GameTestdata.createDate(2013, 01, 27, 19, 1))//
+				.withMatchDay(1)//
+				.withHomeGoals(10)//
+				.withGuestGoals(11)
+				.withGames(
+						Arrays.asList(GameTestdata.createSingleGame(),
+								GameTestdata.createDoubleGame()))//
+				.build();
 	}
 
 	public static Match createMatchWithSinglegame() {
-		Match match = new Match();
-		match.setGuestScore(10);
-		match.setGuestTeam("Hamburg Privateers 08");
-		match.setHomeScore(22);
-		match.setHomeTeam("Tingeltangel FC St. Pauli");
-		match.setMatchDate(GameTestdata.createDate(2013, 01, 27, 19, 1));
-		match.setMatchDay(1);
-		match.setHomeGoals(10);
-		match.setGuestGoals(11);
-		match.setGames(Arrays.asList(GameTestdata.createSingleGame()));
-		return match;
-	}
-	
-	public static Match createMatchWithDoublegame() {
-		Match match = new Match();
-		match.setGuestScore(10);
-		match.setGuestTeam("Die Maschinerie");
-		match.setHomeScore(22);
-		match.setHomeTeam("Cim Bom Bom");
-		match.setMatchDate(GameTestdata.createDate(2013, 01, 28, 19, 1));
-		match.setMatchDay(1);
-		match.setHomeGoals(10);
-		match.setGuestGoals(11);
-		match.setGames(Arrays.asList(GameTestdata.createDoubleGame()));
-		return match;
-	}
-	
-	public static MatchWithLink createMatchLink() {
-		MatchWithLink match = new MatchWithLink();
-		match.setMatchDate(GameTestdata.createDate(2013, 01, 27, 19, 1));
-		match.setHomeTeam("Kickerbande");
-		match.setGuestTeam("St. Ellingen 1");
-		match.setMatchDay(1);
-		match.setHomeGoals(92);
-		match.setGuestGoals(31);
-		match.setHomeScore(32);
-		match.setGuestScore(0);
-		match.setMatchLink("http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=64&id=3815");
-		return match;
+		return new MatchBuilder()//
+				.withGuestScore(10)//
+				.withGuestTeam("Hamburg Privateers 08")//
+				.withHomeScore(22)//
+				.withHomeTeam("Tingeltangel FC St. Pauli")//
+				.withMatchDate(GameTestdata.createDate(2013, 01, 27, 19, 1))//
+				.withMatchDay(1)//
+				.withHomeGoals(10)//
+				.withGuestGoals(11)//
+				.withGames(Arrays.asList(GameTestdata.createSingleGame()))//
+				.build();
 	}
 
-	public static MatchWithLink createMatchLinkWithoutDate() {
-		MatchWithLink match = new MatchWithLink();
-		match.setMatchDate(GameTestdata.createZeroCalendar());
-		match.setHomeTeam("Fightclub Hamburg FC St. Pauli");
-		match.setGuestTeam("Lotterie");
-		match.setMatchDay(6);
-		match.setHomeGoals(0);
-		match.setGuestGoals(96);
-		match.setHomeScore(0);
-		match.setGuestScore(32);
-		match.setMatchLink("http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3504");
-		return match;
+	public static Match createMatchWithDoublegame() {
+		return new MatchBuilder()//
+				.withGuestScore(10)//
+				.withGuestTeam("Die Maschinerie")//
+				.withHomeScore(22)//
+				.withHomeTeam("Cim Bom Bom")//
+				.withMatchDate(GameTestdata.createDate(2013, 01, 28, 19, 1))//
+				.withMatchDay(1)//
+				.withHomeGoals(10)//
+				.withGuestGoals(11)//
+				.withGames(Arrays.asList(GameTestdata.createDoubleGame()))//
+				.build();
+	}
+
+	public static Match createMatchLink() {
+		return new MatchBuilder()//
+				.withMatchDate(GameTestdata.createDate(2013, 01, 27, 19, 1))//
+				.withHomeTeam("Kickerbande")//
+				.withGuestTeam("St. Ellingen 1")//
+				.withMatchDay(1)//
+				.withHomeGoals(92)//
+				.withGuestGoals(31)//
+				.withHomeScore(32)//
+				.withGuestScore(0)//
+				.withMatchLink(
+						"http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=64&id=3815")//
+				.build();
+	}
+
+	public static Match createMatchLinkWithoutDate() {
+		return new MatchBuilder()//
+				.withMatchDate(GameTestdata.createZeroCalendar())//
+				.withHomeTeam("Fightclub Hamburg FC St. Pauli")//
+				.withGuestTeam("Lotterie")//
+				.withMatchDay(6)//
+				.withHomeGoals(0)//
+				.withGuestGoals(96)//
+				.withHomeScore(0)//
+				.withGuestScore(32)//
+				.withMatchLink(
+						"http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3504")//
+				.build();
 	}
 }

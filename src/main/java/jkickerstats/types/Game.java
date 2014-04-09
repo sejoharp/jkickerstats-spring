@@ -1,77 +1,45 @@
 package jkickerstats.types;
 
 public class Game {
-	private String homePlayer1;
-	private String homePlayer2;
-	private int homeScore;
-	private String guestPlayer1;
-	private String guestPlayer2;
-	private int guestScore;
-	private int position;
-	private boolean doubleMatch;
+	private final String homePlayer1;
+	private final String homePlayer2;
+	private final int homeScore;
+	private final String guestPlayer1;
+	private final String guestPlayer2;
+	private final int guestScore;
+	private final int position;
+	private final boolean doubleMatch;
 
 	public String getHomePlayer1() {
 		return homePlayer1;
-	}
-
-	public void setHomePlayer1(String homePlayer1) {
-		this.homePlayer1 = homePlayer1;
 	}
 
 	public String getHomePlayer2() {
 		return homePlayer2;
 	}
 
-	public void setHomePlayer2(String homePlayer2) {
-		this.homePlayer2 = homePlayer2;
-	}
-
 	public int getHomeScore() {
 		return homeScore;
-	}
-
-	public void setHomeScore(int homeScore) {
-		this.homeScore = homeScore;
 	}
 
 	public String getGuestPlayer1() {
 		return guestPlayer1;
 	}
 
-	public void setGuestPlayer1(String guestPlayer1) {
-		this.guestPlayer1 = guestPlayer1;
-	}
-
 	public String getGuestPlayer2() {
 		return guestPlayer2;
-	}
-
-	public void setGuestPlayer2(String guestPlayer2) {
-		this.guestPlayer2 = guestPlayer2;
 	}
 
 	public int getGuestScore() {
 		return guestScore;
 	}
 
-	public void setGuestScore(int guestScore) {
-		this.guestScore = guestScore;
-	}
-
 	public int getPosition() {
 		return position;
 	}
 
-	public void setPosition(int position) {
-		this.position = position;
-	}
-
 	public boolean isDoubleMatch() {
 		return doubleMatch;
-	}
-
-	public void setDoubleMatch(boolean doubleMatch) {
-		this.doubleMatch = doubleMatch;
 	}
 
 	@Override
@@ -140,5 +108,86 @@ public class Game {
 				+ guestPlayer1 + ", guestPlayer2=" + guestPlayer2
 				+ ", guestScore=" + guestScore + ", position=" + position
 				+ ", doubleMatch=" + doubleMatch + "]";
+	}
+
+	private Game(GameBuilder builder) {
+		this.homePlayer1 = builder.homePlayer1;
+		this.homePlayer2 = builder.homePlayer2;
+		this.homeScore = builder.homeScore;
+		this.guestPlayer1 = builder.guestPlayer1;
+		this.guestPlayer2 = builder.guestPlayer2;
+		this.guestScore = builder.guestScore;
+		this.position = builder.position;
+		this.doubleMatch = builder.doubleMatch;
+	}
+
+	public static class GameBuilder {
+
+		private String homePlayer1;
+		private String homePlayer2;
+		private int homeScore;
+		private String guestPlayer1;
+		private String guestPlayer2;
+		private int guestScore;
+		private int position;
+		private boolean doubleMatch;
+
+		public GameBuilder(){
+		}
+		
+		public GameBuilder(Game game) {
+			this.homePlayer1 = game.getHomePlayer1();
+			this.homePlayer2 = game.getHomePlayer2();
+			this.homeScore = game.getHomeScore();
+			this.guestPlayer1 = game.getGuestPlayer1();
+			this.guestPlayer2 = game.getGuestPlayer2();
+			this.guestScore = game.getGuestScore();
+			this.position = game.getPosition();
+			this.doubleMatch = game.isDoubleMatch();
+		}
+		
+		public GameBuilder withHomePlayer1(String homePlayer1) {
+			this.homePlayer1 = homePlayer1;
+			return this;
+		}
+
+		public GameBuilder withHomePlayer2(String homePlayer2) {
+			this.homePlayer2 = homePlayer2;
+			return this;
+		}
+
+		public GameBuilder withHomeScore(int homeScore) {
+			this.homeScore = homeScore;
+			return this;
+		}
+
+		public GameBuilder withGuestPlayer1(String guestPlayer1) {
+			this.guestPlayer1 = guestPlayer1;
+			return this;
+		}
+
+		public GameBuilder withGuestPlayer2(String guestPlayer2) {
+			this.guestPlayer2 = guestPlayer2;
+			return this;
+		}
+
+		public GameBuilder withGuestScore(int guestScore) {
+			this.guestScore = guestScore;
+			return this;
+		}
+
+		public GameBuilder withPosition(int position) {
+			this.position = position;
+			return this;
+		}
+
+		public GameBuilder withDoubleMatch(boolean doubleMatch) {
+			this.doubleMatch = doubleMatch;
+			return this;
+		}
+
+		public Game build() {
+			return new Game(this);
+		}
 	}
 }
