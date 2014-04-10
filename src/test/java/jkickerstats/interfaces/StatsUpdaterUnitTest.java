@@ -1,27 +1,25 @@
 package jkickerstats.interfaces;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-import jkickerstats.domain.MatchRepoInterface;
-import jkickerstats.types.Game;
+import jkickerstats.GameTestdata;
+import jkickerstats.MatchTestdata;
+import jkickerstats.domain.MatchRepo;
 import jkickerstats.types.Match;
 
 import org.jsoup.nodes.Document;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -34,20 +32,16 @@ public class StatsUpdaterUnitTest {
 	@Mock
 	private PageDownloader pageDownloaderMock;
 	@Mock
-	private MatchRepoInterface matchRepoMock;
+	private MatchRepo matchRepoMock;
 	@InjectMocks
 	private StatsUpdater statsUpdater;
-	@Captor
-	private ArgumentCaptor<ArrayList<Game>> gameListCaptor;
-	@Captor
-	private ArgumentCaptor<Match> matchCaptor;
 
 	@Before
 	public void setup() {
 		when(pageParserMock.findGames(any(Document.class))).thenReturn(
-				Arrays.asList(new Game.GameBuilder().build()));
+				Arrays.asList(GameTestdata.createDoubleGame()));
 		when(pageParserMock.findMatches(any(Document.class))).thenReturn(
-				Arrays.asList(new Match.MatchBuilder().build()));
+				Arrays.asList(MatchTestdata.createMatchLinkWithDoubleGame()));
 		when(pageParserMock.findSeasonIDs(any(Document.class))).thenReturn(
 				Arrays.asList(7));
 		when(pageParserMock.findLigaLinks(any(Document.class))).thenReturn(
@@ -73,7 +67,8 @@ public class StatsUpdaterUnitTest {
 
 		statsUpdater.updateStats();
 
-		verify(matchRepoMock, times(0)).isNewMatch(any(Match.class));
+		verify(matchRepoMock, times(0)).isNewMatch(
+				eq(MatchTestdata.createMatchLinkWithDoubleGame()));
 	}
 
 	@Test
@@ -83,7 +78,8 @@ public class StatsUpdaterUnitTest {
 
 		statsUpdater.updateStats();
 
-		verify(matchRepoMock, times(1)).isNewMatch(any(Match.class));
+		verify(matchRepoMock, times(1)).isNewMatch(
+				eq(MatchTestdata.createMatchLinkWithDoubleGame()));
 	}
 
 	@Test
@@ -93,8 +89,8 @@ public class StatsUpdaterUnitTest {
 
 		statsUpdater.updateStats();
 
-		verify(matchRepoMock).save(matchCaptor.capture());
-		assertThat(matchCaptor.getValue(), is(not(nullValue())));
+		verify(matchRepoMock, times(1)).save(
+				eq(MatchTestdata.createMatchLinkWithDoubleGame()));
 	}
 
 	@Test
@@ -104,10 +100,11 @@ public class StatsUpdaterUnitTest {
 
 		statsUpdater.updateStats();
 
-		verify(matchRepoMock).save(matchCaptor.capture());
-		assertThat(matchCaptor.getValue(), is(not(nullValue())));
+		verify(matchRepoMock, times(1)).save(
+				eq(MatchTestdata.createMatchLinkWithDoubleGame()));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void doesNotSaveOldMatches() {
 		when(matchRepoMock.noMatchesAvailable()).thenReturn(false);
@@ -115,6 +112,6 @@ public class StatsUpdaterUnitTest {
 
 		statsUpdater.updateStats();
 
-		verify(matchRepoMock, times(0)).save(matchCaptor.capture());
+		verify(matchRepoMock, times(0)).save(any(List.class));
 	}
 }

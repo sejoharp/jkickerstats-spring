@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import jkickerstats.types.Game;
 import jkickerstats.types.Match;
 
 import org.springframework.stereotype.Component;
@@ -35,30 +34,19 @@ public class CsvCreator {
 		List<String> csvList = new ArrayList<>();
 		matches.forEach(match -> {
 			match.getGames().forEach(game -> {
-				StringBuilder builder = new StringBuilder();
-
-				builder.append(formatDate(match.getMatchDate()));
-				builder.append(";");
-				builder.append(match.getMatchDay());
-				builder.append(";");
-				builder.append(game.getPosition());
-				builder.append(";");
-				builder.append(match.getHomeTeam());
-				builder.append(";");
-				builder.append(replaceEmptyNames(game.getHomePlayer1()));
-				builder.append(";");
-				builder.append(replaceEmptyNames(game.getHomePlayer2()));
-				builder.append(";");
-				builder.append(game.getHomeScore());
-				builder.append(";");
-				builder.append(game.getGuestScore());
-				builder.append(";");
-				builder.append(replaceEmptyNames(game.getGuestPlayer1()));
-				builder.append(";");
-				builder.append(replaceEmptyNames(game.getGuestPlayer2()));
-				builder.append(";");
-				builder.append(match.getGuestTeam());
-				csvList.add(builder.toString());
+				List<String> content = new ArrayList<>();
+				content.add(formatDate(match.getMatchDate()));
+				content.add(String.valueOf(match.getMatchDay()));
+				content.add(String.valueOf(game.getPosition()));
+				content.add(match.getHomeTeam());
+				content.add(replaceEmptyNames(game.getHomePlayer1()));
+				content.add(replaceEmptyNames(game.getHomePlayer2()));
+				content.add(String.valueOf(game.getHomeScore()));
+				content.add(String.valueOf(game.getGuestScore()));
+				content.add(replaceEmptyNames(game.getGuestPlayer1()));
+				content.add(replaceEmptyNames(game.getGuestPlayer2()));
+				content.add(match.getGuestTeam());
+				csvList.add(String.join(";", content));
 			});
 		});
 		return csvList;

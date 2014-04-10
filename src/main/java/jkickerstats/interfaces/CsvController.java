@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import jkickerstats.domain.MatchRepoInterface;
+import jkickerstats.domain.MatchRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CsvController {
 
 	@Autowired
-	private MatchRepoInterface matchRepo;
+	private MatchRepo matchRepo;
 
 	@Autowired
 	private StatsUpdater statsUpdater;

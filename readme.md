@@ -26,7 +26,7 @@ This app grabs all matches vom kickern-hamburg.de and makes it available as csv.
 
 # Dependencies
 * mongodb
-* java 1.7
+* java 1.8
 * maven
 * jsoup
 * jetty

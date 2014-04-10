@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import jkickerstats.domain.MatchRepoInterface;
+import jkickerstats.domain.MatchRepo;
 import jkickerstats.types.Game;
 import jkickerstats.types.Match;
+import jkickerstats.types.Match.MatchBuilder;
 
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class StatsUpdater {
 	@Autowired
 	private PageDownloader pageDownloader;
 	@Autowired
-	private MatchRepoInterface matchRepo;
+	private MatchRepo matchRepo;
 
 	private static String SEASONS_URL = "http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe";
 
@@ -51,52 +52,43 @@ public class StatsUpdater {
 
 	protected List<Match> downloadAllMatches() {
 		List<Match> allMatches = new ArrayList<>();
-		List<Integer> seasonIds = getSeasonIDs();
-		for (Integer seasonId : seasonIds) {
-			List<String> ligaLinks = getLigaLinks(seasonId);
-			for (String ligaLink : ligaLinks) {
-				List<Match> matches = getMatches(ligaLink);
-				for (Match match : matches) {
-					Match fullMatch = new Match.MatchBuilder(match)//
-							.withGames(getGames(match.getMatchLink()))//
-							.build();
-					allMatches.add(fullMatch);
-				}
-			}
-		}
+		getSeasonIDs().forEach(seasonId -> //
+				getLigaLinks(seasonId).forEach(ligaLink -> //
+						getMatches(ligaLink).forEach(match -> //
+								allMatches.add(new MatchBuilder(match)
+										.withGames(
+												getGames(match.getMatchLink()))
+										.build()))));
 		return allMatches;
 	}
 
 	protected void getAllData() {
-		List<Integer> seasonIds = getSeasonIDs();
-		for (Integer seasonId : seasonIds) {
-			List<String> ligaLinks = getLigaLinks(seasonId);
-			for (String ligaLink : ligaLinks) {
-				List<Match> matches = getMatches(ligaLink);
-				for (Match match : matches) {
-					Match fullMatch = new Match.MatchBuilder(match)//
-							.withGames(getGames(match.getMatchLink()))//
-							.build();
-					matchRepo.save(fullMatch);
-				}
-			}
-		}
+		getSeasonIDs().forEach(seasonId -> //
+				getLigaLinks(seasonId).forEach(ligaLink -> //
+						getMatches(ligaLink).forEach(match -> { //
+									Match fullMatch = new Match.MatchBuilder(
+											match).withGames(
+											getGames(match.getMatchLink()))//
+											.build();
+									matchRepo.save(fullMatch);
+								})));
 	}
 
 	protected void updateData() {
-		List<Integer> seasonIds = getSeasonIDs();
-		List<String> ligaLinks = getLigaLinks(getCurrentSeasonId(seasonIds));
-		for (String ligaLink : ligaLinks) {
-			List<Match> matches = getMatches(ligaLink);
-			for (Match match : matches) {
-				if (matchRepo.isNewMatch(match)) {
-					Match fullMatch = new Match.MatchBuilder(match)//
-							.withGames(getGames(match.getMatchLink()))//
-							.build();
-					matchRepo.save(fullMatch);
-				}
-			}
-		}
+		Integer seasonId = getCurrentSeasonId(getSeasonIDs());
+		getLigaLinks(seasonId).forEach(ligaLink -> //
+				safeNewMatches(getMatches(ligaLink)));
+	}
+
+	protected void safeNewMatches(List<Match> matches) {
+		matches.stream()
+				.filter(match -> matchRepo.isNewMatch(match))
+				.forEach(match -> { //
+							Match fullMatch = new Match.MatchBuilder(match)
+									.withGames(getGames(match.getMatchLink()))//
+									.build();
+							matchRepo.save(fullMatch);
+						});
 	}
 
 	protected int getCurrentSeasonId(List<Integer> seasons) {
@@ -115,31 +107,26 @@ public class StatsUpdater {
 
 	protected List<String> getMatchLinks(String ligaLink) {
 		Document ligaDoc = pageDownloader.downloadPage(ligaLink);
-		List<String> matchLinks = kickerpageParser.findMatchLinks(ligaDoc);
-		return matchLinks;
+		return kickerpageParser.findMatchLinks(ligaDoc);
 	}
 
 	protected List<Match> getMatches(String ligaLink) {
 		Document ligaDoc = pageDownloader.downloadPage(ligaLink);
-		List<Match> matchLinks;
 		try {
-			matchLinks = kickerpageParser.findMatches(ligaDoc);
+			return kickerpageParser.findMatches(ligaDoc);
 		} catch (Exception e) {
 			LOG.severe("processing liga: " + ligaLink);
 			throw e;
 		}
-		return matchLinks;
 	}
 
 	protected List<String> getLigaLinks(Integer seasonId) {
 		Document seasonDoc = pageDownloader.downloadSeason(seasonId);
-		List<String> ligaLinks = kickerpageParser.findLigaLinks(seasonDoc);
-		return ligaLinks;
+		return kickerpageParser.findLigaLinks(seasonDoc);
 	}
 
 	protected List<Integer> getSeasonIDs() {
 		Document seasonsDoc = pageDownloader.downloadPage(SEASONS_URL);
-		List<Integer> seasonIds = kickerpageParser.findSeasonIDs(seasonsDoc);
-		return seasonIds;
+		return kickerpageParser.findSeasonIDs(seasonsDoc);
 	}
 }

@@ -164,14 +164,13 @@ class PageParser {
 			List<Match> result) {
 		if (elements.isEmpty())
 			return result;
-		Element element = elements.first();
-		if (isMatchDayElement(element)) {
-			String matchDayString = element.select("i").text();
+		if (isMatchDayElement(elements.first())) {
+			String matchDayString = elements.first().select("i").text();
 			matchDay = Integer.parseInt(matchDayString.split("\\.")[0]);
-		} else if (isValidMatchLink(element)) {
-			result.add(parseMatch(element, matchDay));
-		}
-		elements.remove(element);
+		} else if (isValidMatchLink(elements.first()))
+			result.add(parseMatch(elements.first(), matchDay));
+		
+		elements.remove(elements.first());
 		return recursiveFindMatches(elements, matchDay, result);
 	}
 

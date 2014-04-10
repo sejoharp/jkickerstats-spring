@@ -65,6 +65,22 @@ public class MatchTestdata {
 				.build();
 	}
 
+	public static Match createMatchLinkWithDoubleGame() {
+		return new MatchBuilder()//
+				.withMatchDate(GameTestdata.createDate(2013, 01, 27, 19, 1))//
+				.withHomeTeam("Kickerbande")//
+				.withGuestTeam("St. Ellingen 1")//
+				.withMatchDay(1)//
+				.withHomeGoals(92)//
+				.withGuestGoals(31)//
+				.withHomeScore(32)//
+				.withGuestScore(0)//
+				.withGames(Arrays.asList(GameTestdata.createDoubleGame()))//
+				.withMatchLink(
+						"http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=64&id=3815")//
+				.build();
+	}
+
 	public static Match createMatchLinkWithoutDate() {
 		return new MatchBuilder()//
 				.withMatchDate(GameTestdata.createZeroCalendar())//

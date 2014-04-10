@@ -21,7 +21,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
 public class MatchRepoTest {
 	@Autowired
-	private MatchRepoInterface matchRepo;
+	private MatchRepo matchRepo;
 	@Autowired
 	private MongoTemplate mongoTemplate;
 
@@ -71,15 +71,15 @@ public class MatchRepoTest {
 		MatchFromDb matchFromDb = mongoTemplate.findOne(new Query(
 				new Criteria()), MatchFromDb.class);
 
-		assertThat(new MatchRepo().convertToMatch(matchFromDb),
+		assertThat(new MongoDbMatchRepo().convertToMatch(matchFromDb),
 				is(MatchTestdata.createMatch()));
 	}
 
 	@Test
 	public void convertsBothWays() {
-		MatchFromDb matchFromDb = new MatchRepo()
+		MatchFromDb matchFromDb = new MongoDbMatchRepo()
 				.convertToMatchFromDb(MatchTestdata.createMatch());
-		Match match = new MatchRepo().convertToMatch(matchFromDb);
+		Match match = new MongoDbMatchRepo().convertToMatch(matchFromDb);
 		assertThat(match, is(MatchTestdata.createMatch()));
 	}
 }
