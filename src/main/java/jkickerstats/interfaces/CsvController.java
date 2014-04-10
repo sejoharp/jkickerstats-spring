@@ -17,22 +17,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CsvController {
 
-
 	@Autowired
 	private MatchRepoInterface matchRepo;
 
 	@Autowired
 	private StatsUpdater statsUpdater;
-	
+
 	@Autowired
 	private CsvCreator csvCreator;
 
 	@RequestMapping("/start")
 	public void collectMatches(HttpSession session, HttpServletRequest request,
-	HttpServletResponse response) throws IOException {
+			HttpServletResponse response) throws IOException {
 		statsUpdater.updateStats();
 	}
-	
+
 	@RequestMapping("/csvexport")
 	public void exportAsCSV(HttpSession session, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
@@ -43,10 +42,12 @@ public class CsvController {
 		response.setHeader("Content-Disposition",
 				"attachment; filename=allGames.csv");
 		PrintWriter writer = response.getWriter();
-		for (String row : csvList) {
+
+		csvList.forEach(row -> {
 			writer.write(row);
 			writer.write("\n");
-		}
+		});
+
 		writer.flush();
 		writer.close();
 	}

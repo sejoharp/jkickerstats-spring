@@ -291,10 +291,10 @@ public class PageParserUnitTest {
 	public void parsesPlayerNamesOfLastGame() throws IOException {
 		Elements rawGames = parser.filterGameSnippets(begegnungDoc);
 		GameBuilder builder = new GameBuilder();
-		builder.withDoubleMatch(true);
 		
-		Game game = parser.addPlayerNames(builder.build(), rawGames.last());
+		parser.addPlayerNames(builder, rawGames.last(), true);
 
+		Game game = builder.build();
 		assertThat(game.getHomePlayer1(), is("Sommer, Sebastian"));
 		assertThat(game.getHomePlayer2(), is("Hölzer, Heinz"));
 		assertThat(game.getGuestPlayer1(), is("Nestvogel, Markus"));
@@ -305,10 +305,10 @@ public class PageParserUnitTest {
 	public void parsesPlayerNamesOfFirstGame() throws IOException {
 		Elements rawGames = parser.filterGameSnippets(begegnungDoc);
 		GameBuilder builder = new GameBuilder();
-		builder.withDoubleMatch(false);
 
-		Game game = parser.addPlayerNames(builder.build(), rawGames.first());
+		parser.addPlayerNames(builder, rawGames.first(), false);
 
+		Game game = builder.build();
 		assertThat(game.getHomePlayer1(), is("Technau, Jerome"));
 		assertThat(game.getGuestPlayer1(), is("Hojas, René"));
 	}

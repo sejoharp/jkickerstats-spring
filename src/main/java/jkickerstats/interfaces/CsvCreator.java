@@ -33,8 +33,8 @@ public class CsvCreator {
 
 	public List<String> createCsvRowList(List<Match> matches) {
 		List<String> csvList = new ArrayList<>();
-		for (Match match : matches) {
-			for (Game game : match.getGames()) {
+		matches.forEach(match -> {
+			match.getGames().forEach(game -> {
 				StringBuilder builder = new StringBuilder();
 
 				builder.append(formatDate(match.getMatchDate()));
@@ -59,8 +59,8 @@ public class CsvCreator {
 				builder.append(";");
 				builder.append(match.getGuestTeam());
 				csvList.add(builder.toString());
-			}
-		}
+			});
+		});
 		return csvList;
 	}
 

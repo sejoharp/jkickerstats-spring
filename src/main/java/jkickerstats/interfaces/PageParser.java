@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import jkickerstats.types.Game;
 import jkickerstats.types.Game.GameBuilder;
@@ -22,21 +23,21 @@ class PageParser {
 	public static final String DOMAIN = "http://www.kickern-hamburg.de";
 
 	public List<Game> findGames(Document doc) {
-		final List<Game> games = new ArrayList<>();
 		Elements gameSnippets = filterGameSnippets(doc);
 		if (isValidGameList(gameSnippets)) {
-			final boolean imagesAvailable = hasImages(gameSnippets);
-			for (Element gameSnippet : gameSnippets) {
+			final boolean withImages = hasImages(gameSnippets);
+			return gameSnippets.stream().map(snippet -> {
 				GameBuilder builder = new Game.GameBuilder();
-				builder.withDoubleMatch(isDoubleMatch(gameSnippet));
-				builder.withPosition(parseGamePosition(gameSnippet));
-				builder.withHomeScore(parseHomeScore(gameSnippet, imagesAvailable));
-				builder.withGuestScore(parseGuestScore(gameSnippet, imagesAvailable));
-				Game game = addPlayerNames(builder.build(), gameSnippet);
-				games.add(game);
-			}
-		}
-		return games;
+				builder.withDoubleMatch(isDoubleMatch(snippet));
+				builder.withPosition(parseGamePosition(snippet));
+				builder.withHomeScore(parseHomeScore(snippet, withImages));
+				builder.withGuestScore(parseGuestScore(snippet, withImages));
+				addPlayerNames(builder, snippet, isDoubleMatch(snippet));
+				return builder.build();
+			})//
+					.collect(Collectors.toList());
+		} else
+			return new ArrayList<>();
 	}
 
 	protected boolean hasImages(Elements elements) {
@@ -128,33 +129,26 @@ class PageParser {
 	}
 
 	public List<String> findLigaLinks(Document doc) {
-		final List<String> ligaLinks = new ArrayList<>();
 		Elements elements = doc
 				.select("div#Content > table > tbody > tr > td > a.readon");
-		for (Element element : elements) {
-			ligaLinks.add(DOMAIN + element.attr("href"));
-		}
-		return ligaLinks;
+		return elements.stream()//
+				.map(element -> DOMAIN + element.attr("href"))//
+				.collect(Collectors.toList());
 	}
 
 	public List<Integer> findSeasonIDs(Document doc) {
-		final List<Integer> seasonIDs = new ArrayList<>();
 		Elements elements = doc.select("div#Content select option");
-		for (Element element : elements) {
-			seasonIDs.add(Integer.valueOf(element.attr("value")));
-		}
-		return seasonIDs;
+		return elements.stream()//
+				.map(element -> Integer.valueOf(element.attr("value")))//
+				.collect(Collectors.toList());
 	}
 
 	public List<String> findMatchLinks(Document doc) {
-		final List<String> matchLinks = new ArrayList<>();
 		Elements elements = filterMatchLinkSnippets(doc);
-		for (Element element : elements) {
-			if (isValidMatchLink(element)) {
-				matchLinks.add(parseMatchLink(element));
-			}
-		}
-		return matchLinks;
+		return elements.stream()//
+				.filter(element -> isValidMatchLink(element))//
+				.map(element -> parseMatchLink(element))//
+				.collect(Collectors.toList());
 	}
 
 	protected String parseMatchLink(Element element) {
@@ -162,18 +156,23 @@ class PageParser {
 	}
 
 	public List<Match> findMatches(Document doc) {
-		final List<Match> matches = new ArrayList<>();
 		Elements elements = filterMatchSnippets(doc);
-		int matchDay = 0;
-		for (Element element : elements) {
-			if (isMatchDayElement(element)) {
-				String matchDayString = element.select("i").text();
-				matchDay = Integer.parseInt(matchDayString.split("\\.")[0]);
-			} else if (isValidMatchLink(element)) {
-				matches.add(parseMatch(element, matchDay));
-			}
+		return recursiveFindMatches(elements, 0, new ArrayList<>());
+	}
+
+	public List<Match> recursiveFindMatches(Elements elements, int matchDay,
+			List<Match> result) {
+		if (elements.isEmpty())
+			return result;
+		Element element = elements.first();
+		if (isMatchDayElement(element)) {
+			String matchDayString = element.select("i").text();
+			matchDay = Integer.parseInt(matchDayString.split("\\.")[0]);
+		} else if (isValidMatchLink(element)) {
+			result.add(parseMatch(element, matchDay));
 		}
-		return matches;
+		elements.remove(element);
+		return recursiveFindMatches(elements, matchDay, result);
 	}
 
 	protected boolean isMatchDayElement(Element element) {
@@ -182,15 +181,15 @@ class PageParser {
 	}
 
 	protected Match parseMatch(Element element, int matchDay) {
-		MatchBuilder builder = new Match.MatchBuilder();
-		builder.withMatchDate(parseMatchDate(element));
-		builder.withMatchDay(matchDay);
-		builder.withHomeScore(parseMatchHomeScore(element));
-		builder.withGuestScore(parseMatchGuestScore(element));
-		builder.withHomeTeam(removeTeamDescriptions(element.children().eq(1)
-				.text()));
-		builder.withGuestTeam(removeTeamDescriptions(element.children().eq(2)
-				.text()));
+		MatchBuilder builder = new Match.MatchBuilder()//
+				.withMatchDate(parseMatchDate(element))//
+				.withMatchDay(matchDay)//
+				.withHomeScore(parseMatchHomeScore(element))//
+				.withGuestScore(parseMatchGuestScore(element))//
+				.withHomeTeam(
+						removeTeamDescriptions(element.children().eq(1).text()))//
+				.withGuestTeam(
+						removeTeamDescriptions(element.children().eq(2).text()));
 		if (isNewMatchFormat(element)) {
 			builder.withGuestGoals(parseMatchGuestGoals(element));
 			builder.withHomeGoals(parseMatchHomeGoals(element));
@@ -275,10 +274,10 @@ class PageParser {
 		return Integer.parseInt(gameDoc.children().first().text());
 	}
 
-	protected Game addPlayerNames(Game game, Element gameDoc) {
+	protected void addPlayerNames(GameBuilder builder, Element gameDoc,
+			boolean isDoubleMatch) {
 		Elements rawPlayerNames = gameDoc.select("td a");
-		GameBuilder builder = new Game.GameBuilder(game);
-		if (game.isDoubleMatch()) {
+		if (isDoubleMatch) {
 			builder.withHomePlayer1(parsePlayerName(rawPlayerNames, 0));
 			builder.withHomePlayer2(parsePlayerName(rawPlayerNames, 1));
 			builder.withGuestPlayer1(parsePlayerName(rawPlayerNames, 2));
@@ -287,7 +286,6 @@ class PageParser {
 			builder.withHomePlayer1(parsePlayerName(rawPlayerNames, 0));
 			builder.withGuestPlayer1(parsePlayerName(rawPlayerNames, 1));
 		}
-		return builder.build();
 	}
 
 	protected String parsePlayerName(Elements rawPlayerNames, int position) {

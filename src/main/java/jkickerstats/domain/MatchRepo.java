@@ -2,6 +2,8 @@ package jkickerstats.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import jkickerstats.types.Game;
 import jkickerstats.types.Game.GameBuilder;
@@ -60,19 +62,15 @@ public class MatchRepo implements MatchRepoInterface {
 	}
 
 	protected List<MatchFromDb> convertToMatchFromDbList(List<Match> matches) {
-		List<MatchFromDb> matchFromDbs = new ArrayList<>();
-		for (Match match : matches) {
-			matchFromDbs.add(convertToMatchFromDb(match));
-		}
-		return matchFromDbs;
+		return matches.stream()//
+				.map(match -> convertToMatchFromDb(match))//
+				.collect(Collectors.toList());
 	}
 
 	protected List<Match> convertToMatchList(List<MatchFromDb> matchFromDbs) {
-		List<Match> matches = new ArrayList<>();
-		for (MatchFromDb matchFromDb : matchFromDbs) {
-			matches.add(convertToMatch(matchFromDb));
-		}
-		return matches;
+		return matchFromDbs.stream()//
+				.map(matchFromDb -> convertToMatch(matchFromDb))//
+				.collect(Collectors.toList());
 	}
 
 	protected MatchFromDb convertToMatchFromDb(Match match) {
@@ -100,23 +98,19 @@ public class MatchRepo implements MatchRepoInterface {
 				.withMatchDate(matchFromDb.getMatchDate())//
 				.withMatchDay(matchFromDb.getMatchDay())//
 				.withGames(convertToGameList(matchFromDb.getGames()))//
-		.build();
+				.build();
 	}
 
 	protected List<GameFromDb> convertToGameFromDbList(List<Game> games) {
-		List<GameFromDb> gameFromDbList = new ArrayList<>();
-		for (Game game : games) {
-			gameFromDbList.add(convertToGameFromDb(game));
-		}
-		return gameFromDbList;
+		return games.stream()//
+				.map(game -> convertToGameFromDb(game))//
+				.collect(Collectors.toList());
 	}
 
 	protected List<Game> convertToGameList(List<GameFromDb> gameCouchDbList) {
-		List<Game> games = new ArrayList<>();
-		for (GameFromDb gameFromDb : gameCouchDbList) {
-			games.add(convertToGame(gameFromDb));
-		}
-		return games;
+		return gameCouchDbList.stream()//
+				.map(gameFromDb -> convertToGame(gameFromDb))//
+				.collect(Collectors.toList());
 	}
 
 	protected GameFromDb convertToGameFromDb(Game game) {

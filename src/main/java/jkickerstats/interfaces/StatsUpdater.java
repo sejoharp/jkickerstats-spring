@@ -42,17 +42,10 @@ public class StatsUpdater {
 
 	protected List<Game> downloadAllGames() {
 		List<Game> games = new ArrayList<>();
-
-		List<Integer> seasonIds = getSeasonIDs();
-		for (Integer seasonId : seasonIds) {
-			List<String> ligaLinks = getLigaLinks(seasonId);
-			for (String ligaLink : ligaLinks) {
-				List<String> matchLinks = getMatchLinks(ligaLink);
-				for (String matchLink : matchLinks) {
-					games.addAll(getGames(matchLink));
-				}
-			}
-		}
+		getSeasonIDs().forEach(seasonId -> //
+				getLigaLinks(seasonId).forEach(ligaLink -> //
+						getMatchLinks(ligaLink).forEach(matchLink -> //
+								games.addAll(getGames(matchLink)))));
 		return games;
 	}
 
@@ -107,13 +100,7 @@ public class StatsUpdater {
 	}
 
 	protected int getCurrentSeasonId(List<Integer> seasons) {
-		int newestSeason = seasons.get(0);
-		for (Integer season : seasons) {
-			if (season > newestSeason) {
-				newestSeason = season;
-			}
-		}
-		return newestSeason;
+		return seasons.stream().max(Integer::compare).get();
 	}
 
 	protected List<Game> getGames(String matchLink) {
