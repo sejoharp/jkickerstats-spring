@@ -82,7 +82,7 @@ public class StatsUpdater {
 
 	protected void safeNewMatches(List<Match> matches) {
 		matches.stream()
-				.filter(match -> matchRepo.isNewMatch(match))
+				.filter(matchRepo::isNewMatch)
 				.forEach(match -> { //
 							Match fullMatch = new Match.MatchBuilder(match)
 									.withGames(getGames(match.getMatchLink()))//

@@ -1,19 +1,18 @@
 package jkickerstats.domain;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import jkickerstats.types.Game;
 import jkickerstats.types.Game.GameBuilder;
 import jkickerstats.types.Match;
 import jkickerstats.types.Match.MatchBuilder;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class MongoDbMatchRepo implements MatchRepo {
@@ -61,13 +60,13 @@ public class MongoDbMatchRepo implements MatchRepo {
 
 	protected List<MatchFromDb> convertToMatchFromDbList(List<Match> matches) {
 		return matches.stream()//
-				.map(match -> convertToMatchFromDb(match))//
+				.map(this::convertToMatchFromDb)//
 				.collect(Collectors.toList());
 	}
 
 	protected List<Match> convertToMatchList(List<MatchFromDb> matchFromDbs) {
 		return matchFromDbs.stream()//
-				.map(matchFromDb -> convertToMatch(matchFromDb))//
+				.map(this::convertToMatch)//
 				.collect(Collectors.toList());
 	}
 
@@ -107,7 +106,7 @@ public class MongoDbMatchRepo implements MatchRepo {
 
 	protected List<Game> convertToGameList(List<GameFromDb> gameCouchDbList) {
 		return gameCouchDbList.stream()//
-				.map(gameFromDb -> convertToGame(gameFromDb))//
+				.map(this::convertToGame)//
 				.collect(Collectors.toList());
 	}
 

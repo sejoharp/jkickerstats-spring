@@ -32,25 +32,23 @@ public class CsvCreator {
 
 	public List<String> createCsvRowList(List<Match> matches) {
 		List<String> csvList = new ArrayList<>();
-		matches.forEach(match -> {
-			match.getGames().forEach(game -> {
-				List<String> content = new ArrayList<>();
-				content.add(formatDate(match.getMatchDate()));
-				content.add(String.valueOf(match.getMatchDay()));
-				content.add(String.valueOf(game.getPosition()));
-				content.add(match.getHomeTeam());
-				content.add(replaceEmptyNames(game.getHomePlayer1()));
-				content.add(replaceEmptyNames(game.getHomePlayer2()));
-				content.add(String.valueOf(game.getHomeScore()));
-				content.add(String.valueOf(game.getGuestScore()));
-				content.add(replaceEmptyNames(game.getGuestPlayer1()));
-				content.add(replaceEmptyNames(game.getGuestPlayer2()));
-				content.add(match.getGuestTeam());
-				csvList.add(String.join(";", content));
-			});
-		});
-		return csvList;
-	}
+		matches.forEach(match -> match.getGames().forEach(game -> {
+            List<String> content = new ArrayList<>();
+            content.add(formatDate(match.getMatchDate()));
+            content.add(String.valueOf(match.getMatchDay()));
+            content.add(String.valueOf(game.getPosition()));
+            content.add(match.getHomeTeam());
+            content.add(replaceEmptyNames(game.getHomePlayer1()));
+            content.add(replaceEmptyNames(game.getHomePlayer2()));
+            content.add(String.valueOf(game.getHomeScore()));
+            content.add(String.valueOf(game.getGuestScore()));
+            content.add(replaceEmptyNames(game.getGuestPlayer1()));
+            content.add(replaceEmptyNames(game.getGuestPlayer2()));
+            content.add(match.getGuestTeam());
+            csvList.add(String.join(";", content));
+        }));
+        return csvList;
+    }
 
 	protected String formatDate(Date matchDate) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

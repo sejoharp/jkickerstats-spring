@@ -146,8 +146,8 @@ class PageParser {
 	public List<String> findMatchLinks(Document doc) {
 		Elements elements = filterMatchLinkSnippets(doc);
 		return elements.stream()//
-				.filter(element -> isValidMatchLink(element))//
-				.map(element -> parseMatchLink(element))//
+				.filter(this::isValidMatchLink)//
+				.map(this::parseMatchLink)//
 				.collect(Collectors.toList());
 	}
 
