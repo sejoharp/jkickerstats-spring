@@ -69,6 +69,13 @@ public class Match {
 	}
 
 	@Override
+	public String toString() {
+		return "Match [homeTeam=" + homeTeam + ", guestTeam=" + guestTeam + ", homeGoals=" + homeGoals + ", guestGoals="
+				+ guestGoals + ", homeScore=" + homeScore + ", guestScore=" + guestScore + ", matchDate=" + matchDate
+				+ ", matchDay=" + matchDay + ", games=" + games + ", matchLink=" + matchLink + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

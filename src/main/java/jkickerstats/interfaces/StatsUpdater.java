@@ -2,6 +2,7 @@ package jkickerstats.interfaces;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import jkickerstats.domain.MatchRepo;
@@ -15,11 +16,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class StatsUpdater {
-	private static final Logger LOG = Logger.getLogger(StatsUpdater.class
-			.getName());
+	private static final Logger LOG = Logger.getLogger(StatsUpdater.class.getName());
 
 	@Autowired
-	private PageParser kickerpageParser;
+	private PageParser pageParser;
 	@Autowired
 	private PageDownloader pageDownloader;
 	@Autowired
@@ -37,58 +37,50 @@ public class StatsUpdater {
 		}
 
 		long matchesCountAfter = matchRepo.countMatches();
-		LOG.info("updater batch finished and found "
-				+ (matchesCountAfter - matchesCountBefore) + " new matches.");
+		LOG.info("updater batch finished and found " + (matchesCountAfter - matchesCountBefore) + " new matches.");
 	}
 
 	protected List<Game> downloadAllGames() {
 		List<Game> games = new ArrayList<>();
-		getSeasonIDs().forEach(seasonId -> //
-				getLigaLinks(seasonId).forEach(ligaLink -> //
-						getMatchLinks(ligaLink).forEach(matchLink -> //
-								games.addAll(getGames(matchLink)))));
+		getSeasonIDs().forEach(seasonId -> getLigaLinks(seasonId)//
+				.forEach(ligaLink -> getMatchLinks(ligaLink)//
+						.forEach(matchLink -> games.addAll(getGames(matchLink)))));
 		return games;
 	}
 
 	protected List<Match> downloadAllMatches() {
 		List<Match> allMatches = new ArrayList<>();
-		getSeasonIDs().forEach(seasonId -> //
-				getLigaLinks(seasonId).forEach(ligaLink -> //
-						getMatches(ligaLink).forEach(match -> //
-								allMatches.add(new MatchBuilder(match)
-										.withGames(
-												getGames(match.getMatchLink()))
-										.build()))));
+		getSeasonIDs().forEach(seasonId -> getLigaLinks(seasonId) //
+				.forEach(ligaLink -> getMatches(ligaLink) //
+						.forEach(match -> allMatches.add(new MatchBuilder(match)//
+								.withGames(getGames(match.getMatchLink()))//
+								.build()))));
 		return allMatches;
 	}
 
 	protected void getAllData() {
-		getSeasonIDs().forEach(seasonId -> //
-				getLigaLinks(seasonId).forEach(ligaLink -> //
-						getMatches(ligaLink).forEach(match -> { //
-									Match fullMatch = new Match.MatchBuilder(
-											match).withGames(
-											getGames(match.getMatchLink()))//
-											.build();
-									matchRepo.save(fullMatch);
-								})));
+		getSeasonIDs().forEach(seasonId -> getLigaLinks(seasonId)//
+				.forEach(ligaLink -> getMatches(ligaLink)//
+						.forEach(this::saveCompleteMatch)));
+	}
+
+	private void saveCompleteMatch(Match match) {
+		Match fullMatch = new Match.MatchBuilder(match)//
+				.withGames(getGames(match.getMatchLink()))//
+				.build();
+		matchRepo.save(fullMatch);
 	}
 
 	protected void updateData() {
 		Integer seasonId = getCurrentSeasonId(getSeasonIDs());
-		getLigaLinks(seasonId).forEach(ligaLink -> //
-				safeNewMatches(getMatches(ligaLink)));
+		getLigaLinks(seasonId)//
+				.forEach(ligaLink -> saveNewMatches(getMatches(ligaLink)));
 	}
 
-	protected void safeNewMatches(List<Match> matches) {
-		matches.stream()
-				.filter(matchRepo::isNewMatch)
-				.forEach(match -> { //
-							Match fullMatch = new Match.MatchBuilder(match)
-									.withGames(getGames(match.getMatchLink()))//
-									.build();
-							matchRepo.save(fullMatch);
-						});
+	protected void saveNewMatches(List<Match> matches) {
+		matches.stream()//
+				.filter(matchRepo::isNewMatch)//
+				.forEach(this::saveCompleteMatch);
 	}
 
 	protected int getCurrentSeasonId(List<Integer> seasons) {
@@ -98,7 +90,7 @@ public class StatsUpdater {
 	protected List<Game> getGames(String matchLink) {
 		Document matchDoc = pageDownloader.downloadPage(matchLink);
 		try {
-			return kickerpageParser.findGames(matchDoc);
+			return pageParser.findGames(matchDoc);
 		} catch (Exception e) {
 			LOG.severe("processing match: " + matchLink);
 			throw e;
@@ -107,13 +99,13 @@ public class StatsUpdater {
 
 	protected List<String> getMatchLinks(String ligaLink) {
 		Document ligaDoc = pageDownloader.downloadPage(ligaLink);
-		return kickerpageParser.findMatchLinks(ligaDoc);
+		return pageParser.findMatchLinks(ligaDoc);
 	}
 
 	protected List<Match> getMatches(String ligaLink) {
 		Document ligaDoc = pageDownloader.downloadPage(ligaLink);
 		try {
-			return kickerpageParser.findMatches(ligaDoc);
+			return pageParser.findMatches(ligaDoc);
 		} catch (Exception e) {
 			LOG.severe("processing liga: " + ligaLink);
 			throw e;
@@ -122,11 +114,11 @@ public class StatsUpdater {
 
 	protected List<String> getLigaLinks(Integer seasonId) {
 		Document seasonDoc = pageDownloader.downloadSeason(seasonId);
-		return kickerpageParser.findLigaLinks(seasonDoc);
+		return pageParser.findLigaLinks(seasonDoc);
 	}
 
 	protected List<Integer> getSeasonIDs() {
 		Document seasonsDoc = pageDownloader.downloadPage(SEASONS_URL);
-		return kickerpageParser.findSeasonIDs(seasonsDoc);
+		return pageParser.findSeasonIDs(seasonsDoc);
 	}
 }

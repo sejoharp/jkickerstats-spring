@@ -7,23 +7,27 @@
 	<meta name="robots" content="index, follow" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script src="/liga-tool/includes/js/joomla.javascript.js" type="text/javascript"></script>
-	  <base href="http://kickern-hamburg.de/liga-tool/mannschaftswettbewerbe" />
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta name="robots" content="index, follow" />
-  <meta name="generator" content="Joomla! 1.7 - Open Source Content Management" />
-  <title>Ergebnisse und Tabellen</title>
-  <link href="/liga-tool/templates/kickernhh/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
-  <script src="/liga-tool/media/system/js/core.js" type="text/javascript"></script>
-  <script src="/liga-tool/media/system/js/mootools-core.js" type="text/javascript"></script>
-  <script src="/liga-tool/media/system/js/mootools-more.js" type="text/javascript"></script>
-  <script src="/liga-tool/templates/kickernhh/javascript/md_stylechanger.js" type="text/javascript" defer="defer"></script>
-  <script type="text/javascript">
-function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"}).send();} window.addEvent("domready", function(){ keepAlive.periodical(840000); });
-  </script>
+		<base href="http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="Joomla! - Open Source Content Management" />
+	<title>Ergebnisse und Tabellen</title>
+	<link href="/liga-tool/templates/kickernhh/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+	<script src="/liga-tool/media/system/js/mootools-core.js" type="text/javascript"></script>
+	<script src="/liga-tool/media/system/js/core.js" type="text/javascript"></script>
+	<script src="/liga-tool/media/system/js/mootools-more.js" type="text/javascript"></script>
+	<script src="/liga-tool/templates/kickernhh/javascript/md_stylechanger.js" type="text/javascript" defer="defer"></script>
+	<script src="/liga-tool/media/jui/js/jquery.min.js" type="text/javascript"></script>
+	<script src="/liga-tool/media/jui/js/jquery-noconflict.js" type="text/javascript"></script>
+	<script src="/liga-tool/media/jui/js/jquery-migrate.min.js" type="text/javascript"></script>
+	<script src="/liga-tool/media/jui/js/bootstrap.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+jQuery(function($){ $(".hasTooltip").tooltip({"html": true,"container": "body"}); });
+window.setInterval(function(){var r;try{r=window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP")}catch(e){}if(r){r.open("GET","/liga-tool/index.php?option=com_ajax&format=json",true);r.send(null)}},840000);
+	</script>
 
 	<link rel="stylesheet" href="/liga-tool/templates/system/css/system.css" type="text/css" />
 	<link rel="shortcut icon" href="/favicon.ico" />
-	<link rel="stylesheet" type="text/css" href="/kickern-hh/css/layout.css" />
+	<link rel="stylesheet" type="text/css" href="/kickern-hh/css/layout.css?s=1234" />
 	<link rel="stylesheet" type="text/css" href="/kickern-hh/css/typography.css" />
 	<link rel="stylesheet" type="text/css" href="/kickern-hh/css/form.css" />
 	<style type="text/css">
@@ -50,10 +54,11 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 <div id="Container">
 	<a href="/" style="border: none;" title="Startseite"><img id="top" src="/kickern-hh/images/logo_turm.png" width="85" height="100" align="left" alt="Turm-Logo" style="float: left;" title="Startseite" /></a>
 	<div id="Header">
-		<div id="Advertisment">
+		<div id="Advertisment"><!--
 			<p><strong>Kicker-Sven.de</strong> - der Spieler-Shop!</p>
 			<p>Tecball, Leonhart, P4P, Zubeh&ouml;r &amp; mehr,</p>
-			<p>weitere Infos unter <a href="http://www.kicker-sven.de/">www.kicker-sven.de</a></p>
+			<p>weitere Infos unter <a href="http://www.kicker-sven.de/">www.kicker-sven.de</a></p> -->
+			<a href="http://www.kicker-sven.de/"><img src="/images/kicker-sven-banner.jpg" height="54" width="300" alt="Kicker-Sven.de - der Spielershop"/></a>
 			<p class="notice">Anzeige</p>
 		</div>
 		<!-- Announcements!!
@@ -62,35 +67,42 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
       </div>
 		-->
 		<div id="LoginBox">
-			<form action="/liga-tool/mannschaftswettbewerbe" method="post" id="login-form" >
-		<fieldset class="userdata">
-	<p id="form-login-username">
-		<label for="modlgn-username">Benutzername</label>
-		<input id="modlgn-username" type="text" name="username" class="inputbox"  size="18" />
-	</p>
-	<p id="form-login-password">
-		<label for="modlgn-passwd">Passwort</label>
-		<input id="modlgn-passwd" type="password" name="password" class="inputbox" size="18"  />
-	</p>
-		<p id="form-login-remember">
-		<label for="modlgn-remember">Angemeldet bleiben</label>
-		<input id="modlgn-remember" type="checkbox" name="remember" class="inputbox" value="yes"/>
-	</p>
-		<input type="submit" name="Submit" class="button" value="Anmelden" />
-	<input type="hidden" name="option" value="com_users" />
-	<input type="hidden" name="task" value="user.login" />
-	<input type="hidden" name="return" value="aW5kZXgucGhwP3Rhc2s9dmVyYW5zdGFsdHVuZyZ2ZXJhbnN0YWx0dW5naWQ9NTQmb3B0aW9uPWNvbV9zcG9ydHNtYW5hZ2VyJnZpZXc9c3BvcnRzbWFuYWdlciZJdGVtaWQ9MTA0" />
-	<input type="hidden" name="715f5c22f6df3947548e8c003bc03685" value="1" />	</fieldset>
-	<ul>
-		<li>
-			<a href="/liga-tool/component/users/?view=reset">
-			Passwort vergessen?</a>
-		</li>
-		<li>
-			<a href="/liga-tool/component/users/?view=remind">
-			Benutzername vergessen?</a>
-		</li>
+			<form action="http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=108" method="post" id="login-form" class="form-inline">
+		<div class="userdata">
+		<div id="form-login-username" class="control-group">
+			<div class="controls">
+									<label for="modlgn-username">Benutzername</label>
+					<input id="modlgn-username" type="text" name="username" class="input-small" tabindex="0" size="18" placeholder="Benutzername" />
+							</div>
+		</div>
+		<div id="form-login-password" class="control-group">
+			<div class="controls">
+									<label for="modlgn-passwd">Passwort</label>
+					<input id="modlgn-passwd" type="password" name="password" class="input-small" tabindex="0" size="18" placeholder="Passwort" />
+							</div>
+		</div>
+						<div id="form-login-remember" class="control-group checkbox">
+			<label for="modlgn-remember" class="control-label">Angemeldet bleiben</label> <input id="modlgn-remember" type="checkbox" name="remember" class="inputbox" value="yes"/>
+		</div>
+				<div id="form-login-submit" class="control-group">
+			<div class="controls">
+				<button type="submit" tabindex="0" name="Submit" class="btn btn-primary">Anmelden</button>
+			</div>
+		</div>
+					<ul class="unstyled">
+							<li>
+					<a href="/liga-tool/component/users/?view=remind">
+					Benutzername vergessen?</a>
+				</li>
+				<li>
+					<a href="/liga-tool/component/users/?view=reset">
+					Passwort vergessen?</a>
+				</li>
 			</ul>
+		<input type="hidden" name="option" value="com_users" />
+		<input type="hidden" name="task" value="user.login" />
+		<input type="hidden" name="return" value="aHR0cDovL3d3dy5raWNrZXJuLWhhbWJ1cmcuZGUvbGlnYS10b29sL21hbm5zY2hhZnRzd2V0dGJld2VyYmU/dGFzaz12ZXJhbnN0YWx0dW5nJnZlcmFuc3RhbHR1bmdpZD0xMDg=" />
+		<input type="hidden" name="689f413b7c195117ac28ede0362b9f2a" value="1" />	</div>
 	</form>
 
 		</div>
@@ -114,45 +126,56 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 		<div class="typography">
 			<h2>Wettbewerbe</h2>
 			<div id="breadcrumbs">
-<div class="breadcrumbs">
-<span class="showHere">Aktuelle Seite: </span><span>Ergebnisse und Tabellen</span></div>
+<ul itemscope itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">
+			<li class="active">
+			<span class="divider icon-location"></span>
+		</li>
+	
+				<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+									<a itemprop="item" href="/liga-tool/" class="pathway"><span itemprop="name">Wettbewerbe</span></a>
+				
+									<span class="divider">
+						/					</span>
+								<meta itemprop="position" content="1">
+			</li>
+					<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="active">
+				<span itemprop="name">
+					Ergebnisse und Tabellen				</span>
+				<meta itemprop="position" content="2">
+			</li>
+		</ul>
 </div>
 			<div id="Sidebar">
 				<div class="sidebarBox">
 					<div class="moduletable">
  <h3><span
 	class="backh"><span class="backh2"><span class="backh3">Info</span></span></span></h3>
- 
-<ul class="menu">
-<li class="item-141"><a href="/liga-tool/kalender" >Kalender</a></li><li class="item-113"><a href="/liga-tool/vereine" >Vereine</a></li><li class="item-111"><a href="/liga-tool/spieler" >Spieler</a></li><li class="item-114"><a href="/liga-tool/spielorte" >Spielorte</a></li></ul>
+ <ul class="nav menu">
+<li class="item-101"><a href="/liga-tool/uebersicht" >Mannschafts- und Einzel-Sport</a></li><li class="item-113"><a href="/liga-tool/vereine" >Vereine</a></li><li class="item-111"><a href="/liga-tool/spieler" >Spieler</a></li><li class="item-114"><a href="/liga-tool/spielorte" >Spielorte</a></li></ul>
 </div>
 <div class="moduletable_menu">
  <h3><span
-	class="backh"><span class="backh2"><span class="backh3">Hamburger Kickerliga</span></span></span></h3>
- 
-<ul class="menu">
-<li class="item-106"><a href="/liga-tool/" >Aktuelle Partien</a></li><li class="item-104 current active deeper parent"><a href="/liga-tool/mannschaftswettbewerbe" >Ergebnisse und Tabellen</a><ul><li class="item-119"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=54" >1. Liga</a></li><li class="item-124"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=55" >2. Liga</a></li><li class="item-123"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=61" >3. Liga (Gruppe A)</a></li><li class="item-125"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=62" >3. Liga (Gruppe B)</a></li><li class="item-126"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=63" >4. Liga (Gruppe A)</a></li><li class="item-127"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=64" >4. Liga (Gruppe B)</a></li><li class="item-128"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=65" >4. Liga (Gruppe C)</a></li><li class="item-129"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=66" >4. Liga (Gruppe D)</a></li><li class="item-131"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=67" >Pokal</a></li></ul></li><li class="item-112"><a href="/liga-tool/mannschaften" >Mannschaften</a></li><li class="item-107"><a href="/liga-tool/spielerstatistiken" >Spielerstatistiken</a></li><li class="item-116"><a href="/liga-tool/dokumente" >Dokumente</a></li><li class="item-117"><a href="/liga-tool/info-und-teilnahme" >Info und Teilnahme</a></li><li class="item-143"><a href="/liga-tool/spielordnung" >Spielordnung</a></li></ul>
+	class="backh"><span class="backh2"><span class="backh3">Liga</span></span></span></h3>
+ <ul class="nav menu">
+<li class="item-117 deeper parent"><a href="/liga-tool/info-und-teilnahme" >Info und Teilnahme</a><ul class="nav-child unstyled small"><li class="item-159"><a href="/liga-tool/info-und-teilnahme/liga-aktuell" >Liga aktuell</a></li><li class="item-158"><a href="http://kickern-hamburg.de/liga-tool/images/dokumente/saison2016/Rahmenterminkalender_Liga-Pokal_2016.pdf " >Rahmenterminkalender</a></li><li class="item-116"><a href="/liga-tool/info-und-teilnahme/dokumente" >Dokumente</a></li><li class="item-143"><a href="/liga-tool/info-und-teilnahme/spielordnung" >Spielordnung</a></li></ul></li><li class="item-106 default"><a href="/liga-tool/" >Aktuelle Partien</a></li><li class="item-104 current active deeper parent"><a href="/liga-tool/mannschaftswettbewerbe" >Ergebnisse und Tabellen</a><ul class="nav-child unstyled small"><li class="item-119"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=105" >1. Liga</a></li><li class="item-124"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=106" >2. Liga (A)</a></li><li class="item-148"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=107" >2. Liga (B)</a></li><li class="item-123"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=108" >3. Liga (A)</a></li><li class="item-125"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=109" >3. Liga (B)</a></li><li class="item-128"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=110" >3. Liga (C)</a></li><li class="item-129"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=111" >3. Liga (D)</a></li><li class="item-126"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=112" >4. Liga (A)</a></li><li class="item-127"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=113" >4. Liga (B)</a></li><li class="item-151"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=114" >4. Liga (C)</a></li><li class="item-131"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=115" >Liga-Pokal 2016</a></li></ul></li><li class="item-112"><a href="/liga-tool/mannschaften" >Mannschaften</a></li><li class="item-107"><a href="/liga-tool/spielerstatistiken" >Spielerstatistiken</a></li></ul>
 </div>
 <div class="moduletable">
  <h3><span
 	class="backh"><span class="backh2"><span class="backh3">Turniere</span></span></span></h3>
- 
-<ul class="menu">
-<li class="item-108"><a href="/liga-tool/menu-turniere" >Ergebnisse</a></li><li class="item-146"><a href="/liga-tool/ranglistenwertung" >Info und Ranglistenwertung</a></li><li class="item-110"><a href="/liga-tool/menu-ranglisten" >Ranglisten</a></li><li class="item-144"><a href="/liga-tool/elorangliste" >ELO-Rangliste</a></li></ul>
+ <ul class="nav menu">
+<li class="item-146"><a href="/liga-tool/info-turniersaison" >Info und Teilnahme</a></li><li class="item-172"><a href="/liga-tool/termine" >Termine</a></li><li class="item-108"><a href="/liga-tool/menu-turniere" >Ergebnisse</a></li><li class="item-110 deeper parent"><a href="/liga-tool/landesranglisten" >Landesranglisten</a><ul class="nav-child unstyled small"><li class="item-161"><a href="http://kickern-hamburg.de/liga-tool/ranglisten?task=rangliste&amp;id=80" >Damen</a></li><li class="item-160"><a href="http://kickern-hamburg.de/liga-tool/ranglisten?task=rangliste&amp;id=79" >Herren</a></li><li class="item-162"><a href="http://kickern-hamburg.de/liga-tool/ranglisten?task=rangliste&amp;id=81" >Junioren</a></li><li class="item-163"><a href="http://kickern-hamburg.de/liga-tool/ranglisten?task=rangliste&amp;id=82" >Senioren</a></li></ul></li><li class="item-167"><a href="/liga-tool/landesmeisterschaft" >Landesmeisterschaft</a></li><li class="item-168"><a href="/liga-tool/qualifikationsregeln-fuer-die-dm" >Qualifikation zur DM</a></li><li class="item-176"><a href="/liga-tool/battle-of-champions" >Battle of Champions</a></li></ul>
 </div>
 <div class="moduletable">
  <h3><span
-	class="backh"><span class="backh2"><span class="backh3">Sonstiges</span></span></span></h3>
- 
-<ul class="menu">
-<li class="item-118"><a href="/liga-tool/bundesliga" >Bundesliga</a></li><li class="item-120"><a href="/liga-tool/laenderauswahl" >Länderauswahl</a></li><li class="item-121"><a href="/liga-tool/nationalmannschaft" >Nationalmannschaft</a></li><li class="item-122"><a href="/liga-tool/turniere-dm-wm-p4p" >Turniere: DM, WM, P4P</a></li></ul>
+	class="backh"><span class="backh2"><span class="backh3">Weiteres</span></span></span></h3>
+ <ul class="nav menu">
+<li class="item-164 deeper parent"><a href="/liga-tool/minichallenger-ranglisten" >Minichallenger-Ranglisten</a><ul class="nav-child unstyled small"><li class="item-165"><a href="http://kickern-hamburg.de/liga-tool/ranglisten?task=rangliste&amp;id=77" >Mittwochs-Doppel (Kixx)</a></li><li class="item-171"><a href="http://kiezkickerking.de/rangliste/" >Freitags-Doppel (St. Pauli)</a></li><li class="item-166"><a href="http://kickern-hamburg.de/liga-tool/ranglisten?task=rangliste&amp;id=78" >Samstags-Einzel (Kixx)</a></li></ul></li><li class="item-181"><a href="http://kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=116" >Ü45-Liga (Nord)</a></li><li class="item-118"><a href="/liga-tool/bundesliga" >Bundesliga</a></li><li class="item-120"><a href="/liga-tool/laenderauswahl" >Länderauswahl</a></li><li class="item-121"><a href="/liga-tool/nationalmannschaft" >Nationalmannschaft</a></li><li class="item-122"><a href="/liga-tool/turniere-dm-wm-p4p" >Weitere Turniere: DM, WM, P4P</a></li></ul>
 </div>
 <div class="moduletable">
  <h3><span
 	class="backh"><span class="backh2"><span class="backh3">Archiv</span></span></span></h3>
- 
-<ul class="menu">
-<li class="item-145"><a href="/liga-tool/saison-2012" >Saison 2012</a></li><li class="item-135"><a href="/liga-tool/saison-2011" >Saison 2011</a></li><li class="item-136"><a href="/liga-tool/saison-2010" >Saison 2010</a></li><li class="item-137"><a href="/liga-tool/saison-2009" >Saison 2009</a></li><li class="item-138"><a href="/liga-tool/saison-2008" >Saison 2008</a></li><li class="item-134"><a href="/liga-tool/saison-20062007" >Saison 2006/2007</a></li></ul>
+ <ul class="nav menu">
+<li class="item-156"><a href="/liga-tool/liga-archiv" >Liga</a></li><li class="item-169"><a href="/liga-tool/ranglisten" >Ranglisten</a></li></ul>
 </div>
 
 					
@@ -163,20 +186,24 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 			</div>
   
 			<div id="Content">
-					
-<div id="system-message-container">
-</div>
+					<div id="system-message-container">
+	</div>
+
 					﻿		<table border="0" cellspacing="0" cellpadding="3" width="100%">
 		<tr>
 	    	<th width="30" class="sectiontableheader"></th>
 			<th class="sectiontableheader" align="left">
-			<img src="/liga-tool/images/M_images/arrow.png" border="0" /> <a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltungen#vid54">
-			Wettbewerbe</a> &gt; 1.Liga			</th>
+			<img src="/liga-tool/images/M_images/arrow.png" border="0" /> <a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltungen#vid108">
+			Wettbewerbe</a> &gt; 3. Liga, Gruppe A			</th>
 							<th width="50" class="sectiontableheader">&nbsp;</th>
-                				<th width="50" class="sectiontableheader">&nbsp;</th>
+                					<th class="sectiontableheader" align="right">
+					<a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=107">
+					&lt; Zur&uuml;ck</a>
+					</th>
+								<th width="50" class="sectiontableheader">&nbsp;</th>
 									<th class="sectiontableheader"  align="left">
-					<a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=55">
-					Weiter &gt;</a>
+					<a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=109">
+					Vor &gt;</a>
 					</th>
 						</tr>
 		</table>
@@ -185,7 +212,8 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 		<tr>
 			<td colspan="3">
 			<div>
-				<H2>1.Liga</H2>
+				<H2>
+        3. Liga, Gruppe A        </H2>
 			</div>
 			</td>
 		</tr>
@@ -195,12 +223,12 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<tr>
                 <td nowrap>
                 <select name="spieltag" size="1" onChange="document.adminForm.submit();">
-                <option value="10" selected>10. Spieltag</option><option value="9">9. Spieltag</option><option value="8">8. Spieltag</option><option value="7">7. Spieltag</option><option value="6">6. Spieltag</option><option value="5">5. Spieltag</option><option value="4">4. Spieltag</option><option value="3">3. Spieltag</option><option value="2">2. Spieltag</option><option value="1">1. Spieltag</option>                </select>
+                <option value="18" selected>18. Spieltag</option><option value="17">17. Spieltag</option><option value="16">16. Spieltag</option><option value="15">15. Spieltag</option><option value="14">14. Spieltag</option><option value="13">13. Spieltag</option><option value="12">12. Spieltag</option><option value="11">11. Spieltag</option><option value="10">10. Spieltag</option><option value="9">9. Spieltag</option><option value="8">8. Spieltag</option><option value="7">7. Spieltag</option><option value="6">6. Spieltag</option><option value="5">5. Spieltag</option><option value="4">4. Spieltag</option><option value="3">3. Spieltag</option><option value="2">2. Spieltag</option><option value="1">1. Spieltag</option>                </select>
                 </td>
 				</tr>
 				</table>
 				<input type="hidden" name="task" value="veranstaltung" />
-				<input type="hidden" name="veranstaltungid" value="54" />
+				<input type="hidden" name="veranstaltungid" value="108" />
 				</form>
 							<table class="contentpaneopen">
 			<tr class="sectiontableheader">
@@ -210,8 +238,11 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 							<th nowrap title="Siege"><strong>S</strong></th>
 			<th nowrap title="Unentschieden"><strong>U</strong></th>
 			<th nowrap title="Niederlagen"><strong>N</strong></th>
-			        <th nowrap title="Differenz"><strong>Tore</strong></th>
-								<th nowrap title="Punktedifferenz"><strong>Spiele</strong></th>
+							<th nowrap title="Strafpunkte"><strong>Strafe</strong></th>
+				          <th nowrap><strong>Tore</strong><br /><small>Absolut</small></th>
+                  <th nowrap title="Differenz"><strong>Tore</strong></th>
+				  				<th nowrap><strong>Spielpunkte</strong><br /><small>Absolut</small></th>
+          				<th nowrap title="Punktedifferenz"><strong>Spiele</strong></th>
 				  			<th nowrap><strong>Punkte</strong></th>
         			</tr>
 							<tr class="sectiontableentry1">
@@ -222,22 +253,29 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Die Hinkelsteinchen (M)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
 				  				<td width="32" height="32" align="right">
-					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I1T1325596778W28H28.png" width="28" height="28" border="0" />          </td>
+					<img src="http://www.kickern-hamburg.de/liga-tool/images/sportsmanager/mannschaften/I1841T1454855823W28H28.png" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
 				</td>
-				  				<td nowrap align="center">10</td>
-  								<td nowrap align="center">8</td>
+				  				<td nowrap align="center">15</td>
+  								<td nowrap align="center">13</td>
 				<td nowrap align="center">0</td>
 				<td nowrap align="center">2</td>
-				                    <td nowrap align="center">
-                    +124                    </td>
-                    					<td nowrap align="center">
-					+92					</td>
-					  				<td nowrap align="center">16</td>
+									<td nowrap align="center"></td>
+					                    <td nowrap align="center">
+                    <small>1215:922</small>
+                    </td>
+                                        <td nowrap align="center">
+                    +293                    </td>
+                    											<td nowrap align="center">
+											<small>307:173</small>
+											</td>
+																<td nowrap align="center">
+					+134					</td>
+					  				<td nowrap align="center">26</td>
           				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap align="center">
@@ -247,22 +285,29 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Cim Bom Bom				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
 				  				<td width="32" height="32" align="right">
-					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I2T1325596671W28H28.png" width="28" height="28" border="0" />          </td>
+					          </td>
 									</tr>
 				</table>
 
 				</td>
-				  				<td nowrap align="center">9</td>
-  								<td nowrap align="center">8</td>
+				  				<td nowrap align="center">15</td>
+  								<td nowrap align="center">13</td>
 				<td nowrap align="center">0</td>
-				<td nowrap align="center">1</td>
-				                    <td nowrap align="center">
-                    +119                    </td>
-                    					<td nowrap align="center">
-					+76					</td>
-					  				<td nowrap align="center">16</td>
+				<td nowrap align="center">2</td>
+									<td nowrap align="center">-1</td>
+					                    <td nowrap align="center">
+                    <small>1223:789</small>
+                    </td>
+                                        <td nowrap align="center">
+                    +434                    </td>
+                    											<td nowrap align="center">
+											<small>343:137</small>
+											</td>
+																<td nowrap align="center">
+					+206					</td>
+					  				<td nowrap align="center">25</td>
           				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap align="center">
@@ -272,22 +317,29 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
 				  				<td width="32" height="32" align="right">
-					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I3T1326712485W28H28.png" width="28" height="28" border="0" />          </td>
+					<img src="http://www.kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I11T1325596739W28H28.png" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
 				</td>
-				  				<td nowrap align="center">9</td>
-  								<td nowrap align="center">6</td>
+				  				<td nowrap align="center">16</td>
+  								<td nowrap align="center">12</td>
 				<td nowrap align="center">1</td>
-				<td nowrap align="center">2</td>
-				                    <td nowrap align="center">
-                    +121                    </td>
-                    					<td nowrap align="center">
-					+76					</td>
-					  				<td nowrap align="center">13</td>
+				<td nowrap align="center">3</td>
+									<td nowrap align="center"></td>
+					                    <td nowrap align="center">
+                    <small>1294:996</small>
+                    </td>
+                                        <td nowrap align="center">
+                    +298                    </td>
+                    											<td nowrap align="center">
+											<small>334:178</small>
+											</td>
+																<td nowrap align="center">
+					+156					</td>
+					  				<td nowrap align="center">25</td>
           				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap align="center">
@@ -297,22 +349,29 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
 				  				<td width="32" height="32" align="right">
-					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I7T1325599609W28H28.png" width="28" height="28" border="0" />          </td>
+					<img src="http://www.kickern-hamburg.de/liga-tool/images/sportsmanager/mannschaften/I1700T1454190079W28H28.jpg" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
 				</td>
-				  				<td nowrap align="center">9</td>
-  								<td nowrap align="center">6</td>
-				<td nowrap align="center">0</td>
-				<td nowrap align="center">3</td>
-				                    <td nowrap align="center">
-                    +67                    </td>
-                    					<td nowrap align="center">
-					+36					</td>
-					  				<td nowrap align="center">12</td>
+				  				<td nowrap align="center">17</td>
+  								<td nowrap align="center">9</td>
+				<td nowrap align="center">2</td>
+				<td nowrap align="center">6</td>
+									<td nowrap align="center"></td>
+					                    <td nowrap align="center">
+                    <small>1310:1057</small>
+                    </td>
+                                        <td nowrap align="center">
+                    +253                    </td>
+                    											<td nowrap align="center">
+											<small>318:226</small>
+											</td>
+																<td nowrap align="center">
+					+92					</td>
+					  				<td nowrap align="center">20</td>
           				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap align="center">
@@ -322,22 +381,29 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
 				  				<td width="32" height="32" align="right">
-					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I4T1325597285W28H28.png" width="28" height="28" border="0" />          </td>
+					<img src="http://www.kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I10T1328703467W28H28.png" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
 				</td>
-				  				<td nowrap align="center">9</td>
-  								<td nowrap align="center">6</td>
-				<td nowrap align="center">0</td>
-				<td nowrap align="center">3</td>
-				                    <td nowrap align="center">
-                    +15                    </td>
-                    					<td nowrap align="center">
-					+6					</td>
-					  				<td nowrap align="center">12</td>
+				  				<td nowrap align="center">16</td>
+  								<td nowrap align="center">5</td>
+				<td nowrap align="center">1</td>
+				<td nowrap align="center">10</td>
+									<td nowrap align="center"></td>
+					                    <td nowrap align="center">
+                    <small>1040:1201</small>
+                    </td>
+                                        <td nowrap align="center">
+                    -161                    </td>
+                    											<td nowrap align="center">
+											<small>214:298</small>
+											</td>
+																<td nowrap align="center">
+					-84					</td>
+					  				<td nowrap align="center">11</td>
           				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap align="center">
@@ -347,22 +413,29 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Lotterie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a>				</td>
 				  				<td width="32" height="32" align="right">
-					          </td>
+					<img src="http://www.kickern-hamburg.de/liga-tool/images/sportsmanager/mannschaften/I1704T1454190079W28H28.png" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
 				</td>
-				  				<td nowrap align="center">9</td>
-  								<td nowrap align="center">3</td>
+				  				<td nowrap align="center">13</td>
+  								<td nowrap align="center">8</td>
 				<td nowrap align="center">0</td>
-				<td nowrap align="center">6</td>
-				                    <td nowrap align="center">
-                    +16                    </td>
-                    					<td nowrap align="center">
-					-24					</td>
-					  				<td nowrap align="center">6</td>
+				<td nowrap align="center">5</td>
+									<td nowrap align="center">-6</td>
+					                    <td nowrap align="center">
+                    <small>795:926</small>
+                    </td>
+                                        <td nowrap align="center">
+                    -131                    </td>
+                    											<td nowrap align="center">
+											<small>203:213</small>
+											</td>
+																<td nowrap align="center">
+					-10					</td>
+					  				<td nowrap align="center">10</td>
           				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap align="center">
@@ -372,22 +445,29 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
 				  				<td width="32" height="32" align="right">
-					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I23T1326242889W28H28.png" width="28" height="28" border="0" />          </td>
+					<img src="http://www.kickern-hamburg.de/liga-tool/images/sportsmanager/mannschaften/I1703T1464987421W28H28.jpg" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
 				</td>
-				  				<td nowrap align="center">10</td>
-  								<td nowrap align="center">2</td>
-				<td nowrap align="center">2</td>
-				<td nowrap align="center">6</td>
-				                    <td nowrap align="center">
-                    -46                    </td>
-                    					<td nowrap align="center">
-					-26					</td>
-					  				<td nowrap align="center">6</td>
+				  				<td nowrap align="center">16</td>
+  								<td nowrap align="center">5</td>
+				<td nowrap align="center">0</td>
+				<td nowrap align="center">11</td>
+									<td nowrap align="center">-1</td>
+					                    <td nowrap align="center">
+                    <small>1073:1206</small>
+                    </td>
+                                        <td nowrap align="center">
+                    -133                    </td>
+                    											<td nowrap align="center">
+											<small>209:303</small>
+											</td>
+																<td nowrap align="center">
+					-94					</td>
+					  				<td nowrap align="center">9</td>
           				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap align="center">
@@ -397,22 +477,29 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
 				  				<td width="32" height="32" align="right">
-					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I9T1325596753W28H28.png" width="28" height="28" border="0" />          </td>
+					          </td>
 									</tr>
 				</table>
 
 				</td>
-				  				<td nowrap align="center">9</td>
-  								<td nowrap align="center">2</td>
+				  				<td nowrap align="center">15</td>
+  								<td nowrap align="center">3</td>
 				<td nowrap align="center">1</td>
-				<td nowrap align="center">6</td>
-				                    <td nowrap align="center">
-                    -34                    </td>
-                    					<td nowrap align="center">
-					-30					</td>
-					  				<td nowrap align="center">5</td>
+				<td nowrap align="center">11</td>
+									<td nowrap align="center">-1</td>
+					                    <td nowrap align="center">
+                    <small>960:1179</small>
+                    </td>
+                                        <td nowrap align="center">
+                    -219                    </td>
+                    											<td nowrap align="center">
+											<small>181:299</small>
+											</td>
+																<td nowrap align="center">
+					-118					</td>
+					  				<td nowrap align="center">6</td>
           				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap align="center">
@@ -422,22 +509,29 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Rakshasa (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
 				  				<td width="32" height="32" align="right">
-					          </td>
+					<img src="http://www.kickern-hamburg.de/liga-tool/images/sportsmanager/mannschaften/I1842T1454855823W28H28.png" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
 				</td>
-				  				<td nowrap align="center">9</td>
-  								<td nowrap align="center">1</td>
+				  				<td nowrap align="center">14</td>
+  								<td nowrap align="center">3</td>
 				<td nowrap align="center">1</td>
-				<td nowrap align="center">7</td>
-				                    <td nowrap align="center">
-                    -147                    </td>
-                    					<td nowrap align="center">
-					-90					</td>
-					  				<td nowrap align="center">3</td>
+				<td nowrap align="center">10</td>
+									<td nowrap align="center">-2</td>
+					                    <td nowrap align="center">
+                    <small>761:1139</small>
+                    </td>
+                                        <td nowrap align="center">
+                    -378                    </td>
+                    											<td nowrap align="center">
+											<small>149:299</small>
+											</td>
+																<td nowrap align="center">
+					-150					</td>
+					  				<td nowrap align="center">5</td>
           				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap align="center">
@@ -447,21 +541,28 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Fightclub Hamburg FC St. Pauli				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
 				  				<td width="32" height="32" align="right">
-					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/mannschaften/I719T1357847647W28H28.png" width="28" height="28" border="0" />          </td>
+					<img src="http://www.kickern-hamburg.de/liga-tool/images/sportsmanager/mannschaften/I1701T1454190079W28H28.png" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
 				</td>
-				  				<td nowrap align="center">9</td>
-  								<td nowrap align="center">1</td>
-				<td nowrap align="center">1</td>
-				<td nowrap align="center">7</td>
-				                    <td nowrap align="center">
-                    -235                    </td>
-                    					<td nowrap align="center">
-					-116					</td>
+				  				<td nowrap align="center">15</td>
+  								<td nowrap align="center">2</td>
+				<td nowrap align="center">0</td>
+				<td nowrap align="center">13</td>
+									<td nowrap align="center">-1</td>
+					                    <td nowrap align="center">
+                    <small>931:1187</small>
+                    </td>
+                                        <td nowrap align="center">
+                    -256                    </td>
+                    											<td nowrap align="center">
+											<small>174:306</small>
+											</td>
+																<td nowrap align="center">
+					-132					</td>
 					  				<td nowrap align="center">3</td>
           				</tr>
 							</table>
@@ -478,503 +579,503 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 							1. Spieltag							</i></font></th></tr>
 											<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3452"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3452">Do., 28.02.2013 20:00</a>								</td>
+				<a name="id7293"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7293">N/A</a>								</td>
 
 				<td nowrap>
-				Cim Bom Bom				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
 									<td nowrap align="center">
-					75:78					</td>
+					76:68					</td>
 									<td nowrap align="center">
-				18:14				</td>
+				18:14			</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3450"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3450">Do., 28.02.2013 20:00</a>								</td>
+				<a name="id7295"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7295">Mo., 29.02.2016 19:00</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
 									<td nowrap align="center">
-					83:61					</td>
+					76:64					</td>
 									<td nowrap align="center">
-				22:10				</td>
+				19:13				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3454"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3454">Mi., 20.03.2013 20:00</a>								</td>
+				<a name="id7297"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7297">Di., 01.03.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Rakshasa (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
 									<td nowrap align="center">
-					76:74					</td>
+					45:92					</td>
 									<td nowrap align="center">
-				18:14				</td>
+				4:28<br /><small>unbestätigt</small>					</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3458"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3458">Fr., 22.03.2013 20:00</a>								</td>
+				<a name="id7291"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7291">Mi., 09.03.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
 									<td nowrap align="center">
-					55:86					</td>
-									<td nowrap align="center">
-				8:24				</td>
-				</tr>
-								<tr class="sectiontableentry1">
-				<td nowrap>
-				<a name="id3540"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3540">Di., 26.03.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Lotterie				</td>
-				<td nowrap>
-				HTFC Gadgettos				</td>
-									<td nowrap align="center">
-					70:79					</td>
-									<td nowrap align="center">
-				15:17				</td>
-				</tr>
-											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
-							2. Spieltag							</i></font></th></tr>
-											<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3466"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3466">Di., 26.02.2013 20:00</a>								</td>
-
-				<td nowrap>
-				HTFC Gadgettos				</td>
-				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
-									<td nowrap align="center">
-					87:60					</td>
-									<td nowrap align="center">
-				25:7				</td>
-				</tr>
-								<tr class="sectiontableentry1">
-				<td nowrap>
-				<a name="id3468"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3468">Di., 05.03.2013 20:00</a>								</td>
-
-				<td nowrap>
-				BSC Hamburg 07				</td>
-				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
-									<td nowrap align="center">
-					54:89					</td>
-									<td nowrap align="center">
-				7:25				</td>
-				</tr>
-								<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3460"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3460">Do., 14.03.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
-				<td nowrap>
-				Cim Bom Bom				</td>
-									<td nowrap align="center">
-					60:77					</td>
-									<td nowrap align="center">
-				14:18				</td>
-				</tr>
-								<tr class="sectiontableentry1">
-				<td nowrap>
-				<a name="id3462"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3462">Do., 04.04.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Die Maschinerie				</td>
-				<td nowrap>
-				Rakshasa (N)				</td>
-									<td nowrap align="center">
-					84:61					</td>
-									<td nowrap align="center">
-				22:10				</td>
-				</tr>
-								<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3464"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3464">Di., 09.04.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Lokomotive Hamburg				</td>
-				<td nowrap>
-				Lotterie				</td>
-									<td nowrap align="center">
-					78:73					</td>
-									<td nowrap align="center">
-				18:14				</td>
-				</tr>
-											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
-							3. Spieltag							</i></font></th></tr>
-											<tr class="sectiontableentry1">
-				<td nowrap>
-				<a name="id3478"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3478">Fr., 15.03.2013 18:00</a>								</td>
-
-				<td nowrap>
-				Lokomotive Hamburg				</td>
-				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
-									<td nowrap align="center">
-					80:74					</td>
-									<td nowrap align="center">
-				18:14				</td>
-				</tr>
-								<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3476"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3476">Di., 02.04.2013 20:00</a>								</td>
-
-				<td nowrap>
-				HTFC Gadgettos				</td>
-				<td nowrap>
-				BSC Hamburg 07				</td>
-									<td nowrap align="center">
-					60:81					</td>
+					67:85					</td>
 									<td nowrap align="center">
 				11:21				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3472"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3472">Do., 11.04.2013 20:00</a>								</td>
+				<a name="id7289"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7289">Mi., 23.03.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Rakshasa (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
 				<td nowrap>
-				Lotterie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a>				</td>
 									<td nowrap align="center">
-					68:77					</td>
+					49:87					</td>
 									<td nowrap align="center">
-				14:18				</td>
+				6:26				</td>
 				</tr>
-								<tr class="sectiontableentry2">
+											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
+							2. Spieltag							</i></font></th></tr>
+											<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3470"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3470">Do., 18.04.2013 20:00</a>								</td>
+				<a name="id7301"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7301">Di., 15.03.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
 				<td nowrap>
-				Cim Bom Bom				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
 									<td nowrap align="center">
-					71:76					</td>
+					88:48					</td>
 									<td nowrap align="center">
-				15:17				</td>
+				26:6				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3474"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3474">Do., 18.04.2013 20:15</a>								</td>
+				<a name="id7299"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7299">Do., 17.03.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
 									<td nowrap align="center">
-					72:72					</td>
+					77:66					</td>
+									<td nowrap align="center">
+				20:12				</td>
+				</tr>
+								<tr class="sectiontableentry2">
+				<td nowrap>
+				<a name="id7305"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7305">Mo., 21.03.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
+									<td nowrap align="center">
+					90:41					</td>
+									<td nowrap align="center">
+				28:4				</td>
+				</tr>
+								<tr class="sectiontableentry1">
+				<td nowrap>
+				<a name="id7307"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7307">Di., 22.03.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
+									<td nowrap align="center">
+					83:63					</td>
+									<td nowrap align="center">
+				23:9				</td>
+				</tr>
+								<tr class="sectiontableentry2">
+				<td nowrap>
+				<a name="id7303"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7303">Mo., 04.04.2016 19:30</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
+									<td nowrap align="center">
+					69:76					</td>
 									<td nowrap align="center">
 				16:16				</td>
 				</tr>
 											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
-							4. Spieltag							</i></font></th></tr>
-											<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3482"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3482">Do., 04.04.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Lotterie				</td>
-				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
-									<td nowrap align="center">
-					69:72					</td>
-									<td nowrap align="center">
-				15:17				</td>
-				</tr>
-								<tr class="sectiontableentry1">
-				<td nowrap>
-				<a name="id3486"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3486">Do., 11.04.2013 20:00</a>								</td>
-
-				<td nowrap>
-				BSC Hamburg 07				</td>
-				<td nowrap>
-				Lokomotive Hamburg				</td>
-									<td nowrap align="center">
-					80:71					</td>
-									<td nowrap align="center">
-				19:13				</td>
-				</tr>
-								<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3480"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3480">Di., 16.04.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Cim Bom Bom				</td>
-				<td nowrap>
-				Rakshasa (N)				</td>
-									<td nowrap align="center">
-					88:55					</td>
-									<td nowrap align="center">
-				25:7				</td>
-				</tr>
-								<tr class="sectiontableentry1">
-				<td nowrap>
-				<a name="id3488"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3488">Fr., 26.04.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
-				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
-									<td nowrap align="center">
-					63:79					</td>
-									<td nowrap align="center">
-				9:23				</td>
-				</tr>
-								<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3484"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3484">Di., 14.05.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Die Maschinerie				</td>
-				<td nowrap>
-				HTFC Gadgettos				</td>
-									<td nowrap align="center">
-					86:63					</td>
-									<td nowrap align="center">
-				25:7				</td>
-				</tr>
-											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
-							5. Spieltag							</i></font></th></tr>
+							3. Spieltag							</i></font></th></tr>
 											<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3494"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3494">Fr., 12.04.2013 20:00</a>								</td>
+				<a name="id7311"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7311">Mo., 14.03.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
 				<td nowrap>
-				Cim Bom Bom				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
 									<td nowrap align="center">
-					62:89					</td>
+					85:53					</td>
 									<td nowrap align="center">
-				7:25				</td>
+				25:7				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3492"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3492">Do., 25.04.2013 20:00</a>								</td>
+				<a name="id7313"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7313">Mo., 21.03.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
 									<td nowrap align="center">
-					79:79					</td>
-									<td nowrap align="center">
-				15:17				</td>
-				</tr>
-								<tr class="sectiontableentry1">
-				<td nowrap>
-				<a name="id3496"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3496">Di., 30.04.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Lotterie				</td>
-				<td nowrap>
-				BSC Hamburg 07				</td>
-									<td nowrap align="center">
-					65:80					</td>
-									<td nowrap align="center">
-				12:20				</td>
-				</tr>
-								<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3498"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3498">Do., 02.05.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
-				<td nowrap>
-				Rakshasa (N)				</td>
-									<td nowrap align="center">
-					85:56					</td>
-									<td nowrap align="center">
-				23:9				</td>
-				</tr>
-								<tr class="sectiontableentry1">
-				<td nowrap>
-				<a name="id3490"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3490">Di., 07.05.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
-				<td nowrap>
-				Die Maschinerie				</td>
-									<td nowrap align="center">
-					80:61					</td>
-									<td nowrap align="center">
-				20:12				</td>
-				</tr>
-											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
-							6. Spieltag							</i></font></th></tr>
-											<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3504"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3504">N/A</a>								</td>
-
-				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
-				<td nowrap>
-				Lotterie				</td>
-									<td nowrap align="center">
-					0:96					</td>
-									<td nowrap align="center">
-				0:32				</td>
-				</tr>
-								<tr class="sectiontableentry1">
-				<td nowrap>
-				<a name="id3508"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3508">Do., 25.04.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Rakshasa (N)				</td>
-				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
-									<td nowrap align="center">
-					72:89					</td>
-									<td nowrap align="center">
-				6:26				</td>
-				</tr>
-								<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3502"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3502">Fr., 03.05.2013 20:00</a>								</td>
-
-				<td nowrap>
-				HTFC Gadgettos				</td>
-				<td nowrap>
-				Cim Bom Bom				</td>
-									<td nowrap align="center">
-					72:72					</td>
+					75:75					</td>
 									<td nowrap align="center">
 				17:15				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3506"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3506">Di., 21.05.2013 20:00</a>								</td>
+				<a name="id7309"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7309">Mi., 30.03.2016 20:00</a>								</td>
 
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
 									<td nowrap align="center">
-					86:60					</td>
+					58:86					</td>
 									<td nowrap align="center">
-				24:8				</td>
+				8:24				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3500"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3500">Di., 21.05.2013 20:00</a>								</td>
+				<a name="id7315"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7315">Di., 05.04.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
 									<td nowrap align="center">
-					85:68					</td>
+					76:71					</td>
 									<td nowrap align="center">
-				21:11				</td>
-				</tr>
-											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
-							7. Spieltag							</i></font></th></tr>
-											<tr class="sectiontableentry1">
-				<td nowrap>
-				<a name="id3518"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3518">Di., 21.05.2013 19:30</a>								</td>
-
-				<td nowrap>
-				Cim Bom Bom				</td>
-				<td nowrap>
-				Lotterie				</td>
-									<td nowrap align="center">
-					82:60					</td>
-									<td nowrap align="center">
-				25:7				</td>
-				</tr>
-								<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3510"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3510">Di., 28.05.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
-				<td nowrap>
-				Lokomotive Hamburg				</td>
-									<td nowrap align="center">
-					84:72					</td>
-									<td nowrap align="center">
-				21:11				</td>
+				18:14				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3514"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3514">Di., 28.05.2013 20:30</a>								</td>
+				<a name="id7317"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7317">Di., 19.04.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Rakshasa (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
 				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
 									<td nowrap align="center">
-					77:77					</td>
+					70:73					</td>
 									<td nowrap align="center">
-				16:16				</td>
+				17:15				</td>
 				</tr>
-								<tr class="sectiontableentry2">
+											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
+							4. Spieltag							</i></font></th></tr>
+											<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3512"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3512">Di., 04.06.2013 20:00</a>								</td>
+				<a name="id7327"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7327">Do., 31.03.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
 									<td nowrap align="center">
-					67:83					</td>
+					65:72					</td>
 									<td nowrap align="center">
 				13:19				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3516"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3516">Do., 20.06.2013 20:00</a>								</td>
+				<a name="id7325"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7325">Di., 12.04.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
 									<td nowrap align="center">
-					77:72					</td>
+					90:49					</td>
+									<td nowrap align="center">
+				26:6				</td>
+				</tr>
+								<tr class="sectiontableentry2">
+				<td nowrap>
+				<a name="id7323"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7323">Di., 19.04.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
+									<td nowrap align="center">
+					76:73					</td>
+									<td nowrap align="center">
+				18:14				</td>
+				</tr>
+								<tr class="sectiontableentry1">
+				<td nowrap>
+				<a name="id7319"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7319">Mi., 27.04.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
+									<td nowrap align="center">
+					88:52					</td>
+									<td nowrap align="center">
+				24:8				</td>
+				</tr>
+								<tr class="sectiontableentry2">
+				<td nowrap>
+				<a name="id7321"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7321">Mo., 02.05.2016 19:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a>				</td>
+									<td nowrap align="center">
+					63:76					</td>
+									<td nowrap align="center">
+				14:18				</td>
+				</tr>
+											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
+							5. Spieltag							</i></font></th></tr>
+											<tr class="sectiontableentry1">
+				<td nowrap>
+				<a name="id7333"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7333">Mi., 20.04.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
+									<td nowrap align="center">
+					82:64					</td>
+									<td nowrap align="center">
+				22:10				</td>
+				</tr>
+								<tr class="sectiontableentry2">
+				<td nowrap>
+				<a name="id7335"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7335">Mo., 25.04.2016 19:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
+									<td nowrap align="center">
+					64:67					</td>
+									<td nowrap align="center">
+				15:17				</td>
+				</tr>
+								<tr class="sectiontableentry1">
+				<td nowrap>
+				<a name="id7329"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7329">Di., 03.05.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
+									<td nowrap align="center">
+					65:77					</td>
+									<td nowrap align="center">
+				14:18				</td>
+				</tr>
+								<tr class="sectiontableentry2">
+				<td nowrap>
+				<a name="id7331"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7331">Di., 03.05.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
+									<td nowrap align="center">
+					47:86					</td>
+									<td nowrap align="center">
+				8:24				</td>
+				</tr>
+								<tr class="sectiontableentry1">
+				<td nowrap>
+				<a name="id7337"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7337">Fr., 20.05.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
+									<td nowrap align="center">
+					80:62					</td>
+									<td nowrap align="center">
+				21:11				</td>
+				</tr>
+											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
+							6. Spieltag							</i></font></th></tr>
+											<tr class="sectiontableentry2">
+				<td nowrap>
+				<a name="id7341"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7341">Do., 21.04.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
+									<td nowrap align="center">
+					85:62					</td>
+									<td nowrap align="center">
+				22:10				</td>
+				</tr>
+								<tr class="sectiontableentry1">
+				<td nowrap>
+				<a name="id7347"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7347">Mo., 25.04.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
+									<td nowrap align="center">
+					69:64					</td>
+									<td nowrap align="center">
+				15:17				</td>
+				</tr>
+								<tr class="sectiontableentry2">
+				<td nowrap>
+				<a name="id7343"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7343">Mo., 30.05.2016 19:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
+									<td nowrap align="center">
+					85:65					</td>
+									<td nowrap align="center">
+				21:11				</td>
+				</tr>
+								<tr class="sectiontableentry1">
+				<td nowrap>
+				<a name="id7345"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7345">Mi., 08.06.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a>				</td>
+									<td nowrap align="center">
+					96:0					</td>
+									<td nowrap align="center">
+				32:0				</td>
+				</tr>
+								<tr class="sectiontableentry2">
+				<td nowrap>
+				<a name="id7339"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7339">Do., 09.06.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
+									<td nowrap align="center">
+					85:50					</td>
+									<td nowrap align="center">
+				24:8				</td>
+				</tr>
+											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
+							7. Spieltag							</i></font></th></tr>
+											<tr class="sectiontableentry1">
+				<td nowrap>
+				<a name="id7353"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7353">Mo., 09.05.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
+									<td nowrap align="center">
+					71:79					</td>
+									<td nowrap align="center">
+				13:19				</td>
+				</tr>
+								<tr class="sectiontableentry2">
+				<td nowrap>
+				<a name="id7349"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7349">Do., 19.05.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
+									<td nowrap align="center">
+					64:75					</td>
+									<td nowrap align="center">
+				13:19				</td>
+				</tr>
+								<tr class="sectiontableentry1">
+				<td nowrap>
+				<a name="id7357"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7357">Mi., 25.05.2016 19:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
+									<td nowrap align="center">
+					89:46					</td>
+									<td nowrap align="center">
+				26:6				</td>
+				</tr>
+								<tr class="sectiontableentry2">
+				<td nowrap>
+				<a name="id7351"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7351">Fr., 17.06.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
+									<td nowrap align="center">
+					72:82					</td>
+									<td nowrap align="center">
+				13:19				</td>
+				</tr>
+								<tr class="sectiontableentry1">
+				<td nowrap>
+				<a name="id7355"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7355">Mi., 22.06.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
+									<td nowrap align="center">
+					78:68					</td>
 									<td nowrap align="center">
 				18:14				</td>
 				</tr>
@@ -982,589 +1083,561 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 							8. Spieltag							</i></font></th></tr>
 											<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3520"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3520">Do., 30.05.2013 20:00</a>								</td>
+				<a name="id7367"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7367">Mo., 23.05.2016 19:00</a>								</td>
 
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
 									<td nowrap align="center">
-					76:73					</td>
+					79:66					</td>
 									<td nowrap align="center">
-				16:16				</td>
+				18:14				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3526"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3526">Do., 06.06.2013 20:00</a>								</td>
+				<a name="id7363"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7363">Di., 24.05.2016 20:00</a>								</td>
 
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
 				<td nowrap>
-				Cim Bom Bom				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
 									<td nowrap align="center">
-					69:79					</td>
+					64:84					</td>
 									<td nowrap align="center">
-				12:20				</td>
+				9:23				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3522"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3522">Di., 18.06.2013 20:30</a>								</td>
+				<a name="id7365"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7365">Mo., 13.06.2016 20:00</a>								</td>
 
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
 				<td nowrap>
-				Rakshasa (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
 									<td nowrap align="center">
-					84:61					</td>
+					81:65					</td>
 									<td nowrap align="center">
-				24:8				</td>
+				21:11				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3528"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3528">Di., 02.07.2013 20:00</a>								</td>
+				<a name="id7361"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7361">Di., 28.06.2016 22:00</a>								</td>
 
 				<td nowrap>
-				Lotterie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
 				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
 									<td nowrap align="center">
-					77:74					</td>
+					93:39					</td>
 									<td nowrap align="center">
-				17:15				</td>
-				</tr>
-								<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3524"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3524">Fr., 05.07.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
-				<td nowrap>
-				Die Maschinerie				</td>
-									<td nowrap align="center">
-					54:85					</td>
-									<td nowrap align="center">
-				8:24				</td>
+				29:3				</td>
 				</tr>
 											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
 							9. Spieltag							</i></font></th></tr>
-											<tr class="sectiontableentry1">
+											<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3534"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3534">Di., 11.06.2013 19:30</a>								</td>
+				<a name="id7369"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7369">Di., 07.06.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Cim Bom Bom				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
 									<td nowrap align="center">
-					81:73					</td>
+					64:78					</td>
 									<td nowrap align="center">
-				19:13				</td>
+				12:20				</td>
+				</tr>
+								<tr class="sectiontableentry1">
+				<td nowrap>
+				<a name="id7373"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7373">Di., 07.06.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
+									<td nowrap align="center">
+					96:0					</td>
+									<td nowrap align="center">
+				32:0				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3530"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3530">Di., 11.06.2013 20:00</a>								</td>
+				<a name="id7375"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7375">Mo., 13.06.2016 19:30</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
 									<td nowrap align="center">
-					85:69					</td>
+					90:43					</td>
+									<td nowrap align="center">
+				27:5				</td>
+				</tr>
+											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
+							10. Spieltag							</i></font></th></tr>
+											<tr class="sectiontableentry1">
+				<td nowrap>
+				<a name="id7296"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7296">Di., 21.06.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
+									<td nowrap align="center">
+					87:56					</td>
+									<td nowrap align="center">
+				24:8				</td>
+				</tr>
+								<tr class="sectiontableentry2">
+				<td nowrap>
+				<a name="id7292"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7292">Mo., 18.07.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
+									<td nowrap align="center">
+					85:58					</td>
 									<td nowrap align="center">
 				22:10				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3538"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3538">Do., 13.06.2013 20:30</a>								</td>
+				<a name="id7294"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7294">Di., 02.08.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Rakshasa (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
 									<td nowrap align="center">
-					66:81					</td>
+					78:65					</td>
 									<td nowrap align="center">
-				11:21				</td>
+				22:10				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3532"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3532">Do., 27.06.2013 20:00</a>								</td>
+				<a name="id7298"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7298">Di., 02.08.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
 				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
 									<td nowrap align="center">
-					77:76					</td>
+					61:70					</td>
 									<td nowrap align="center">
-				15:17				</td>
-				</tr>
-								<tr class="sectiontableentry1">
-				<td nowrap>
-				<a name="id3536"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3536">Do., 04.07.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Die Maschinerie				</td>
-				<td nowrap>
-				Lotterie				</td>
-									<td nowrap align="center">
-					94:56					</td>
-									<td nowrap align="center">
-				30:2				</td>
-				</tr>
-											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
-							10. Spieltag							</i></font></th></tr>
-											<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3459"></a>
-				bisher Mo., 24.06.2013 00:00								</td>
-
-				<td nowrap>
-				BSC Hamburg 07<br /><small>verantwortlich</small><small> seit 14.07.2013</small>				</td>
-				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
-									<td nowrap align="center">
-					_:_					</td>
-									<td nowrap align="center">
-				_:_				</td>
-				</tr>
-								<tr class="sectiontableentry1">
-				<td nowrap>
-				<a name="id3453"></a>
-				bisher Mo., 24.06.2013 00:00								</td>
-
-				<td nowrap>
-				Die Maschinerie<br /><small>verantwortlich</small><small> seit 02.07.2013</small>				</td>
-				<td nowrap>
-				Cim Bom Bom				</td>
-									<td nowrap align="center">
-					_:_					</td>
-									<td nowrap align="center">
-				_:_				</td>
-				</tr>
-								<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3455"></a>
-				bisher Mo., 24.06.2013 00:00								</td>
-
-				<td nowrap>
-				Lokomotive Hamburg				</td>
-				<td nowrap>
-				Rakshasa (N)<br /><small>verantwortlich</small><small> seit 13.07.2013</small>				</td>
-									<td nowrap align="center">
-					_:_					</td>
-									<td nowrap align="center">
-				_:_				</td>
-				</tr>
-								<tr class="sectiontableentry1">
-				<td nowrap>
-				<a name="id3451"></a>
-				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3451">Di., 09.07.2013 20:00</a>								</td>
-
-				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
-				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
-									<td nowrap align="center">
-					72:67					</td>
-									<td nowrap align="center">
-				15:17				</td>
-				</tr>
-								<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3457"></a>
-				Di., 23.07.2013 20:00								</td>
-
-				<td nowrap>
-				HTFC Gadgettos				</td>
-				<td nowrap>
-				Lotterie				</td>
-									<td nowrap align="center">
-					_:_					</td>
-									<td nowrap align="center">
-				_:_				</td>
+				17:15				</td>
 				</tr>
 											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
 							11. Spieltag							</i></font></th></tr>
 											<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3469"></a>
-				Mo., 08.07.2013 00:00								</td>
+				<a name="id7308"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7308">Di., 05.07.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					48:89					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				5:27				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3465"></a>
-				bisher Mo., 08.07.2013 00:00								</td>
+				<a name="id7300"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7300">Mi., 06.07.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Lotterie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg<br /><small>verantwortlich</small><small> seit 09.07.2013</small>				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					96:0					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				32:0				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3463"></a>
-				Mo., 08.07.2013 00:00								</td>
+				<a name="id7306"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7306">Mi., 13.07.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Rakshasa (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					54:86					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				7:25				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3467"></a>
-				bisher Di., 16.07.2013 20:00								</td>
+				<a name="id7304"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7304">Di., 26.07.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos<br /><small>verantwortlich</small><small> seit 14.07.2013</small>				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					87:49					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				26:6				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3461"></a>
-				Fr., 26.07.2013 20:00								</td>
+				<a name="id7302"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7302">Mo., 08.08.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Cim Bom Bom				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					57:86					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				9:23				</td>
 				</tr>
 											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
 							12. Spieltag							</i></font></th></tr>
 											<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3477"></a>
-				Mo., 22.07.2013 00:00								</td>
+				<a name="id7318"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7318">Do., 28.07.2016 20:30</a>								</td>
 
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					85:53					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				23:9				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3471"></a>
-				Mo., 22.07.2013 00:00								</td>
+				<a name="id7312"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7312">Mo., 01.08.2016 19:30</a>								</td>
 
 				<td nowrap>
-				Cim Bom Bom				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
 				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					85:57					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				22:10				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3475"></a>
-				bisher Mo., 22.07.2013 00:00								</td>
+				<a name="id7310"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7310">Mi., 10.08.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Die Maschinerie<br /><small>verantwortlich</small><small> seit 13.06.2013</small>				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					74:74					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				16:16				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3479"></a>
-				Mo., 22.07.2013 00:00								</td>
+				<a name="id7316"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7316">Di., 23.08.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					75:74					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				18:14				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3473"></a>
-				bisher Mo., 22.07.2013 00:00								</td>
+				<a name="id7314"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7314">Mo., 05.09.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Lotterie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
 				<td nowrap>
-				Rakshasa (N)<br /><small>verantwortlich</small><small> seit 09.07.2013</small>				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					76:70					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				17:15				</td>
 				</tr>
 											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
 							13. Spieltag							</i></font></th></tr>
 											<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3489"></a>
-				Mo., 12.08.2013 00:00								</td>
+				<a name="id7324"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7324">Di., 16.08.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
 				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					72:74					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				18:14				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3485"></a>
-				Mo., 12.08.2013 00:00								</td>
+				<a name="id7328"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7328">Di., 23.08.2016 20:00</a>								</td>
 
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					74:75					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				14:18				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3483"></a>
-				Mo., 12.08.2013 00:00								</td>
+				<a name="id7320"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7320">Di., 20.09.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
 				<td nowrap>
-				Lotterie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					62:82					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				12:20				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3487"></a>
-				Mo., 12.08.2013 00:00								</td>
+				<a name="id7326"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7326">Di., 20.09.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					49:91					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				4:28				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3481"></a>
-				Mo., 12.08.2013 00:00								</td>
+				<a name="id7322"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7322">Mo., 26.09.2016 19:30</a>								</td>
 
 				<td nowrap>
-				Rakshasa (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a>				</td>
 				<td nowrap>
-				Cim Bom Bom				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					91:47					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				27:5				</td>
 				</tr>
 											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
 							14. Spieltag							</i></font></th></tr>
 											<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3497"></a>
-				Mo., 26.08.2013 00:00								</td>
+				<a name="id7334"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7334">Di., 13.09.2016 20:00</a>								</td>
 
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
 				<td nowrap>
-				Lotterie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					62:87					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				8:24				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3495"></a>
-				Mo., 26.08.2013 00:00								</td>
+				<a name="id7330"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7330">Di., 20.09.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Cim Bom Bom				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
 				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					79:64					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				21:11				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3491"></a>
-				Mo., 26.08.2013 00:00								</td>
+				<a name="id7336"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7336">Di., 27.09.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
 				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					77:50					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				23:9				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3493"></a>
-				Mo., 26.08.2013 00:00								</td>
+				<a name="id7338"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7338">Mi., 28.09.2016 20:00</a>								</td>
 
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					51:92					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				4:28				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3499"></a>
-				Mo., 26.08.2013 00:00								</td>
+				<a name="id7332"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7332">Do., 20.10.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Rakshasa (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					88:56					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				24:8				</td>
 				</tr>
 											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
 							15. Spieltag							</i></font></th></tr>
 											<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3503"></a>
-				Mo., 16.09.2013 00:00								</td>
+				<a name="id7348"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7348">Di., 13.09.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Cim Bom Bom				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					76:73					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				17:15				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3509"></a>
-				Mo., 16.09.2013 00:00								</td>
+				<a name="id7346"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7346">Di., 13.09.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a>				</td>
 				<td nowrap>
-				Rakshasa (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					0:96					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				0:32				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3507"></a>
-				Mo., 16.09.2013 00:00								</td>
+				<a name="id7340"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7340">Di., 13.09.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					48:77					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				12:20				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3501"></a>
-				Mo., 16.09.2013 00:00								</td>
+				<a name="id7344"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7344">Di., 04.10.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					80:69					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				20:12				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3505"></a>
-				Mo., 16.09.2013 00:00								</td>
+				<a name="id7342"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7342">Mi., 26.10.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Lotterie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
 				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					74:70					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				16:16				</td>
 				</tr>
 											<tr><td nowrap height="4"></td></tr><tr class="sectiontableheader" align="center"><th nowrap><font size=-2><i>
 							16. Spieltag							</i></font></th></tr>
 											<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3517"></a>
-				Mo., 30.09.2013 00:00								</td>
+				<a name="id7358"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7358">Mi., 05.10.2016 20:00</a>								</td>
 
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
+									<td nowrap align="center">
+					70:80					</td>
+									<td nowrap align="center">
+				13:19				</td>
+				</tr>
+								<tr class="sectiontableentry1">
+				<td nowrap>
+				<a name="id7354"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7354">Di., 11.10.2016 20:00</a>								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
+									<td nowrap align="center">
+					75:64					</td>
+									<td nowrap align="center">
+				17:15				</td>
+				</tr>
+								<tr class="sectiontableentry2">
+				<td nowrap>
+				<a name="id7350"></a>
+				Mo., 31.10.2016 20:00								</td>
+
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
+				<td nowrap>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
 									<td nowrap align="center">
 					_:_					</td>
 									<td nowrap align="center">
@@ -1572,13 +1645,13 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3515"></a>
-				Mo., 30.09.2013 00:00								</td>
+				<a name="id7352"></a>
+				Do., 03.11.2016 20:00								</td>
 
 				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
 				<td nowrap>
-				Rakshasa (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a>				</td>
 									<td nowrap align="center">
 					_:_					</td>
 									<td nowrap align="center">
@@ -1586,41 +1659,13 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3513"></a>
-				Mo., 30.09.2013 00:00								</td>
+				<a name="id7356"></a>
+				Di., 08.11.2016 20:00								</td>
 
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
-									<td nowrap align="center">
-					_:_					</td>
-									<td nowrap align="center">
-				_:_				</td>
-				</tr>
-								<tr class="sectiontableentry1">
-				<td nowrap>
-				<a name="id3511"></a>
-				Mo., 30.09.2013 00:00								</td>
-
-				<td nowrap>
-				Lokomotive Hamburg				</td>
-				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
-									<td nowrap align="center">
-					_:_					</td>
-									<td nowrap align="center">
-				_:_				</td>
-				</tr>
-								<tr class="sectiontableentry2">
-				<td nowrap>
-				<a name="id3519"></a>
-				Mo., 30.09.2013 00:00								</td>
-
-				<td nowrap>
-				Lotterie				</td>
-				<td nowrap>
-				Cim Bom Bom				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
 									<td nowrap align="center">
 					_:_					</td>
 									<td nowrap align="center">
@@ -1630,13 +1675,13 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 							17. Spieltag							</i></font></th></tr>
 											<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3527"></a>
-				Mo., 14.10.2013 00:00								</td>
+				<a name="id7360"></a>
+				bisher Di., 11.10.2016 20:00								</td>
 
 				<td nowrap>
-				Cim Bom Bom				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a><br /><small>verantwortlich</small><small> seit 19.10.2016</small>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a>				</td>
 									<td nowrap align="center">
 					_:_					</td>
 									<td nowrap align="center">
@@ -1644,27 +1689,27 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3529"></a>
-				Mo., 14.10.2013 00:00								</td>
+				<a name="id7366"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7366">Mi., 12.10.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
 				<td nowrap>
-				Lotterie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					58:86					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				9:23				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3525"></a>
-				Mo., 14.10.2013 00:00								</td>
+				<a name="id7364"></a>
+				Mo., 07.11.2016 20:00								</td>
 
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
 				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
 									<td nowrap align="center">
 					_:_					</td>
 									<td nowrap align="center">
@@ -1672,13 +1717,13 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3521"></a>
-				Mo., 14.10.2013 00:00								</td>
+				<a name="id7368"></a>
+				Di., 08.11.2016 19:30								</td>
 
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
 									<td nowrap align="center">
 					_:_					</td>
 									<td nowrap align="center">
@@ -1686,13 +1731,13 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3523"></a>
-				Mo., 14.10.2013 00:00								</td>
+				<a name="id7362"></a>
+				Mo., 14.11.2016 20:00								</td>
 
 				<td nowrap>
-				Rakshasa (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
 									<td nowrap align="center">
 					_:_					</td>
 									<td nowrap align="center">
@@ -1702,13 +1747,13 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 							18. Spieltag							</i></font></th></tr>
 											<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3539"></a>
-				Mo., 28.10.2013 00:00								</td>
+				<a name="id7374"></a>
+				bisher Di., 25.10.2016 20:00								</td>
 
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1842">Fu&szlig;pils United</a><br /><small>verantwortlich</small><small> seit 24.10.2016</small>				</td>
 				<td nowrap>
-				Rakshasa (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1700">Die Tischler FC St.Pauli</a>				</td>
 									<td nowrap align="center">
 					_:_					</td>
 									<td nowrap align="center">
@@ -1716,41 +1761,41 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3533"></a>
-				Mo., 28.10.2013 00:00								</td>
+				<a name="id7370"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7370">Di., 25.10.2016 20:00</a>								</td>
 
 				<td nowrap>
-				Fightclub Hamburg FC St. Pauli				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1705">Hamburg Privateers 08 (NR)</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1699">Bergbarbaren</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					90:59					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				26:6				</td>
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3531"></a>
-				Mo., 28.10.2013 00:00								</td>
+				<a name="id7372"></a>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7372">Do., 27.10.2016 20:00</a>								</td>
 
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1703">FC Joy</a>				</td>
 				<td nowrap>
-				Die Hinkelsteinchen (M)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1704">FC St. Pauli Eight Balls</a>				</td>
 									<td nowrap align="center">
-					_:_					</td>
+					67:75					</td>
 									<td nowrap align="center">
-				_:_				</td>
+				14:18				</td>
 				</tr>
 								<tr class="sectiontableentry1">
 				<td nowrap>
-				<a name="id3535"></a>
-				Mo., 28.10.2013 00:00								</td>
+				<a name="id7378"></a>
+				Di., 01.11.2016 20:00								</td>
 
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1843">Nen Rudel Gurken</a>				</td>
 				<td nowrap>
-				Cim Bom Bom				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1701">Drehschieber FC St. Pauli</a>				</td>
 									<td nowrap align="center">
 					_:_					</td>
 									<td nowrap align="center">
@@ -1758,13 +1803,13 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				</tr>
 								<tr class="sectiontableentry2">
 				<td nowrap>
-				<a name="id3537"></a>
-				Mo., 28.10.2013 00:00								</td>
+				<a name="id7376"></a>
+				Mo., 14.11.2016 20:00								</td>
 
 				<td nowrap>
-				Lotterie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1702">Dynamo Grete</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=1841">FC St. Pauli from dusk till dawn</a>				</td>
 									<td nowrap align="center">
 					_:_					</td>
 									<td nowrap align="center">
@@ -1775,9 +1820,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
   				<table class="contentpaneopen">
 		<tr>
 		<td align="left" colspan="2">
-		<a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung_begegnungen_ical&amp;id=54" class="readon">
+		<a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung_begegnungen_ical&amp;id=108" class="readon">
  			iCalendar-Export der Begegnungen ohne Benachrichtigung&hellip;</a>
-    <br /><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung_begegnungen_ical&amp;id=54&amp;alarm=120" class="readon">
+    <br /><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung_begegnungen_ical&amp;id=108&amp;alarm=120" class="readon">
  			iCalendar-Export der Begegnungen mit Benachrichtigung (2 Std. vorher)&hellip;</a>
 		</td>
 		</tr>

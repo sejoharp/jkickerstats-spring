@@ -7,23 +7,27 @@
 	<meta name="robots" content="index, follow" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script src="/liga-tool/includes/js/joomla.javascript.js" type="text/javascript"></script>
-	  <base href="http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe" />
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta name="robots" content="index, follow" />
-  <meta name="generator" content="Joomla! 1.7 - Open Source Content Management" />
-  <title>Ergebnisse und Tabellen</title>
-  <link href="/liga-tool/templates/kickernhh/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
-  <script src="/liga-tool/media/system/js/core.js" type="text/javascript"></script>
-  <script src="/liga-tool/media/system/js/mootools-core.js" type="text/javascript"></script>
-  <script src="/liga-tool/media/system/js/mootools-more.js" type="text/javascript"></script>
-  <script src="/liga-tool/templates/kickernhh/javascript/md_stylechanger.js" type="text/javascript" defer="defer"></script>
-  <script type="text/javascript">
-function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"}).send();} window.addEvent("domready", function(){ keepAlive.periodical(840000); });
-  </script>
+		<base href="http://kickern-hamburg.de/liga-tool/mannschaftswettbewerbe" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="Joomla! - Open Source Content Management" />
+	<title>Ergebnisse und Tabellen</title>
+	<link href="/liga-tool/templates/kickernhh/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+	<script src="/liga-tool/media/system/js/mootools-core.js" type="text/javascript"></script>
+	<script src="/liga-tool/media/system/js/core.js" type="text/javascript"></script>
+	<script src="/liga-tool/media/system/js/mootools-more.js" type="text/javascript"></script>
+	<script src="/liga-tool/templates/kickernhh/javascript/md_stylechanger.js" type="text/javascript" defer="defer"></script>
+	<script src="/liga-tool/media/jui/js/jquery.min.js" type="text/javascript"></script>
+	<script src="/liga-tool/media/jui/js/jquery-noconflict.js" type="text/javascript"></script>
+	<script src="/liga-tool/media/jui/js/jquery-migrate.min.js" type="text/javascript"></script>
+	<script src="/liga-tool/media/jui/js/bootstrap.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+jQuery(function($){ $(".hasTooltip").tooltip({"html": true,"container": "body"}); });
+window.setInterval(function(){var r;try{r=window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP")}catch(e){}if(r){r.open("GET","/liga-tool/index.php?option=com_ajax&format=json",true);r.send(null)}},840000);
+	</script>
 
 	<link rel="stylesheet" href="/liga-tool/templates/system/css/system.css" type="text/css" />
 	<link rel="shortcut icon" href="/favicon.ico" />
-	<link rel="stylesheet" type="text/css" href="/kickern-hh/css/layout.css" />
+	<link rel="stylesheet" type="text/css" href="/kickern-hh/css/layout.css?s=1234" />
 	<link rel="stylesheet" type="text/css" href="/kickern-hh/css/typography.css" />
 	<link rel="stylesheet" type="text/css" href="/kickern-hh/css/form.css" />
 	<style type="text/css">
@@ -50,10 +54,11 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 <div id="Container">
 	<a href="/" style="border: none;" title="Startseite"><img id="top" src="/kickern-hh/images/logo_turm.png" width="85" height="100" align="left" alt="Turm-Logo" style="float: left;" title="Startseite" /></a>
 	<div id="Header">
-		<div id="Advertisment">
+		<div id="Advertisment"><!--
 			<p><strong>Kicker-Sven.de</strong> - der Spieler-Shop!</p>
 			<p>Tecball, Leonhart, P4P, Zubeh&ouml;r &amp; mehr,</p>
-			<p>weitere Infos unter <a href="http://www.kicker-sven.de/">www.kicker-sven.de</a></p>
+			<p>weitere Infos unter <a href="http://www.kicker-sven.de/">www.kicker-sven.de</a></p> -->
+			<a href="http://www.kicker-sven.de/"><img src="/images/kicker-sven-banner.jpg" height="54" width="300" alt="Kicker-Sven.de - der Spielershop"/></a>
 			<p class="notice">Anzeige</p>
 		</div>
 		<!-- Announcements!!
@@ -62,35 +67,42 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
       </div>
 		-->
 		<div id="LoginBox">
-			<form action="/liga-tool/mannschaftswettbewerbe" method="post" id="login-form" >
-		<fieldset class="userdata">
-	<p id="form-login-username">
-		<label for="modlgn-username">Benutzername</label>
-		<input id="modlgn-username" type="text" name="username" class="inputbox"  size="18" />
-	</p>
-	<p id="form-login-password">
-		<label for="modlgn-passwd">Passwort</label>
-		<input id="modlgn-passwd" type="password" name="password" class="inputbox" size="18"  />
-	</p>
-		<p id="form-login-remember">
-		<label for="modlgn-remember">Angemeldet bleiben</label>
-		<input id="modlgn-remember" type="checkbox" name="remember" class="inputbox" value="yes"/>
-	</p>
-		<input type="submit" name="Submit" class="button" value="Anmelden" />
-	<input type="hidden" name="option" value="com_users" />
-	<input type="hidden" name="task" value="user.login" />
-	<input type="hidden" name="return" value="aW5kZXgucGhwP3Rhc2s9dmVyYW5zdGFsdHVuZyZ2ZXJhbnN0YWx0dW5naWQ9MjEmb3B0aW9uPWNvbV9zcG9ydHNtYW5hZ2VyJnZpZXc9c3BvcnRzbWFuYWdlciZJdGVtaWQ9MTA0" />
-	<input type="hidden" name="cc3c983d72f00c6c1a86b7db94c9bc79" value="1" />	</fieldset>
-	<ul>
-		<li>
-			<a href="/liga-tool/component/users/?view=reset">
-			Passwort vergessen?</a>
-		</li>
-		<li>
-			<a href="/liga-tool/component/users/?view=remind">
-			Benutzername vergessen?</a>
-		</li>
+			<form action="http://kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=21" method="post" id="login-form" class="form-inline">
+		<div class="userdata">
+		<div id="form-login-username" class="control-group">
+			<div class="controls">
+									<label for="modlgn-username">Benutzername</label>
+					<input id="modlgn-username" type="text" name="username" class="input-small" tabindex="0" size="18" placeholder="Benutzername" />
+							</div>
+		</div>
+		<div id="form-login-password" class="control-group">
+			<div class="controls">
+									<label for="modlgn-passwd">Passwort</label>
+					<input id="modlgn-passwd" type="password" name="password" class="input-small" tabindex="0" size="18" placeholder="Passwort" />
+							</div>
+		</div>
+						<div id="form-login-remember" class="control-group checkbox">
+			<label for="modlgn-remember" class="control-label">Angemeldet bleiben</label> <input id="modlgn-remember" type="checkbox" name="remember" class="inputbox" value="yes"/>
+		</div>
+				<div id="form-login-submit" class="control-group">
+			<div class="controls">
+				<button type="submit" tabindex="0" name="Submit" class="btn btn-primary">Anmelden</button>
+			</div>
+		</div>
+					<ul class="unstyled">
+							<li>
+					<a href="/liga-tool/component/users/?view=remind">
+					Benutzername vergessen?</a>
+				</li>
+				<li>
+					<a href="/liga-tool/component/users/?view=reset">
+					Passwort vergessen?</a>
+				</li>
 			</ul>
+		<input type="hidden" name="option" value="com_users" />
+		<input type="hidden" name="task" value="user.login" />
+		<input type="hidden" name="return" value="aHR0cDovL2tpY2tlcm4taGFtYnVyZy5kZS9saWdhLXRvb2wvbWFubnNjaGFmdHN3ZXR0YmV3ZXJiZT90YXNrPXZlcmFuc3RhbHR1bmcmdmVyYW5zdGFsdHVuZ2lkPTIx" />
+		<input type="hidden" name="95a6fff7f437320c0113743e1f122a15" value="1" />	</div>
 	</form>
 
 		</div>
@@ -114,45 +126,56 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 		<div class="typography">
 			<h2>Wettbewerbe</h2>
 			<div id="breadcrumbs">
-<div class="breadcrumbs">
-<span class="showHere">Aktuelle Seite: </span><span>Ergebnisse und Tabellen</span></div>
+<ul itemscope itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">
+			<li class="active">
+			<span class="divider icon-location"></span>
+		</li>
+	
+				<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+									<a itemprop="item" href="/liga-tool/" class="pathway"><span itemprop="name">Wettbewerbe</span></a>
+				
+									<span class="divider">
+						/					</span>
+								<meta itemprop="position" content="1">
+			</li>
+					<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="active">
+				<span itemprop="name">
+					Ergebnisse und Tabellen				</span>
+				<meta itemprop="position" content="2">
+			</li>
+		</ul>
 </div>
 			<div id="Sidebar">
 				<div class="sidebarBox">
 					<div class="moduletable">
  <h3><span
 	class="backh"><span class="backh2"><span class="backh3">Info</span></span></span></h3>
- 
-<ul class="menu">
-<li class="item-141"><a href="/liga-tool/kalender" >Kalender</a></li><li class="item-113"><a href="/liga-tool/vereine" >Vereine</a></li><li class="item-111"><a href="/liga-tool/spieler" >Spieler</a></li><li class="item-114"><a href="/liga-tool/spielorte" >Spielorte</a></li></ul>
+ <ul class="nav menu">
+<li class="item-101"><a href="/liga-tool/uebersicht" >Mannschafts- und Einzel-Sport</a></li><li class="item-113"><a href="/liga-tool/vereine" >Vereine</a></li><li class="item-111"><a href="/liga-tool/spieler" >Spieler</a></li><li class="item-114"><a href="/liga-tool/spielorte" >Spielorte</a></li></ul>
 </div>
 <div class="moduletable_menu">
  <h3><span
-	class="backh"><span class="backh2"><span class="backh3">Hamburger Kickerliga</span></span></span></h3>
- 
-<ul class="menu">
-<li class="item-106"><a href="/liga-tool/" >Aktuelle Partien</a></li><li class="item-104 current active deeper parent"><a href="/liga-tool/mannschaftswettbewerbe" >Ergebnisse und Tabellen</a><ul><li class="item-119"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=54" >1. Liga</a></li><li class="item-124"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=55" >2. Liga</a></li><li class="item-123"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=61" >3. Liga (Gruppe A)</a></li><li class="item-125"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=62" >3. Liga (Gruppe B)</a></li><li class="item-126"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=63" >4. Liga (Gruppe A)</a></li><li class="item-127"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=64" >4. Liga (Gruppe B)</a></li><li class="item-128"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=65" >4. Liga (Gruppe C)</a></li><li class="item-129"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=66" >4. Liga (Gruppe D)</a></li><li class="item-131"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=67" >Pokal</a></li></ul></li><li class="item-112"><a href="/liga-tool/mannschaften" >Mannschaften</a></li><li class="item-107"><a href="/liga-tool/spielerstatistiken" >Spielerstatistiken</a></li><li class="item-116"><a href="/liga-tool/dokumente" >Dokumente</a></li><li class="item-117"><a href="/liga-tool/info-und-teilnahme" >Info und Teilnahme</a></li><li class="item-143"><a href="/liga-tool/spielordnung" >Spielordnung</a></li></ul>
+	class="backh"><span class="backh2"><span class="backh3">Liga</span></span></span></h3>
+ <ul class="nav menu">
+<li class="item-117 deeper parent"><a href="/liga-tool/info-und-teilnahme" >Info und Teilnahme</a><ul class="nav-child unstyled small"><li class="item-159"><a href="/liga-tool/info-und-teilnahme/liga-aktuell" >Liga aktuell</a></li><li class="item-158"><a href="http://kickern-hamburg.de/liga-tool/images/dokumente/saison2016/Rahmenterminkalender_Liga-Pokal_2016.pdf " >Rahmenterminkalender</a></li><li class="item-116"><a href="/liga-tool/info-und-teilnahme/dokumente" >Dokumente</a></li><li class="item-143"><a href="/liga-tool/info-und-teilnahme/spielordnung" >Spielordnung</a></li></ul></li><li class="item-106 default"><a href="/liga-tool/" >Aktuelle Partien</a></li><li class="item-104 current active deeper parent"><a href="/liga-tool/mannschaftswettbewerbe" >Ergebnisse und Tabellen</a><ul class="nav-child unstyled small"><li class="item-119"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=105" >1. Liga</a></li><li class="item-124"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=106" >2. Liga (A)</a></li><li class="item-148"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=107" >2. Liga (B)</a></li><li class="item-123"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=108" >3. Liga (A)</a></li><li class="item-125"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=109" >3. Liga (B)</a></li><li class="item-128"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=110" >3. Liga (C)</a></li><li class="item-129"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=111" >3. Liga (D)</a></li><li class="item-126"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=112" >4. Liga (A)</a></li><li class="item-127"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=113" >4. Liga (B)</a></li><li class="item-151"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=114" >4. Liga (C)</a></li><li class="item-131"><a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=115" >Liga-Pokal 2016</a></li></ul></li><li class="item-112"><a href="/liga-tool/mannschaften" >Mannschaften</a></li><li class="item-107"><a href="/liga-tool/spielerstatistiken" >Spielerstatistiken</a></li></ul>
 </div>
 <div class="moduletable">
  <h3><span
 	class="backh"><span class="backh2"><span class="backh3">Turniere</span></span></span></h3>
- 
-<ul class="menu">
-<li class="item-108"><a href="/liga-tool/menu-turniere" >Ergebnisse</a></li><li class="item-146"><a href="/liga-tool/ranglistenwertung" >Info und Ranglistenwertung</a></li><li class="item-110"><a href="/liga-tool/menu-ranglisten" >Ranglisten</a></li><li class="item-144"><a href="/liga-tool/elorangliste" >ELO-Rangliste</a></li></ul>
+ <ul class="nav menu">
+<li class="item-146"><a href="/liga-tool/info-turniersaison" >Info und Teilnahme</a></li><li class="item-172"><a href="/liga-tool/termine" >Termine</a></li><li class="item-108"><a href="/liga-tool/menu-turniere" >Ergebnisse</a></li><li class="item-110 deeper parent"><a href="/liga-tool/landesranglisten" >Landesranglisten</a><ul class="nav-child unstyled small"><li class="item-161"><a href="http://kickern-hamburg.de/liga-tool/ranglisten?task=rangliste&amp;id=80" >Damen</a></li><li class="item-160"><a href="http://kickern-hamburg.de/liga-tool/ranglisten?task=rangliste&amp;id=79" >Herren</a></li><li class="item-162"><a href="http://kickern-hamburg.de/liga-tool/ranglisten?task=rangliste&amp;id=81" >Junioren</a></li><li class="item-163"><a href="http://kickern-hamburg.de/liga-tool/ranglisten?task=rangliste&amp;id=82" >Senioren</a></li></ul></li><li class="item-167"><a href="/liga-tool/landesmeisterschaft" >Landesmeisterschaft</a></li><li class="item-168"><a href="/liga-tool/qualifikationsregeln-fuer-die-dm" >Qualifikation zur DM</a></li><li class="item-176"><a href="/liga-tool/battle-of-champions" >Battle of Champions</a></li></ul>
 </div>
 <div class="moduletable">
  <h3><span
-	class="backh"><span class="backh2"><span class="backh3">Sonstiges</span></span></span></h3>
- 
-<ul class="menu">
-<li class="item-118"><a href="/liga-tool/bundesliga" >Bundesliga</a></li><li class="item-120"><a href="/liga-tool/laenderauswahl" >Länderauswahl</a></li><li class="item-121"><a href="/liga-tool/nationalmannschaft" >Nationalmannschaft</a></li><li class="item-122"><a href="/liga-tool/turniere-dm-wm-p4p" >Turniere: DM, WM, P4P</a></li></ul>
+	class="backh"><span class="backh2"><span class="backh3">Weiteres</span></span></span></h3>
+ <ul class="nav menu">
+<li class="item-164 deeper parent"><a href="/liga-tool/minichallenger-ranglisten" >Minichallenger-Ranglisten</a><ul class="nav-child unstyled small"><li class="item-165"><a href="http://kickern-hamburg.de/liga-tool/ranglisten?task=rangliste&amp;id=77" >Mittwochs-Doppel (Kixx)</a></li><li class="item-171"><a href="http://kiezkickerking.de/rangliste/" >Freitags-Doppel (St. Pauli)</a></li><li class="item-166"><a href="http://kickern-hamburg.de/liga-tool/ranglisten?task=rangliste&amp;id=78" >Samstags-Einzel (Kixx)</a></li></ul></li><li class="item-181"><a href="http://kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=veranstaltung&amp;veranstaltungid=116" >Ü45-Liga (Nord)</a></li><li class="item-118"><a href="/liga-tool/bundesliga" >Bundesliga</a></li><li class="item-120"><a href="/liga-tool/laenderauswahl" >Länderauswahl</a></li><li class="item-121"><a href="/liga-tool/nationalmannschaft" >Nationalmannschaft</a></li><li class="item-122"><a href="/liga-tool/turniere-dm-wm-p4p" >Weitere Turniere: DM, WM, P4P</a></li></ul>
 </div>
 <div class="moduletable">
  <h3><span
 	class="backh"><span class="backh2"><span class="backh3">Archiv</span></span></span></h3>
- 
-<ul class="menu">
-<li class="item-145"><a href="/liga-tool/saison-2012" >Saison 2012</a></li><li class="item-135"><a href="/liga-tool/saison-2011" >Saison 2011</a></li><li class="item-136"><a href="/liga-tool/saison-2010" >Saison 2010</a></li><li class="item-137"><a href="/liga-tool/saison-2009" >Saison 2009</a></li><li class="item-138"><a href="/liga-tool/saison-2008" >Saison 2008</a></li><li class="item-134"><a href="/liga-tool/saison-20062007" >Saison 2006/2007</a></li></ul>
+ <ul class="nav menu">
+<li class="item-156"><a href="/liga-tool/liga-archiv" >Liga</a></li><li class="item-169"><a href="/liga-tool/ranglisten" >Ranglisten</a></li></ul>
 </div>
 
 					
@@ -163,23 +186,30 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 			</div>
   
 			<div id="Content">
-					
-<div id="system-message-container">
-</div>
+					<div id="system-message-container">
+	</div>
+
 					﻿		<table border="0" cellspacing="0" cellpadding="3" width="100%">
 		<tr>
 	    	<th width="30" class="sectiontableheader"></th>
 			<th class="sectiontableheader" align="left">
 			<img src="/liga-tool/images/M_images/arrow.png" border="0" /> <a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltungen#vid21">
 			Wettbewerbe</a> &gt; Kickerliga Hamburg 2011, 1. Liga			</th>
-					</tr>
+							<th width="50" class="sectiontableheader">&nbsp;</th>
+                				<th width="50" class="sectiontableheader">&nbsp;</th>
+									<th class="sectiontableheader"  align="left">
+					<a href="/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=22">
+					Vor &gt;</a>
+					</th>
+						</tr>
 		</table>
 
 		<table class="contentpaneopen">
 		<tr>
 			<td colspan="3">
 			<div>
-				<H2>Kickerliga Hamburg 2011, 1. Liga</H2>
+				<H2>
+        Kickerliga Hamburg 2011, 1. Liga        </H2>
 			</div>
 			</td>
 		</tr>
@@ -204,8 +234,10 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 							<th nowrap title="Siege"><strong>S</strong></th>
 			<th nowrap title="Unentschieden"><strong>U</strong></th>
 			<th nowrap title="Niederlagen"><strong>N</strong></th>
-			        <th nowrap title="Differenz"><strong>S&auml;tze</strong></th>
-								<th nowrap title="Punktedifferenz"><strong>Spiele</strong></th>
+			          <th nowrap><strong>S&auml;tze</strong><br /><small>Absolut</small></th>
+                  <th nowrap title="Differenz"><strong>S&auml;tze</strong></th>
+				  				<th nowrap><strong>Spielpunkte</strong><br /><small>Absolut</small></th>
+          				<th nowrap title="Punktedifferenz"><strong>Spiele</strong></th>
 				  			<th nowrap><strong>Punkte</strong></th>
         			</tr>
 							<tr class="sectiontableentry1">
@@ -216,9 +248,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 				  				<td width="32" height="32" align="right">
-					<img src="http://www.kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I1T1325596778W28H28.png" width="28" height="28" border="0" />          </td>
+					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I1T1325596778W28H28.png" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
@@ -228,8 +260,14 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<td nowrap align="center">1</td>
 				<td nowrap align="center">0</td>
 				                    <td nowrap align="center">
+                    <small>239:86</small>
+                    </td>
+                                        <td nowrap align="center">
                     +153                    </td>
-                    					<td nowrap align="center">
+                    											<td nowrap align="center">
+											<small>230:58</small>
+											</td>
+																<td nowrap align="center">
 					+172					</td>
 					  				<td nowrap align="center">35</td>
           				</tr>
@@ -241,9 +279,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 				  				<td width="32" height="32" align="right">
-					<img src="http://www.kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I2T1325596671W28H28.png" width="28" height="28" border="0" />          </td>
+					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I2T1325596671W28H28.png" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
@@ -253,8 +291,14 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<td nowrap align="center">2</td>
 				<td nowrap align="center">2</td>
 				                    <td nowrap align="center">
+                    <small>221:100</small>
+                    </td>
+                                        <td nowrap align="center">
                     +121                    </td>
-                    					<td nowrap align="center">
+                    											<td nowrap align="center">
+											<small>214:74</small>
+											</td>
+																<td nowrap align="center">
 					+140					</td>
 					  				<td nowrap align="center">30</td>
           				</tr>
@@ -266,9 +310,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 				  				<td width="32" height="32" align="right">
-					<img src="http://www.kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I3T1326712485W28H28.png" width="28" height="28" border="0" />          </td>
+					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I3T1326712485W28H28.png" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
@@ -278,8 +322,14 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<td nowrap align="center">2</td>
 				<td nowrap align="center">3</td>
 				                    <td nowrap align="center">
+                    <small>216:108</small>
+                    </td>
+                                        <td nowrap align="center">
                     +108                    </td>
-                    					<td nowrap align="center">
+                    											<td nowrap align="center">
+											<small>200:88</small>
+											</td>
+																<td nowrap align="center">
 					+112					</td>
 					  				<td nowrap align="center">28</td>
           				</tr>
@@ -291,9 +341,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 				  				<td width="32" height="32" align="right">
-					<img src="http://www.kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I7T1325599609W28H28.png" width="28" height="28" border="0" />          </td>
+					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I7T1325599609W28H28.png" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
@@ -303,8 +353,14 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<td nowrap align="center">1</td>
 				<td nowrap align="center">8</td>
 				                    <td nowrap align="center">
+                    <small>170:154</small>
+                    </td>
+                                        <td nowrap align="center">
                     +16                    </td>
-                    					<td nowrap align="center">
+                    											<td nowrap align="center">
+											<small>148:140</small>
+											</td>
+																<td nowrap align="center">
 					+8					</td>
 					  				<td nowrap align="center">19</td>
           				</tr>
@@ -316,7 +372,7 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 				  				<td width="32" height="32" align="right">
 					          </td>
 									</tr>
@@ -328,8 +384,14 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<td nowrap align="center">3</td>
 				<td nowrap align="center">9</td>
 				                    <td nowrap align="center">
+                    <small>151:170</small>
+                    </td>
+                                        <td nowrap align="center">
                     -19                    </td>
-                    					<td nowrap align="center">
+                    											<td nowrap align="center">
+											<small>132:156</small>
+											</td>
+																<td nowrap align="center">
 					-24					</td>
 					  				<td nowrap align="center">15</td>
           				</tr>
@@ -341,9 +403,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 				  				<td width="32" height="32" align="right">
-					<img src="http://www.kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I4T1325597285W28H28.png" width="28" height="28" border="0" />          </td>
+					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I4T1427962346W28H28.png" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
@@ -353,8 +415,14 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<td nowrap align="center">1</td>
 				<td nowrap align="center">10</td>
 				                    <td nowrap align="center">
+                    <small>136:182</small>
+                    </td>
+                                        <td nowrap align="center">
                     -46                    </td>
-                    					<td nowrap align="center">
+                    											<td nowrap align="center">
+											<small>121:167</small>
+											</td>
+																<td nowrap align="center">
 					-46					</td>
 					  				<td nowrap align="center">15</td>
           				</tr>
@@ -366,9 +434,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 				  				<td width="32" height="32" align="right">
-					<img src="http://www.kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I23T1326242889W28H28.png" width="28" height="28" border="0" />          </td>
+					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I2T1325596671W28H28.png" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
@@ -378,8 +446,14 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<td nowrap align="center">0</td>
 				<td nowrap align="center">11</td>
 				                    <td nowrap align="center">
+                    <small>131:182</small>
+                    </td>
+                                        <td nowrap align="center">
                     -51                    </td>
-                    					<td nowrap align="center">
+                    											<td nowrap align="center">
+											<small>113:175</small>
+											</td>
+																<td nowrap align="center">
 					-62					</td>
 					  				<td nowrap align="center">14</td>
           				</tr>
@@ -391,9 +465,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 				  				<td width="32" height="32" align="right">
-					          </td>
+					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I25T1476021266W28H28.png" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
@@ -403,8 +477,14 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<td nowrap align="center">0</td>
 				<td nowrap align="center">13</td>
 				                    <td nowrap align="center">
+                    <small>109:207</small>
+                    </td>
+                                        <td nowrap align="center">
                     -98                    </td>
-                    					<td nowrap align="center">
+                    											<td nowrap align="center">
+											<small>95:193</small>
+											</td>
+																<td nowrap align="center">
 					-98					</td>
 					  				<td nowrap align="center">10</td>
           				</tr>
@@ -416,9 +496,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 				  				<td width="32" height="32" align="right">
-					<img src="http://www.kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I9T1325596753W28H28.png" width="28" height="28" border="0" />          </td>
+					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I78T1422312072W28H28.png" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
@@ -428,8 +508,14 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<td nowrap align="center">1</td>
 				<td nowrap align="center">14</td>
 				                    <td nowrap align="center">
+                    <small>114:204</small>
+                    </td>
+                                        <td nowrap align="center">
                     -90                    </td>
-                    					<td nowrap align="center">
+                    											<td nowrap align="center">
+											<small>95:193</small>
+											</td>
+																<td nowrap align="center">
 					-98					</td>
 					  				<td nowrap align="center">7</td>
           				</tr>
@@ -441,9 +527,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
 				<td>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 				  				<td width="32" height="32" align="right">
-					          </td>
+					<img src="http://kickern-hamburg.de/liga-tool/images/sportsmanager/vereine/I25T1476021266W28H28.png" width="28" height="28" border="0" />          </td>
 									</tr>
 				</table>
 
@@ -453,8 +539,14 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<td nowrap align="center">1</td>
 				<td nowrap align="center">14</td>
 				                    <td nowrap align="center">
+                    <small>111:205</small>
+                    </td>
+                                        <td nowrap align="center">
                     -94                    </td>
-                    					<td nowrap align="center">
+                    											<td nowrap align="center">
+											<small>92:196</small>
+											</td>
+																<td nowrap align="center">
 					-104					</td>
 					  				<td nowrap align="center">7</td>
           				</tr>
@@ -475,9 +567,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1271">Do., 03.02.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 								<td nowrap align="center">
 				8:8				</td>
 				</tr>
@@ -487,9 +579,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1273">Di., 08.02.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 								<td nowrap align="center">
 				7:9				</td>
 				</tr>
@@ -499,9 +591,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1275">Do., 10.02.2011 19:30</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 								<td nowrap align="center">
 				12:4				</td>
 				</tr>
@@ -511,9 +603,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1277">Di., 15.02.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 								<td nowrap align="center">
 				4:12				</td>
 				</tr>
@@ -523,9 +615,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1279">Di., 15.02.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 								<td nowrap align="center">
 				5:11				</td>
 				</tr>
@@ -537,9 +629,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1289">Do., 17.02.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 								<td nowrap align="center">
 				3:13				</td>
 				</tr>
@@ -549,9 +641,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1281">Fr., 18.02.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 								<td nowrap align="center">
 				15:1				</td>
 				</tr>
@@ -561,9 +653,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1283">Di., 22.02.2011 19:30</a>								</td>
 
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 								<td nowrap align="center">
 				0:16				</td>
 				</tr>
@@ -573,9 +665,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1287">Do., 24.02.2011 20:00</a>								</td>
 
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 								<td nowrap align="center">
 				12:4				</td>
 				</tr>
@@ -585,9 +677,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1285">Mo., 28.02.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 								<td nowrap align="center">
 				6:10				</td>
 				</tr>
@@ -599,9 +691,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1297">Di., 01.03.2011 20:00</a>								</td>
 
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 								<td nowrap align="center">
 				9:7				</td>
 				</tr>
@@ -611,9 +703,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1291">Di., 01.03.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 								<td nowrap align="center">
 				15:1				</td>
 				</tr>
@@ -623,9 +715,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1295">Mi., 02.03.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 								<td nowrap align="center">
 				7:9				</td>
 				</tr>
@@ -635,9 +727,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1299">Mo., 07.03.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 								<td nowrap align="center">
 				4:12				</td>
 				</tr>
@@ -647,9 +739,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1293">Mo., 14.03.2011 19:30</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 								<td nowrap align="center">
 				14:2				</td>
 				</tr>
@@ -661,9 +753,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1301">Di., 08.03.2011 20:20</a>								</td>
 
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 								<td nowrap align="center">
 				5:11				</td>
 				</tr>
@@ -673,9 +765,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1307">Mo., 14.03.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 								<td nowrap align="center">
 				7:9				</td>
 				</tr>
@@ -685,9 +777,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1303">Di., 22.03.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 								<td nowrap align="center">
 				2:14				</td>
 				</tr>
@@ -697,9 +789,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1305">Di., 05.04.2011 20:00</a>								</td>
 
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 								<td nowrap align="center">
 				6:10				</td>
 				</tr>
@@ -709,9 +801,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1309">Di., 05.04.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 								<td nowrap align="center">
 				2:14				</td>
 				</tr>
@@ -723,9 +815,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1317">Di., 15.03.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 								<td nowrap align="center">
 				6:10				</td>
 				</tr>
@@ -735,9 +827,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1315">Di., 29.03.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 								<td nowrap align="center">
 				12:4				</td>
 				</tr>
@@ -747,9 +839,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1319">So., 10.04.2011 18:00</a>								</td>
 
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 								<td nowrap align="center">
 				8:8				</td>
 				</tr>
@@ -759,9 +851,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1311">Mi., 20.04.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 								<td nowrap align="center">
 				15:1				</td>
 				</tr>
@@ -771,9 +863,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1313">Do., 28.04.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 								<td nowrap align="center">
 				4:12				</td>
 				</tr>
@@ -785,9 +877,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1321">Mo., 11.04.2011 20:15</a>								</td>
 
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 								<td nowrap align="center">
 				11:5				</td>
 				</tr>
@@ -797,9 +889,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1327">Di., 12.04.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 								<td nowrap align="center">
 				0:16				</td>
 				</tr>
@@ -809,9 +901,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1325">Do., 21.04.2011 19:00</a>								</td>
 
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 								<td nowrap align="center">
 				13:3				</td>
 				</tr>
@@ -821,9 +913,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1323">Do., 21.04.2011 20:15</a>								</td>
 
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 								<td nowrap align="center">
 				11:5				</td>
 				</tr>
@@ -833,9 +925,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1329">Di., 03.05.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 								<td nowrap align="center">
 				11:5				</td>
 				</tr>
@@ -847,9 +939,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1337">Di., 22.03.2011 20:00</a>								</td>
 
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 								<td nowrap align="center">
 				5:11				</td>
 				</tr>
@@ -859,9 +951,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1335">Mo., 09.05.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 								<td nowrap align="center">
 				16:0				</td>
 				</tr>
@@ -871,9 +963,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1331">Mo., 09.05.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 								<td nowrap align="center">
 				14:2				</td>
 				</tr>
@@ -883,9 +975,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1333">Di., 10.05.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 								<td nowrap align="center">
 				11:5				</td>
 				</tr>
@@ -895,9 +987,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1339">Mi., 18.05.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 								<td nowrap align="center">
 				12:4				</td>
 				</tr>
@@ -909,9 +1001,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1349">Do., 12.05.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 								<td nowrap align="center">
 				3:13				</td>
 				</tr>
@@ -921,9 +1013,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1343">Do., 19.05.2011 20:00</a>								</td>
 
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 								<td nowrap align="center">
 				2:14				</td>
 				</tr>
@@ -933,9 +1025,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1341">Mo., 23.05.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 								<td nowrap align="center">
 				3:13				</td>
 				</tr>
@@ -945,9 +1037,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1345">Di., 24.05.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 								<td nowrap align="center">
 				9:7				</td>
 				</tr>
@@ -957,9 +1049,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1347">Mi., 29.06.2011 20:20</a>								</td>
 
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 								<td nowrap align="center">
 				9:7				</td>
 				</tr>
@@ -971,9 +1063,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1359">Mo., 30.05.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 								<td nowrap align="center">
 				12:4				</td>
 				</tr>
@@ -983,9 +1075,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1357">Di., 31.05.2011 20:00</a>								</td>
 
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 								<td nowrap align="center">
 				12:4				</td>
 				</tr>
@@ -995,9 +1087,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1355">Mo., 06.06.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 								<td nowrap align="center">
 				3:13				</td>
 				</tr>
@@ -1007,9 +1099,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1353">Do., 09.06.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 								<td nowrap align="center">
 				12:4				</td>
 				</tr>
@@ -1019,9 +1111,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1351">Do., 16.06.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 								<td nowrap align="center">
 				12:4				</td>
 				</tr>
@@ -1033,9 +1125,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1280">Do., 16.06.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 								<td nowrap align="center">
 				1:15				</td>
 				</tr>
@@ -1045,9 +1137,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1276">Do., 16.06.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 								<td nowrap align="center">
 				5:11				</td>
 				</tr>
@@ -1057,9 +1149,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1278">Do., 23.06.2011 20:00</a>								</td>
 
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 								<td nowrap align="center">
 				7:9				</td>
 				</tr>
@@ -1069,9 +1161,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1272">Di., 05.07.2011 00:00</a>								</td>
 
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 								<td nowrap align="center">
 				12:4				</td>
 				</tr>
@@ -1081,9 +1173,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1274">Di., 26.07.2011 20:00</a>								</td>
 
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 								<td nowrap align="center">
 				10:6				</td>
 				</tr>
@@ -1095,9 +1187,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1290">Mo., 27.06.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 								<td nowrap align="center">
 				14:2				</td>
 				</tr>
@@ -1107,9 +1199,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1282">Di., 12.07.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 								<td nowrap align="center">
 				0:16				</td>
 				</tr>
@@ -1119,9 +1211,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1284">Di., 19.07.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 								<td nowrap align="center">
 				13:3				</td>
 				</tr>
@@ -1131,9 +1223,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1286">Do., 21.07.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 								<td nowrap align="center">
 				1:15				</td>
 				</tr>
@@ -1143,9 +1235,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1288">Do., 06.10.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 								<td nowrap align="center">
 				8:8				</td>
 				</tr>
@@ -1157,9 +1249,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1292">Mo., 25.07.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 								<td nowrap align="center">
 				2:14				</td>
 				</tr>
@@ -1169,9 +1261,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1294">Di., 26.07.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 								<td nowrap align="center">
 				2:14				</td>
 				</tr>
@@ -1181,9 +1273,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1296">Di., 16.08.2011 20:15</a>								</td>
 
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 								<td nowrap align="center">
 				6:10				</td>
 				</tr>
@@ -1193,9 +1285,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1298">Di., 30.08.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 								<td nowrap align="center">
 				1:15				</td>
 				</tr>
@@ -1205,9 +1297,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1300">Do., 29.09.2011 21:00</a>								</td>
 
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 								<td nowrap align="center">
 				4:12				</td>
 				</tr>
@@ -1219,9 +1311,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1302">Do., 11.08.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 								<td nowrap align="center">
 				16:0				</td>
 				</tr>
@@ -1231,9 +1323,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1308">Fr., 12.08.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 								<td nowrap align="center">
 				11:5				</td>
 				</tr>
@@ -1243,9 +1335,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1304">Fr., 26.08.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 								<td nowrap align="center">
 				15:1				</td>
 				</tr>
@@ -1255,9 +1347,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1306">Do., 29.09.2011 20:00</a>								</td>
 
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 								<td nowrap align="center">
 				7:9				</td>
 				</tr>
@@ -1267,9 +1359,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1310">Mi., 02.11.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 								<td nowrap align="center">
 				8:8				</td>
 				</tr>
@@ -1281,9 +1373,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1314">Do., 25.08.2011 20:15</a>								</td>
 
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 								<td nowrap align="center">
 				12:4				</td>
 				</tr>
@@ -1293,9 +1385,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1312">Di., 30.08.2011 20:00</a>								</td>
 
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 								<td nowrap align="center">
 				1:15				</td>
 				</tr>
@@ -1305,9 +1397,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1318">Di., 04.10.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 								<td nowrap align="center">
 				2:14				</td>
 				</tr>
@@ -1317,9 +1409,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1320">Do., 06.10.2011 19:00</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 								<td nowrap align="center">
 				10:6				</td>
 				</tr>
@@ -1329,9 +1421,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1316">Mi., 19.10.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 								<td nowrap align="center">
 				12:4				</td>
 				</tr>
@@ -1343,9 +1435,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1322">Mo., 08.08.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 								<td nowrap align="center">
 				9:7				</td>
 				</tr>
@@ -1355,9 +1447,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1324">Mo., 05.09.2011 00:00</a>								</td>
 
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 								<td nowrap align="center">
 				2:14				</td>
 				</tr>
@@ -1367,9 +1459,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1328">Di., 11.10.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 								<td nowrap align="center">
 				13:3				</td>
 				</tr>
@@ -1379,9 +1471,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1330">Do., 13.10.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 								<td nowrap align="center">
 				1:15				</td>
 				</tr>
@@ -1391,9 +1483,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1326">Do., 20.10.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 								<td nowrap align="center">
 				5:11				</td>
 				</tr>
@@ -1405,9 +1497,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1336">Mi., 05.10.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 								<td nowrap align="center">
 				7:9				</td>
 				</tr>
@@ -1417,9 +1509,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1332">Di., 25.10.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 								<td nowrap align="center">
 				5:11				</td>
 				</tr>
@@ -1429,9 +1521,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1340">Di., 22.11.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 								<td nowrap align="center">
 				8:8				</td>
 				</tr>
@@ -1441,9 +1533,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1334">Di., 29.11.2011 20:00</a>								</td>
 
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 								<td nowrap align="center">
 				1:15				</td>
 				</tr>
@@ -1453,9 +1545,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1338">Di., 29.11.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 								<td nowrap align="center">
 				11:5				</td>
 				</tr>
@@ -1467,9 +1559,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1350">Do., 20.10.2011 19:00</a>								</td>
 
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 								<td nowrap align="center">
 				13:3				</td>
 				</tr>
@@ -1479,9 +1571,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1344">Di., 25.10.2011 19:30</a>								</td>
 
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 								<td nowrap align="center">
 				14:2				</td>
 				</tr>
@@ -1491,9 +1583,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1346">Mi., 26.10.2011 20:00</a>								</td>
 
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 								<td nowrap align="center">
 				8:8				</td>
 				</tr>
@@ -1503,9 +1595,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1342">Di., 29.11.2011 20:15</a>								</td>
 
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 								<td nowrap align="center">
 				13:3				</td>
 				</tr>
@@ -1515,9 +1607,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1348">Di., 13.12.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 								<td nowrap align="center">
 				10:6				</td>
 				</tr>
@@ -1529,9 +1621,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1356">Sa., 15.10.2011 18:00</a>								</td>
 
 				<td nowrap>
-				Kurbelkraft Bergedorf				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=236">Kurbelkraft Bergedorf</a>				</td>
 				<td nowrap>
-				Lotterie (N)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=241">Lotterie (N)</a>				</td>
 								<td nowrap align="center">
 				9:7				</td>
 				</tr>
@@ -1541,9 +1633,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1354">Mo., 17.10.2011 00:00</a>								</td>
 
 				<td nowrap>
-				Meltin Top				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=196">Meltin Top</a>				</td>
 				<td nowrap>
-				Cim Bom Bom (M,P)				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=213">Cim Bom Bom (M,P)</a>				</td>
 								<td nowrap align="center">
 				6:10				</td>
 				</tr>
@@ -1553,9 +1645,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1358">Do., 27.10.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Lokomotive Hamburg				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=233">Lokomotive Hamburg</a>				</td>
 				<td nowrap>
-				HTFC Gadgettos				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=199">HTFC Gadgettos</a>				</td>
 								<td nowrap align="center">
 				4:12				</td>
 				</tr>
@@ -1565,9 +1657,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1352">Do., 03.11.2011 20:00</a>								</td>
 
 				<td nowrap>
-				BSC Hamburg 07				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=231">BSC Hamburg 07</a>				</td>
 				<td nowrap>
-				Die Maschinerie				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=238">Die Maschinerie</a>				</td>
 								<td nowrap align="center">
 				5:11				</td>
 				</tr>
@@ -1577,9 +1669,9 @@ function keepAlive() {	var myAjax = new Request({method: "get", url: "index.php"
 				<a href="/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=21&id=1360">Do., 10.11.2011 20:00</a>								</td>
 
 				<td nowrap>
-				Kicker Kartell				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=264">Kicker Kartell</a>				</td>
 				<td nowrap>
-				Die Hinkelsteinchen				</td>
+				<a href="/liga-tool/mannschaftswettbewerbe?task=team_details&id=244">Die Hinkelsteinchen</a>				</td>
 								<td nowrap align="center">
 				2:14				</td>
 				</tr>

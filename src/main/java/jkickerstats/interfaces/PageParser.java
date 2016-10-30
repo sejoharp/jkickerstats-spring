@@ -247,7 +247,7 @@ class PageParser {
 	}
 
 	protected boolean isValidMatchLink(Element element) {
-		boolean alreadyPlayed = element.select("a").size() == 2;
+		boolean alreadyPlayed = element.select("a").size() == 4;
 		if (alreadyPlayed == false) {
 			return false;
 		}

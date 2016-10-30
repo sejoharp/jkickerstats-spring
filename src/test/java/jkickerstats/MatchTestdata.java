@@ -16,9 +16,7 @@ public class MatchTestdata {
 				.withMatchDay(1)//
 				.withHomeGoals(10)//
 				.withGuestGoals(11)
-				.withGames(
-						Arrays.asList(GameTestdata.createSingleGame(),
-								GameTestdata.createDoubleGame()))//
+				.withGames(Arrays.asList(GameTestdata.createSingleGame(), GameTestdata.createDoubleGame()))//
 				.build();
 	}
 
@@ -50,7 +48,7 @@ public class MatchTestdata {
 				.build();
 	}
 
-	public static Match createMatchLink() {
+	public static Match createMatchWithLink() {
 		return new MatchBuilder()//
 				.withMatchDate(GameTestdata.createDate(2013, 01, 27, 19, 1))//
 				.withHomeTeam("Kickerbande")//
@@ -62,6 +60,20 @@ public class MatchTestdata {
 				.withGuestScore(0)//
 				.withMatchLink(
 						"http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=64&id=3815")//
+				.build();
+	}
+	public static Match createMatchWithLink2() {
+		return new MatchBuilder()//
+				.withMatchDate(GameTestdata.createDate(2016, 1, 22, 20, 0))//
+				.withHomeTeam("Drehschieber FC St. Pauli")//
+				.withGuestTeam("Fußpils United")//
+				.withMatchDay(1)//
+				.withHomeGoals(76)//
+				.withGuestGoals(68)//
+				.withHomeScore(18)//
+				.withGuestScore(14)//
+				.withMatchLink(
+						"http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7293")//
 				.build();
 	}
 
@@ -83,16 +95,16 @@ public class MatchTestdata {
 
 	public static Match createMatchLinkWithoutDate() {
 		return new MatchBuilder()//
-				.withMatchDate(GameTestdata.createZeroCalendar())//
-				.withHomeTeam("Fightclub Hamburg FC St. Pauli")//
-				.withGuestTeam("Lotterie")//
-				.withMatchDay(6)//
-				.withHomeGoals(0)//
-				.withGuestGoals(96)//
-				.withHomeScore(0)//
-				.withGuestScore(32)//
+				.withMatchDate(GameTestdata.createDate(1970, 0, 1, 1, 0))//
+				.withHomeTeam("Drehschieber FC St. Pauli")//
+				.withGuestTeam("Fußpils United")//
+				.withMatchDay(1)//
+				.withHomeGoals(76)//
+				.withGuestGoals(68)//
+				.withHomeScore(18)//
+				.withGuestScore(14)//
 				.withMatchLink(
-						"http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=54&id=3504")//
+						"http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7293")//
 				.build();
 	}
 }
