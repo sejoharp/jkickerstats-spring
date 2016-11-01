@@ -23,13 +23,14 @@ class PageParser {
 
 	public List<Game> findGames(Document doc) {
 		Elements gameSnippets = filterGameSnippets(doc);
-		if (isValidGameList(gameSnippets)) {
-			final boolean withImages = hasImages(gameSnippets);
-			return gameSnippets.stream()//
-					.map(snippet -> createGame(withImages, snippet))//
-					.collect(Collectors.toList());
-		} else
-			return new ArrayList<>();
+		return isValidGameList(gameSnippets) ? extractGames(gameSnippets) : new ArrayList<>();
+	}
+
+	private List<Game> extractGames(Elements gameSnippets) {
+		final boolean withImages = hasImages(gameSnippets);
+		return gameSnippets.stream()//
+				.map(snippet -> createGame(withImages, snippet))//
+				.collect(Collectors.toList());
 	}
 
 	protected Game createGame(final boolean withImages, Element snippet) {
@@ -97,13 +98,9 @@ class PageParser {
 	protected int parseMatchDay(Document doc, boolean matchDateAvailable) {
 		String rawData = doc.select("#Content table tbody > tr > td").first().text();
 		String[] dateChunks = rawData.split(",");
-		String matchDayString;
-		if (matchDateAvailable) {
-			matchDayString = dateChunks[2].split("\\.")[0];
-		} else {
-			matchDayString = dateChunks[1].split("\\.")[0];
-		}
-		return Integer.parseInt(matchDayString.trim());
+		int dateChunk = matchDateAvailable ? 2 : 1;
+		String matchDayString = dateChunks[dateChunk].split("\\.")[0].trim();
+		return Integer.parseInt(matchDayString);
 	}
 
 	protected String[] parseScore(Element doc, boolean imagesAvailable) {
@@ -180,19 +177,17 @@ class PageParser {
 	}
 
 	protected Match parseMatch(Element element, int matchDay) {
-		MatchBuilder builder = new Match.MatchBuilder()//
+		return new Match.MatchBuilder()//
 				.withMatchDate(parseMatchDate(element))//
 				.withMatchDay(matchDay)//
 				.withHomeScore(parseMatchHomeScore(element))//
 				.withGuestScore(parseMatchGuestScore(element))//
 				.withHomeTeam(removeTeamDescriptions(element.children().eq(1).text()))//
-				.withGuestTeam(removeTeamDescriptions(element.children().eq(2).text()));
-		if (isNewMatchFormat(element)) {
-			builder.withGuestGoals(parseMatchGuestGoals(element));
-			builder.withHomeGoals(parseMatchHomeGoals(element));
-		}
-		builder.withMatchLink(parseMatchLink(element));
-		return builder.build();
+				.withGuestTeam(removeTeamDescriptions(element.children().eq(2).text()))//
+				.withGuestGoals(parseMatchGuestGoals(element))//
+				.withHomeGoals(parseMatchHomeGoals(element))//
+				.withMatchLink(parseMatchLink(element))//
+				.build();
 	}
 
 	protected boolean isNewMatchFormat(Element element) {
@@ -200,23 +195,33 @@ class PageParser {
 	}
 
 	protected int parseMatchHomeGoals(Element element) {
-		String goals = element.children().eq(3).text();
-		return Integer.parseInt(goals.split(":")[0]);
+		return parseMatchGoals(element, 0);
 	}
 
 	protected int parseMatchGuestGoals(Element element) {
-		String goals = element.children().eq(3).text();
-		return Integer.parseInt(goals.split(":")[1]);
+		return parseMatchGoals(element, 1);
+	}
+
+	private int parseMatchGoals(Element element, int chunk) {
+		if (isNewMatchFormat(element)) {
+			String goals = element.children().eq(3).text();
+			return Integer.parseInt(goals.split(":")[chunk]);
+		} else {
+			return 0;
+		}
 	}
 
 	protected int parseMatchHomeScore(Element element) {
-		String score = element.children().last().text();
-		return Integer.parseInt(score.split(":")[0]);
+		return parseMatchScore(element, 0);
 	}
 
 	protected int parseMatchGuestScore(Element element) {
+		return parseMatchScore(element, 1);
+	}
+
+	private int parseMatchScore(Element element, int chunk) {
 		String score = element.children().last().text();
-		return Integer.parseInt(score.split(":")[1]);
+		return Integer.parseInt(score.split(":")[chunk]);
 	}
 
 	protected Date parseMatchDate(Element element) {
