@@ -8,15 +8,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import jkickerstats.types.Game;
-import jkickerstats.types.Game.GameBuilder;
-import jkickerstats.types.Match;
-import jkickerstats.types.Match.MatchBuilder;
-
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
+
+import jkickerstats.types.Game;
+import jkickerstats.types.Match;
+import jkickerstats.types.Match.MatchBuilder;
 
 @Component
 class PageParser {
@@ -26,18 +25,26 @@ class PageParser {
 		Elements gameSnippets = filterGameSnippets(doc);
 		if (isValidGameList(gameSnippets)) {
 			final boolean withImages = hasImages(gameSnippets);
-			return gameSnippets.stream().map(snippet -> {
-				GameBuilder builder = new Game.GameBuilder();
-				builder.withDoubleMatch(isDoubleMatch(snippet));
-				builder.withPosition(parseGamePosition(snippet));
-				builder.withHomeScore(parseHomeScore(snippet, withImages));
-				builder.withGuestScore(parseGuestScore(snippet, withImages));
-				addPlayerNames(builder, snippet, isDoubleMatch(snippet));
-				return builder.build();
-			})//
+			return gameSnippets.stream()//
+					.map(snippet -> createGame(withImages, snippet))//
 					.collect(Collectors.toList());
 		} else
 			return new ArrayList<>();
+	}
+
+	protected Game createGame(final boolean withImages, Element snippet) {
+		Elements rawPlayerNames = snippet.select("td a");
+		Boolean doubleMatch = isDoubleMatch(snippet);
+		return new Game.GameBuilder()//
+				.withDoubleMatch(doubleMatch)//
+				.withPosition(parseGamePosition(snippet))//
+				.withHomeScore(parseHomeScore(snippet, withImages))//
+				.withGuestScore(parseGuestScore(snippet, withImages))//
+				.withHomePlayer1(parsePlayerName(rawPlayerNames, 0))//
+				.withHomePlayer2(parseDoublePlayerName(rawPlayerNames, 1, doubleMatch))//
+				.withGuestPlayer1(parseGuestPlayerName(rawPlayerNames, doubleMatch))//
+				.withGuestPlayer2(parseDoublePlayerName(rawPlayerNames, 3, doubleMatch))//
+				.build();
 	}
 
 	protected boolean hasImages(Elements elements) {
@@ -50,20 +57,19 @@ class PageParser {
 	}
 
 	protected Elements filterGameSnippets(Document doc) {
-		Elements rawDoc = doc
-				.select("div#Content > table.contentpaneopen:nth-child(6) > tbody");
+		Elements rawDoc = doc.select("div#Content > table.contentpaneopen:nth-child(6) > tbody");
 		return rawDoc.select("tr.sectiontableentry1, tr.sectiontableentry2");
 	}
 
 	protected String parseHomeTeam(Document doc) {
-		Elements teams = doc
-				.select("html body div#Container div#Layout div.typography div#Content table.contentpaneopen tbody tr td table tbody tr td h2");
+		Elements teams = doc.select(
+				"html body div#Container div#Layout div.typography div#Content table.contentpaneopen tbody tr td table tbody tr td h2");
 		return removeTeamDescriptions(teams.first().text());
 	}
 
 	protected String parseGuestTeam(Document doc) {
-		Elements teams = doc
-				.select("html body div#Container div#Layout div.typography div#Content table.contentpaneopen tbody tr td table tbody tr td h2");
+		Elements teams = doc.select(
+				"html body div#Container div#Layout div.typography div#Content table.contentpaneopen tbody tr td table tbody tr td h2");
 		return removeTeamDescriptions(teams.last().text());
 	}
 
@@ -72,8 +78,7 @@ class PageParser {
 	}
 
 	protected boolean hasMatchDate(Document doc) {
-		String rawData = doc.select("#Content table tbody > tr > td").first()
-				.text();
+		String rawData = doc.select("#Content table tbody > tr > td").first().text();
 		String[] dateChunks = rawData.split(",");
 		return dateChunks.length == 3;
 	}
@@ -84,15 +89,13 @@ class PageParser {
 			matchDate.setTimeInMillis(0);
 			return matchDate.getTime();
 		}
-		String rawData = doc.select("#Content table tbody > tr > td").first()
-				.text();
+		String rawData = doc.select("#Content table tbody > tr > td").first().text();
 		String rawDate = rawData.split(",")[1];
 		return parseDate(rawDate);
 	}
 
 	protected int parseMatchDay(Document doc, boolean matchDateAvailable) {
-		String rawData = doc.select("#Content table tbody > tr > td").first()
-				.text();
+		String rawData = doc.select("#Content table tbody > tr > td").first().text();
 		String[] dateChunks = rawData.split(",");
 		String matchDayString;
 		if (matchDateAvailable) {
@@ -129,8 +132,7 @@ class PageParser {
 	}
 
 	public List<String> findLigaLinks(Document doc) {
-		Elements elements = doc
-				.select("div#Content > table > tbody > tr > td > a.readon");
+		Elements elements = doc.select("div#Content > table > tbody > tr > td > a.readon");
 		return elements.stream()//
 				.map(element -> DOMAIN + element.attr("href"))//
 				.collect(Collectors.toList());
@@ -160,8 +162,7 @@ class PageParser {
 		return recursiveFindMatches(elements, 0, new ArrayList<>());
 	}
 
-	public List<Match> recursiveFindMatches(Elements elements, int matchDay,
-			List<Match> result) {
+	public List<Match> recursiveFindMatches(Elements elements, int matchDay, List<Match> result) {
 		if (elements.isEmpty())
 			return result;
 		if (isMatchDayElement(elements.first())) {
@@ -169,14 +170,13 @@ class PageParser {
 			matchDay = Integer.parseInt(matchDayString.split("\\.")[0]);
 		} else if (isValidMatchLink(elements.first()))
 			result.add(parseMatch(elements.first(), matchDay));
-		
+
 		elements.remove(elements.first());
 		return recursiveFindMatches(elements, matchDay, result);
 	}
 
 	protected boolean isMatchDayElement(Element element) {
-		return element.hasClass("sectiontableheader")
-				&& element.select("i").text().isEmpty() == false;
+		return element.hasClass("sectiontableheader") && element.select("i").text().isEmpty() == false;
 	}
 
 	protected Match parseMatch(Element element, int matchDay) {
@@ -185,10 +185,8 @@ class PageParser {
 				.withMatchDay(matchDay)//
 				.withHomeScore(parseMatchHomeScore(element))//
 				.withGuestScore(parseMatchGuestScore(element))//
-				.withHomeTeam(
-						removeTeamDescriptions(element.children().eq(1).text()))//
-				.withGuestTeam(
-						removeTeamDescriptions(element.children().eq(2).text()));
+				.withHomeTeam(removeTeamDescriptions(element.children().eq(1).text()))//
+				.withGuestTeam(removeTeamDescriptions(element.children().eq(2).text()));
 		if (isNewMatchFormat(element)) {
 			builder.withGuestGoals(parseMatchGuestGoals(element));
 			builder.withHomeGoals(parseMatchHomeGoals(element));
@@ -234,16 +232,13 @@ class PageParser {
 	}
 
 	protected Elements filterMatchLinkSnippets(Document doc) {
-		Elements rawDoc = doc
-				.select("div#Content > table.contentpaneopen:nth-child(7)");
+		Elements rawDoc = doc.select("div#Content > table.contentpaneopen:nth-child(7)");
 		return rawDoc.select("tr.sectiontableentry1, tr.sectiontableentry2");
 	}
 
 	protected Elements filterMatchSnippets(Document doc) {
-		Elements rawDoc = doc
-				.select("div#Content > table.contentpaneopen:nth-child(7)");
-		return rawDoc
-				.select("tr.sectiontableheader,tr.sectiontableentry1, tr.sectiontableentry2");
+		Elements rawDoc = doc.select("div#Content > table.contentpaneopen:nth-child(7)");
+		return rawDoc.select("tr.sectiontableheader,tr.sectiontableentry1, tr.sectiontableentry2");
 	}
 
 	protected boolean isValidMatchLink(Element element) {
@@ -251,10 +246,8 @@ class PageParser {
 		if (alreadyPlayed == false) {
 			return false;
 		}
-		String scoreDescription = element.select("td:nth-child(5) small")
-				.text();
-		return isMatchUnconfirmed(scoreDescription) == false
-				&& isMatchRunning(scoreDescription) == false;
+		String scoreDescription = element.select("td:nth-child(5) small").text();
+		return isMatchUnconfirmed(scoreDescription) == false && isMatchRunning(scoreDescription) == false;
 	}
 
 	protected boolean isMatchRunning(String scoreDescription) {
@@ -273,23 +266,19 @@ class PageParser {
 		return Integer.parseInt(gameDoc.children().first().text());
 	}
 
-	protected void addPlayerNames(GameBuilder builder, Element gameDoc,
-			boolean isDoubleMatch) {
-		Elements rawPlayerNames = gameDoc.select("td a");
-		if (isDoubleMatch) {
-			builder.withHomePlayer1(parsePlayerName(rawPlayerNames, 0));
-			builder.withHomePlayer2(parsePlayerName(rawPlayerNames, 1));
-			builder.withGuestPlayer1(parsePlayerName(rawPlayerNames, 2));
-			builder.withGuestPlayer2(parsePlayerName(rawPlayerNames, 3));
-		} else {
-			builder.withHomePlayer1(parsePlayerName(rawPlayerNames, 0));
-			builder.withGuestPlayer1(parsePlayerName(rawPlayerNames, 1));
-		}
+	protected String parseDoublePlayerName(Elements rawPlayerNames, int position, boolean doubleMatch) {
+		if (doubleMatch) {
+			return rawPlayerNames.size() > position ? rawPlayerNames.get(position).text() : "";
+		} else
+			return null;
 	}
 
 	protected String parsePlayerName(Elements rawPlayerNames, int position) {
-		return rawPlayerNames.size() > position ? rawPlayerNames.get(position)
-				.text() : "";
+		return rawPlayerNames.size() > position ? rawPlayerNames.get(position).text() : "";
 	}
 
+	protected String parseGuestPlayerName(Elements rawPlayerNames, boolean doubleMatch) {
+		int position = doubleMatch ? 2 : 1;
+		return rawPlayerNames.size() > position ? rawPlayerNames.get(position).text() : "";
+	}
 }

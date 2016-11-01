@@ -10,18 +10,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import jkickerstats.GameTestdata;
-import jkickerstats.MatchTestdata;
-import jkickerstats.types.Game;
-import jkickerstats.types.Game.GameBuilder;
-import jkickerstats.types.Match;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import jkickerstats.GameTestdata;
+import jkickerstats.MatchTestdata;
+import jkickerstats.types.Game;
+import jkickerstats.types.Game.GameBuilder;
+import jkickerstats.types.Match;
 
 public class PageParserUnitTest {
 
@@ -68,8 +68,7 @@ public class PageParserUnitTest {
 
 	@Test
 	public void aRunningMatchIsNotAValidMatch() {
-		Elements linkSnippets = parser
-				.filterMatchLinkSnippets(begegnungenLiveDoc);
+		Elements linkSnippets = parser.filterMatchLinkSnippets(begegnungenLiveDoc);
 
 		boolean isValid = parser.isValidMatchLink(linkSnippets.get(0));
 
@@ -78,8 +77,7 @@ public class PageParserUnitTest {
 
 	@Test
 	public void aConfirmedMatchIsAValidMatch() {
-		Elements linkSnippets = parser
-				.filterMatchLinkSnippets(begegnungenLiveDoc);
+		Elements linkSnippets = parser.filterMatchLinkSnippets(begegnungenLiveDoc);
 
 		boolean isValid = parser.isValidMatchLink(linkSnippets.get(1));
 
@@ -117,9 +115,8 @@ public class PageParserUnitTest {
 		List<String> ligaLinksIDs = parser.findLigaLinks(uebersichtDoc);
 
 		assertThat(ligaLinksIDs.size(), is(5));
-		assertThat(
-				ligaLinksIDs.get(0),
-				is("http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=8"));
+		assertThat(ligaLinksIDs.get(0), is(
+				"http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=8"));
 	}
 
 	@Test
@@ -164,14 +161,12 @@ public class PageParserUnitTest {
 
 	@Test
 	public void returnsHomeTeamname() throws IOException {
-		assertThat(parser.parseHomeTeam(begegnungDoc),
-				is("Tingeltangel FC St. Pauli"));
+		assertThat(parser.parseHomeTeam(begegnungDoc), is("Tingeltangel FC St. Pauli"));
 	}
 
 	@Test
 	public void returnsGuestTeamname() throws IOException {
-		assertThat(parser.parseGuestTeam(begegnungDoc),
-				is("Hamburg Privateers 08"));
+		assertThat(parser.parseGuestTeam(begegnungDoc), is("Hamburg Privateers 08"));
 	}
 
 	@Test
@@ -210,8 +205,7 @@ public class PageParserUnitTest {
 		Calendar expectedDate = Calendar.getInstance();
 		expectedDate.setTimeInMillis(0);
 
-		assertThat(parser.parseMatchDate(begegnungNoDateDoc, false),
-				is(expectedDate.getTime()));
+		assertThat(parser.parseMatchDate(begegnungNoDateDoc, false), is(expectedDate.getTime()));
 	}
 
 	@Test
@@ -228,14 +222,14 @@ public class PageParserUnitTest {
 	public void parsesHomeScore() throws IOException {
 		Elements rawGames = parser.filterGameSnippets(begegnungDoc);
 
-		assertThat(parser.parseHomeScore(rawGames.first(), false), is(4));
+		assertThat(parser.parseHomeScore(rawGames.first(), true), is(4));
 	}
 
 	@Test
 	public void parsesGuestScore() throws IOException {
 		Elements rawGames = parser.filterGameSnippets(begegnungDoc);
 
-		assertThat(parser.parseGuestScore(rawGames.first(), false), is(7));
+		assertThat(parser.parseGuestScore(rawGames.first(), true), is(7));
 	}
 
 	@Test
@@ -290,11 +284,9 @@ public class PageParserUnitTest {
 	@Test
 	public void parsesPlayerNamesOfLastGame() throws IOException {
 		Elements rawGames = parser.filterGameSnippets(begegnungDoc);
-		GameBuilder builder = new GameBuilder();
-		
-		parser.addPlayerNames(builder, rawGames.last(), true);
 
-		Game game = builder.build();
+		Game game = parser.createGame(true, rawGames.last());
+
 		assertThat(game.getHomePlayer1(), is("Sommer, Sebastian"));
 		assertThat(game.getHomePlayer2(), is("Hölzer, Heinz"));
 		assertThat(game.getGuestPlayer1(), is("Nestvogel, Markus"));
@@ -304,11 +296,9 @@ public class PageParserUnitTest {
 	@Test
 	public void parsesPlayerNamesOfFirstGame() throws IOException {
 		Elements rawGames = parser.filterGameSnippets(begegnungDoc);
-		GameBuilder builder = new GameBuilder();
 
-		parser.addPlayerNames(builder, rawGames.first(), false);
+		Game game = parser.createGame(true, rawGames.first());
 
-		Game game = builder.build();
 		assertThat(game.getHomePlayer1(), is("Technau, Jerome"));
 		assertThat(game.getGuestPlayer1(), is("Hojas, René"));
 	}
@@ -436,7 +426,7 @@ public class PageParserUnitTest {
 		assertThat(match.getHomeScore(), is(8));
 		assertThat(match.getGuestScore(), is(8));
 	}
-	
+
 	@Test
 	public void returnsTeamNamesWithoutDescriptions() {
 		List<Match> matches = parser.findMatches(begegnungenLiveDoc);
@@ -444,7 +434,7 @@ public class PageParserUnitTest {
 
 		assertThat(match.getGuestTeam(), is("Hamburg Privateers 08"));
 	}
-	
+
 	@Test
 	public void returnsAFilledMatchWithoutDate() {
 		List<Match> matches = parser.findMatches(begegnungenNoDateDoc);
@@ -460,10 +450,8 @@ public class PageParserUnitTest {
 	}
 
 	protected static Document loadFile(String fileName) throws IOException {
-		File testFile = new File(PageParserTest.RECOURCES_DIRECTORY
-				+ fileName);
+		File testFile = new File(PageParserTest.RECOURCES_DIRECTORY + fileName);
 		return Jsoup.parse(testFile, "UTF-8", "");
 	}
-
 
 }

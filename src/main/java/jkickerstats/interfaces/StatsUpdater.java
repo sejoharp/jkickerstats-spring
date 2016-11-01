@@ -35,9 +35,9 @@ public class StatsUpdater {
 		} else {
 			updateData();
 		}
-
 		long matchesCountAfter = matchRepo.countMatches();
-		LOG.info("updater batch finished and found " + (matchesCountAfter - matchesCountBefore) + " new matches.");
+		LOG.info(String.format("updater batch finished and found %s new matches.",
+				matchesCountAfter - matchesCountBefore));
 	}
 
 	protected List<Game> downloadAllGames() {
@@ -59,28 +59,30 @@ public class StatsUpdater {
 	}
 
 	protected void getAllData() {
-		getSeasonIDs().forEach(seasonId -> getLigaLinks(seasonId)//
-				.forEach(ligaLink -> getMatches(ligaLink)//
-						.forEach(this::saveCompleteMatch)));
-	}
-
-	private void saveCompleteMatch(Match match) {
-		Match fullMatch = new Match.MatchBuilder(match)//
-				.withGames(getGames(match.getMatchLink()))//
-				.build();
-		matchRepo.save(fullMatch);
+		getSeasonIDs().stream()//
+				.map(this::getLigaLinks)//
+				.flatMap(links -> links.stream())//
+				.map(this::getMatches)//
+				.flatMap(matchLists -> matchLists.stream())//
+				.map(this::createMatchWithGames)//
+				.forEach(matchRepo::save);
 	}
 
 	protected void updateData() {
 		Integer seasonId = getCurrentSeasonId(getSeasonIDs());
 		getLigaLinks(seasonId)//
-				.forEach(ligaLink -> saveNewMatches(getMatches(ligaLink)));
+				.stream()//
+				.map(this::getMatches)//
+				.flatMap(lists -> lists.stream())//
+				.filter(matchRepo::isNewMatch)//
+				.map(this::createMatchWithGames)//
+				.forEach(matchRepo::save);
 	}
 
-	protected void saveNewMatches(List<Match> matches) {
-		matches.stream()//
-				.filter(matchRepo::isNewMatch)//
-				.forEach(this::saveCompleteMatch);
+	private Match createMatchWithGames(Match match) {
+		return new Match.MatchBuilder(match)//
+				.withGames(getGames(match.getMatchLink()))//
+				.build();
 	}
 
 	protected int getCurrentSeasonId(List<Integer> seasons) {
