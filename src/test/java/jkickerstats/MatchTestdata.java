@@ -64,16 +64,16 @@ public class MatchTestdata {
 	}
 	public static Match createMatchWithLink2() {
 		return new MatchBuilder()//
-				.withMatchDate(GameTestdata.createDate(2016, 1, 22, 20, 0))//
-				.withHomeTeam("Drehschieber FC St. Pauli")//
-				.withGuestTeam("Fußpils United")//
+				.withMatchDate(GameTestdata.createDate(2017, 1, 14, 20, 0))//
+				.withHomeTeam("Krabbeltüte")//
+				.withGuestTeam("HTFC Gadgettos II")//
 				.withMatchDay(1)//
-				.withHomeGoals(76)//
-				.withGuestGoals(68)//
-				.withHomeScore(18)//
-				.withGuestScore(14)//
+				.withHomeGoals(65)//
+				.withGuestGoals(81)//
+				.withHomeScore(13)//
+				.withGuestScore(19)//
 				.withMatchLink(
-						"http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7293")//
+						"http://www.kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=118&id=8675")//
 				.build();
 	}
 
@@ -96,15 +96,15 @@ public class MatchTestdata {
 	public static Match createMatchLinkWithoutDate() {
 		return new MatchBuilder()//
 				.withMatchDate(GameTestdata.createDate(1970, 0, 1, 1, 0))//
-				.withHomeTeam("Drehschieber FC St. Pauli")//
-				.withGuestTeam("Fußpils United")//
+				.withHomeTeam("Krabbeltüte")//
+				.withGuestTeam("HTFC Gadgettos II")//
 				.withMatchDay(1)//
-				.withHomeGoals(76)//
-				.withGuestGoals(68)//
-				.withHomeScore(18)//
-				.withGuestScore(14)//
+				.withHomeGoals(65)//
+				.withGuestGoals(81)//
+				.withHomeScore(13)//
+				.withGuestScore(19)//
 				.withMatchLink(
-						"http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7293")//
+						"http://www.kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=118&id=8675")//
 				.build();
 	}
 }

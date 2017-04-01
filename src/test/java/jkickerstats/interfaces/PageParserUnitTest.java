@@ -37,6 +37,7 @@ public class PageParserUnitTest {
 	private static Document relegationDoc;
 	private static Document begegnungNoNamesDoc;
 	private static Document begegnungenNumberFormatExceptionDoc;
+	private static Document begegnungenUnconfirmedDoc;
 
 	@BeforeClass
 	public static void loadTestFiles() throws IOException {
@@ -50,6 +51,7 @@ public class PageParserUnitTest {
 		begegnungNoNamesDoc = loadFile("begegnung_no_names.html");
 		begegnungenNoDateDoc = loadFile("begegnungen_no_date.html");
 		begegnungenNumberFormatExceptionDoc = loadFile("begegnungen_NFE.html");
+		begegnungenUnconfirmedDoc = loadFile("begegnungen_unconfirmed.html");
 	}
 
 	@Before
@@ -59,9 +61,9 @@ public class PageParserUnitTest {
 
 	@Test
 	public void anUnconfirmedMatchIsNotAValidMatch() {
-		Elements linkSnippets = parser.filterMatchLinkSnippets(begegnungenDoc);
+		Elements linkSnippets = parser.filterMatchLinkSnippets(begegnungenUnconfirmedDoc);
 
-		boolean isValid = parser.isValidMatchLink(linkSnippets.get(2));
+		boolean isValid = parser.isValidMatchLink(linkSnippets.get(0));
 
 		assertThat(isValid, is(false));
 	}
@@ -86,7 +88,7 @@ public class PageParserUnitTest {
 
 	@Test
 	public void returnsAllSeasons() throws IOException {
-		List<Integer> expectedSeasonsIDs = Arrays.asList(7, 4, 3, 2, 1);
+		List<Integer> expectedSeasonsIDs = Arrays.asList(12, 11, 9, 8, 7, 4, 3, 2, 1);
 
 		List<Integer> seasonsIDs = parser.findSeasonIDs(uebersichtDoc);
 
@@ -98,8 +100,8 @@ public class PageParserUnitTest {
 	public void returnsAllMatchLinks() throws IOException {
 		List<String> matchLinks = parser.findMatchLinks(begegnungenDoc);
 
-		assertThat(matchLinks.size(), is(75));
-		String expectedMatchLink = "http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=108&id=7293";
+		assertThat(matchLinks.size(), is(14));
+		String expectedMatchLink = "http://www.kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=118&id=8675";
 		assertThat(matchLinks.get(0), is(expectedMatchLink));
 	}
 
@@ -107,23 +109,23 @@ public class PageParserUnitTest {
 	public void returnsAllConfirmedMatchLinks() throws IOException {
 		List<String> matchLinks = parser.findMatchLinks(begegnungenLiveDoc);
 
-		assertThat(matchLinks.size(), is(75));
+		assertThat(matchLinks.size(), is(13));
 	}
 
 	@Test
 	public void returnsAllLigaLinks() throws IOException {
 		List<String> ligaLinksIDs = parser.findLigaLinks(uebersichtDoc);
 
-		assertThat(ligaLinksIDs.size(), is(5));
+		assertThat(ligaLinksIDs.size(), is(11));
 		assertThat(ligaLinksIDs.get(0), is(
-				"http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=8"));
+				"http://www.kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=118"));
 	}
 
 	@Test
 	public void filtersAllMatchLinkSnippets() throws IOException {
 		int matchCount = parser.filterMatchLinkSnippets(begegnungenDoc).size();
 
-		assertThat(matchCount, is(86));
+		assertThat(matchCount, is(90));
 	}
 
 	@Test
@@ -423,16 +425,16 @@ public class PageParserUnitTest {
 
 		assertThat(match.getHomeGoals(), is(0));
 		assertThat(match.getGuestGoals(), is(0));
-		assertThat(match.getHomeScore(), is(8));
-		assertThat(match.getGuestScore(), is(8));
+		assertThat(match.getHomeScore(), is(13));
+		assertThat(match.getGuestScore(), is(19));
 	}
 
 	@Test
 	public void returnsTeamNamesWithoutDescriptions() {
-		List<Match> matches = parser.findMatches(begegnungenLiveDoc);
+		List<Match> matches = parser.findMatches(begegnungenDoc);
 		Match match = matches.get(0);
 
-		assertThat(match.getGuestTeam(), is("Hamburg Privateers 08"));
+		assertThat(match.getHomeTeam(), is("Krabbeltüte"));
 	}
 
 	@Test
@@ -446,7 +448,7 @@ public class PageParserUnitTest {
 	@Test
 	public void returnsAllMatches() {
 		List<Match> matches = parser.findMatches(begegnungenDoc);
-		assertThat(matches.size(), is(75));
+		assertThat(matches.size(), is(14));
 	}
 
 	protected static Document loadFile(String fileName) throws IOException {

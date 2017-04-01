@@ -1,20 +1,17 @@
 package jkickerstats.interfaces;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jkickerstats.Application;
 import jkickerstats.types.Game;
 import jkickerstats.types.Match;
-
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationContextLoader;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -30,7 +27,7 @@ public class StatsUpdaterTest {
 	@Autowired
 	private CsvCreator csvCreator;
 
-	@Ignore
+//	@Ignore
 	@Test
 	public void createCSVFileWithAllGames() {
 		List<Match> matches = statsUpdater.downloadAllMatches();
@@ -38,31 +35,32 @@ public class StatsUpdaterTest {
 		csvCreator.createCsvFile(gameStrings);
 	}
 
-	@Test
+//	@Test
 	@Ignore
 	public void savesAllMatchesWithGames() {
 		statsUpdater.getAllData();
 	}
 
-	@Ignore
+//	@Ignore
 	@Test
 	public void getsSeasonIds() {
-		assertThat(statsUpdater.getCurrentSeasonId(statsUpdater.getSeasonIDs()), is(11));
+		List<Integer> seasonIDs = statsUpdater.getSeasonIDs();
+		assertThat(statsUpdater.getCurrentSeasonId(seasonIDs), is(12));
 	}
 
-	@Ignore
+//	@Ignore
 	@Test
 	public void updatesData() {
 		statsUpdater.updateData();
 	}
 
-	@Ignore
+//	@Ignore
 	@Test
 	public void getsLinks() {
 		assertThat(statsUpdater.getLigaLinks(11), is(not(empty())));
 	}
 
-	@Ignore
+//	@Ignore
 	@Test
 	public void findsMatches() {
 		statsUpdater.getLigaLinks(11).forEach(ligaLink -> {
@@ -77,7 +75,7 @@ public class StatsUpdaterTest {
 
 	}
 
-	@Ignore
+//	@Ignore
 	@Test
 	public void findsAllMatches() {
 		statsUpdater.getLigaLinks(11)//
