@@ -1,19 +1,19 @@
 package jkickerstats.domain;
 
-import java.util.List;
-
 import jkickerstats.types.Match;
 
+import java.util.List;
+
 public interface MatchRepo {
-	public boolean isNewMatch(Match match);
+    public boolean isNewMatch(Match match);
 
-	public void save(Match match);
+    public void save(Match match);
 
-	public void save(List<Match> matches);
+    public void save(List<Match> matches);
 
-	public boolean noMatchesAvailable();
-	
-	public List<Match> getAllMatches();
-	
-	public long countMatches();
+    public boolean noMatchesAvailable();
+
+    public List<Match> getAllMatches();
+
+    public long countMatches();
 }

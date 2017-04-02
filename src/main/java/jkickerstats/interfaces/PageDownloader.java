@@ -1,12 +1,12 @@
 package jkickerstats.interfaces;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 class PageDownloader {

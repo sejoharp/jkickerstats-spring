@@ -1,50 +1,50 @@
 package jkickerstats;
 
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.Arrays;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.Arrays;
+
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
 public class Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-		
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+
 //		ApplicationContext ctx = SpringApplication.run(Application.class, args);
 //		printManagedBeans(ctx);
 //		printClasspath();
-		
-		System.out.println("");
-		System.out.println("APPLICATION STARTED.");
-	}
 
-	protected static void printManagedBeans(ApplicationContext ctx) {
-		System.out.println("---------------------");
-		System.out.println("Let's inspect the beans provided by Spring Boot:");
-		String[] beanNames = ctx.getBeanDefinitionNames();
-		Arrays.sort(beanNames);
-		for (String beanName : beanNames) {
-			System.out.println(beanName);
-		}
-	}
+        System.out.println("");
+        System.out.println("APPLICATION STARTED.");
+    }
 
-	public static void printClasspath() {
-		System.out.println("---------------------");
-		ClassLoader cl = ClassLoader.getSystemClassLoader();
+    protected static void printManagedBeans(ApplicationContext ctx) {
+        System.out.println("---------------------");
+        System.out.println("Let's inspect the beans provided by Spring Boot:");
+        String[] beanNames = ctx.getBeanDefinitionNames();
+        Arrays.sort(beanNames);
+        for (String beanName : beanNames) {
+            System.out.println(beanName);
+        }
+    }
 
-		URL[] urls = ((URLClassLoader) cl).getURLs();
+    public static void printClasspath() {
+        System.out.println("---------------------");
+        ClassLoader cl = ClassLoader.getSystemClassLoader();
 
-		for (URL url : urls) {
-			System.out.println(url.getFile());
-		}
-		System.out.println("---------------------");
-	}
+        URL[] urls = ((URLClassLoader) cl).getURLs();
+
+        for (URL url : urls) {
+            System.out.println(url.getFile());
+        }
+        System.out.println("---------------------");
+    }
 }
