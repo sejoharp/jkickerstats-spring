@@ -15,11 +15,11 @@ import org.springframework.stereotype.Component;
 
 import jkickerstats.types.Game;
 import jkickerstats.types.Match;
-import jkickerstats.types.Match.MatchBuilder;
 
 @Component
 class PageParser {
     public static final String DOMAIN = "http://www.kickern-hamburg.de";
+    public static final String CSS_QUERY_MATCH_DATE = "table.contentpaneopen:nth-child(2) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1)";
 
     public List<Game> findGames(Document doc) {
         Elements gameSnippets = filterGameSnippets(doc);
@@ -53,24 +53,28 @@ class PageParser {
     }
 
     protected boolean isValidGameList(Elements elements) {
-        int columnCount = elements.first().children().size();
-        return columnCount == 6 || columnCount == 4;
+        if (elements.isEmpty()) {
+            return false;
+        } else {
+            int columnCount = elements.first().children().size();
+            return columnCount == 6 || columnCount == 4;
+        }
     }
 
     protected Elements filterGameSnippets(Document doc) {
-        Elements rawDoc = doc.select("div#Content > table.contentpaneopen:nth-child(6) > tbody");
+        Elements rawDoc = doc.select("table.contentpaneopen:nth-child(5) > tbody");
         return rawDoc.select("tr.sectiontableentry1, tr.sectiontableentry2");
     }
 
     protected String parseHomeTeam(Document doc) {
         Elements teams = doc.select(
-                "html body div#Container div#Layout div.typography div#Content table.contentpaneopen tbody tr td table tbody tr td h2");
+                "table.contentpaneopen:nth-child(3) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > h2:nth-child(1)");
         return removeTeamDescriptions(teams.first().text());
     }
 
     protected String parseGuestTeam(Document doc) {
         Elements teams = doc.select(
-                "html body div#Container div#Layout div.typography div#Content table.contentpaneopen tbody tr td table tbody tr td h2");
+                "table.contentpaneopen:nth-child(3) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2) > h2:nth-child(1)");
         return removeTeamDescriptions(teams.last().text());
     }
 
@@ -79,7 +83,7 @@ class PageParser {
     }
 
     protected boolean hasMatchDate(Document doc) {
-        String rawData = doc.select("#Content table tbody > tr > td").first().text();
+        String rawData = doc.select(CSS_QUERY_MATCH_DATE).text();
         String[] dateChunks = rawData.split(",");
         return dateChunks.length == 3;
     }
@@ -90,13 +94,13 @@ class PageParser {
             matchDate.setTimeInMillis(0);
             return matchDate.getTime();
         }
-        String rawData = doc.select("#Content table tbody > tr > td").first().text();
+        String rawData = doc.select(CSS_QUERY_MATCH_DATE).text();
         String rawDate = rawData.split(",")[1];
         return parseDate(rawDate);
     }
 
     protected int parseMatchDay(Document doc, boolean matchDateAvailable) {
-        String rawData = doc.select("#Content table tbody > tr > td").first().text();
+        String rawData = doc.select(CSS_QUERY_MATCH_DATE).text();
         String[] dateChunks = rawData.split(",");
         int dateChunk = matchDateAvailable ? 2 : 1;
         String matchDayString = dateChunks[dateChunk].split("\\.")[0].trim();

@@ -27,7 +27,7 @@ public class StatsUpdaterTest {
 	@Autowired
 	private CsvCreator csvCreator;
 
-//	@Ignore
+	@Ignore
 	@Test
 	public void createCSVFileWithAllGames() {
 		List<Match> matches = statsUpdater.downloadAllMatches();
@@ -35,32 +35,32 @@ public class StatsUpdaterTest {
 		csvCreator.createCsvFile(gameStrings);
 	}
 
-//	@Test
+	@Test
 	@Ignore
 	public void savesAllMatchesWithGames() {
 		statsUpdater.getAllData();
 	}
 
-//	@Ignore
+	@Ignore
 	@Test
 	public void getsSeasonIds() {
 		List<Integer> seasonIDs = statsUpdater.getSeasonIDs();
 		assertThat(statsUpdater.getCurrentSeasonId(seasonIDs), is(12));
 	}
 
-//	@Ignore
+	@Ignore
 	@Test
 	public void updatesData() {
 		statsUpdater.updateData();
 	}
 
-//	@Ignore
+	@Ignore
 	@Test
 	public void getsLinks() {
 		assertThat(statsUpdater.getLigaLinks(11), is(not(empty())));
 	}
 
-//	@Ignore
+	@Ignore
 	@Test
 	public void findsMatches() {
 		statsUpdater.getLigaLinks(11).forEach(ligaLink -> {
@@ -75,7 +75,7 @@ public class StatsUpdaterTest {
 
 	}
 
-//	@Ignore
+	@Ignore
 	@Test
 	public void findsAllMatches() {
 		statsUpdater.getLigaLinks(11)//

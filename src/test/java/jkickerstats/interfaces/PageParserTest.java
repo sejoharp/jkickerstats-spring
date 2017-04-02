@@ -41,9 +41,9 @@ public class PageParserTest {
 
 		List<String> ligaLinksIDs = parser.findLigaLinks(doc);
 
-		assertThat(ligaLinksIDs.size(), is(5));
+		assertThat(ligaLinksIDs.size(), is(11));
 		assertThat(
 				ligaLinksIDs.get(0),
-				is("http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=8"));
+				is("http://www.kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=118"));
 	}
 }

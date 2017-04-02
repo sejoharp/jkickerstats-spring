@@ -34,7 +34,7 @@ public class PageParserUnitTest {
 	private static Document begegnungBildDoc;
 	private static Document begegnungenLiveDoc;
 	private static Document uebersichtDoc;
-	private static Document relegationDoc;
+	private static Document uebersichtRelegationDoc;
 	private static Document begegnungNoNamesDoc;
 	private static Document begegnungenNumberFormatExceptionDoc;
 	private static Document begegnungenUnconfirmedDoc;
@@ -47,7 +47,7 @@ public class PageParserUnitTest {
 		begegnungBildDoc = loadFile("begegnung_bild.html");
 		begegnungNoDateDoc = loadFile("begegnung_no_date.html");
 		uebersichtDoc = loadFile("uebersicht.html");
-		relegationDoc = loadFile("relegation.html");
+		uebersichtRelegationDoc = loadFile("uebersicht_relegation.html");
 		begegnungNoNamesDoc = loadFile("begegnung_no_names.html");
 		begegnungenNoDateDoc = loadFile("begegnungen_no_date.html");
 		begegnungenNumberFormatExceptionDoc = loadFile("begegnungen_NFE.html");
@@ -371,7 +371,7 @@ public class PageParserUnitTest {
 
 	@Test
 	public void doesNotReturnGamesFromRelagation() {
-		List<Game> games = parser.findGames(relegationDoc);
+		List<Game> games = parser.findGames(uebersichtRelegationDoc);
 
 		assertThat(games.size(), is(0));
 	}
@@ -401,12 +401,12 @@ public class PageParserUnitTest {
 	public void parsesGamesWithoutPlayernames() {
 		List<Game> games = parser.findGames(begegnungNoNamesDoc);
 
-		Game gameWithoutPlayernames = games.get(13);
+		Game gameWithoutPlayernames = games.get(1);
 		assertThat(gameWithoutPlayernames.getGuestPlayer1(), is(""));
 		assertThat(gameWithoutPlayernames.getHomePlayer1(), is(""));
-		assertThat(gameWithoutPlayernames.getHomeScore(), is(7));
-		assertThat(gameWithoutPlayernames.getGuestScore(), is(0));
-		assertThat(gameWithoutPlayernames.getPosition(), is(14));
+		assertThat(gameWithoutPlayernames.getHomeScore(), is(5));
+		assertThat(gameWithoutPlayernames.getGuestScore(), is(7));
+		assertThat(gameWithoutPlayernames.getPosition(), is(2));
 		assertThat(gameWithoutPlayernames.isDoubleMatch(), is(false));
 	}
 

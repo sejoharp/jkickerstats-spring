@@ -26,8 +26,9 @@ class PageDownloader {
     public Document downloadSeason(int seasonId) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("filter_saison_id", String.valueOf(seasonId));
+        parameters.put("ok", "Los");
         parameters.put("task", "veranstaltungen");
-        String url = "http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe";
+        String url = "https://kickern-hamburg.de/de/competitions/mannschaftswettbewerbe";
         try {
             return Jsoup.connect(url)
                     .data(parameters)

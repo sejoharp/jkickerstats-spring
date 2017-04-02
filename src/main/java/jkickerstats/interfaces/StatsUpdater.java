@@ -50,11 +50,18 @@ public class StatsUpdater {
 
 	protected List<Match> downloadAllMatches() {
 		List<Match> allMatches = new ArrayList<>();
-		getSeasonIDs().forEach(seasonId -> getLigaLinks(seasonId) //
-				.forEach(ligaLink -> getMatches(ligaLink) //
-						.forEach(match -> allMatches.add(new MatchBuilder(match)//
-								.withGames(getGames(match.getMatchLink()))//
-								.build()))));
+		for (Integer seasonId : getSeasonIDs()) {
+			System.out.println("processing seasonId:" + seasonId);
+			for (String ligaLink : getLigaLinks(seasonId)) {
+				System.out.println("processing ligalink:" + ligaLink);
+				for (Match match : getMatches(ligaLink)) {
+					System.out.println("processing match:" + match.getMatchDate());
+					allMatches.add(new MatchBuilder(match)//
+							.withGames(getGames(match.getMatchLink()))//
+							.build());
+				}
+			}
+		}
 		return allMatches;
 	}
 
