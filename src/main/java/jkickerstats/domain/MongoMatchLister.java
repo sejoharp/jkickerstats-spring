@@ -15,10 +15,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class MongoDbMatchRepo implements MatchRepo {
+public class MongoMatchLister implements MatchLister {
+
+    private final MongoTemplate mongoTemplate;
 
     @Autowired
-    private MongoTemplate mongoTemplate;
+    public MongoMatchLister(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
 
     @Override
     public boolean isNewMatch(Match match) {
@@ -27,18 +31,7 @@ public class MongoDbMatchRepo implements MatchRepo {
                 .is(match.getMatchDate()).and("homeTeam")
                 .is(match.getHomeTeam()).and("guestTeam")
                 .is(match.getGuestTeam()));
-        long numberOfMatches = mongoTemplate.count(q, MatchFromDb.class);
-        return numberOfMatches == 0;
-    }
-
-    @Override
-    public void save(Match match) {
-        mongoTemplate.save(convertToMatchFromDb(match));
-    }
-
-    @Override
-    public void save(List<Match> matches) {
-        mongoTemplate.save(convertToMatchFromDbList(matches));
+        return mongoTemplate.count(q, MatchFromDb.class) == 0;
     }
 
     @Override
@@ -53,24 +46,29 @@ public class MongoDbMatchRepo implements MatchRepo {
         Criteria criteria = new Criteria().all(MatchFromDb.class);
         Query query = new Query(criteria);
         query.with(new Sort(Sort.Direction.DESC, "matchDate"));
-        List<MatchFromDb> matches = mongoTemplate
-                .find(query, MatchFromDb.class);
+        List<MatchFromDb> matches = mongoTemplate.find(query, MatchFromDb.class);
         return convertToMatchList(matches);
     }
 
-    protected List<MatchFromDb> convertToMatchFromDbList(List<Match> matches) {
+    @Override
+    public long countMatches() {
+        return mongoTemplate
+                .count(new Query(new Criteria()), MatchFromDb.class);
+    }
+
+    private static List<MatchFromDb> convertToMatchFromDbList(List<Match> matches) {
         return matches.stream()//
-                .map(this::convertToMatchFromDb)//
+                .map(MongoMatchLister::convertToMatchFromDb)//
                 .collect(Collectors.toList());
     }
 
-    protected List<Match> convertToMatchList(List<MatchFromDb> matchFromDbs) {
+    private static List<Match> convertToMatchList(List<MatchFromDb> matchFromDbs) {
         return matchFromDbs.stream()//
-                .map(this::convertToMatch)//
+                .map(MongoMatchLister::convertToMatch)//
                 .collect(Collectors.toList());
     }
 
-    protected MatchFromDb convertToMatchFromDb(Match match) {
+    static MatchFromDb convertToMatchFromDb(Match match) {
         MatchFromDb matchFromDb = new MatchFromDb();
         matchFromDb.setGuestGoals(match.getGuestGoals());
         matchFromDb.setGuestScore(match.getGuestScore());
@@ -84,7 +82,7 @@ public class MongoDbMatchRepo implements MatchRepo {
         return matchFromDb;
     }
 
-    protected Match convertToMatch(MatchFromDb matchFromDb) {
+    static Match convertToMatch(MatchFromDb matchFromDb) {
         return new MatchBuilder()//
                 .withGuestGoals(matchFromDb.getGuestGoals())//
                 .withGuestScore(matchFromDb.getGuestScore())//
@@ -98,19 +96,19 @@ public class MongoDbMatchRepo implements MatchRepo {
                 .build();
     }
 
-    protected List<GameFromDb> convertToGameFromDbList(List<Game> games) {
+    private static List<GameFromDb> convertToGameFromDbList(List<Game> games) {
         return games.stream()//
-                .map(game -> convertToGameFromDb(game))//
+                .map(MongoMatchLister::convertToGameFromDb)//
                 .collect(Collectors.toList());
     }
 
-    protected List<Game> convertToGameList(List<GameFromDb> gameCouchDbList) {
+    private static List<Game> convertToGameList(List<GameFromDb> gameCouchDbList) {
         return gameCouchDbList.stream()//
-                .map(this::convertToGame)//
+                .map(MongoMatchLister::convertToGame)//
                 .collect(Collectors.toList());
     }
 
-    protected GameFromDb convertToGameFromDb(Game game) {
+    private static GameFromDb convertToGameFromDb(Game game) {
         GameFromDb gameFromDb = new GameFromDb();
         gameFromDb.setDoubleMatch(game.isDoubleMatch());
         gameFromDb.setGuestPlayer1(game.getGuestPlayer1());
@@ -123,7 +121,7 @@ public class MongoDbMatchRepo implements MatchRepo {
         return gameFromDb;
     }
 
-    protected Game convertToGame(GameFromDb gameCouchDb) {
+    private static Game convertToGame(GameFromDb gameCouchDb) {
         GameBuilder builder = new Game.GameBuilder();
         builder.withDoubleMatch(gameCouchDb.isDoubleMatch());
         builder.withGuestPlayer1(gameCouchDb.getGuestPlayer1());
@@ -134,12 +132,6 @@ public class MongoDbMatchRepo implements MatchRepo {
         builder.withHomeScore(gameCouchDb.getHomeScore());
         builder.withPosition(gameCouchDb.getPosition());
         return builder.build();
-    }
-
-    @Override
-    public long countMatches() {
-        return mongoTemplate
-                .count(new Query(new Criteria()), MatchFromDb.class);
     }
 
 }

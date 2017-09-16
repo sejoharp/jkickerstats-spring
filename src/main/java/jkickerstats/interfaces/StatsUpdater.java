@@ -1,6 +1,7 @@
 package jkickerstats.interfaces;
 
-import jkickerstats.domain.MatchRepo;
+import jkickerstats.domain.MatchPersister;
+import jkickerstats.domain.MatchLister;
 import jkickerstats.types.Game;
 import jkickerstats.types.Match;
 import jkickerstats.types.Match.MatchBuilder;
@@ -16,22 +17,29 @@ import java.util.logging.Logger;
 public class StatsUpdater {
     private static final Logger LOG = Logger.getLogger(StatsUpdater.class.getName());
     private static String SEASONS_URL = "http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe";
+
+    private final PageParser pageParser;
+    private final PageDownloader pageDownloader;
+    private final MatchLister matchLister;
+    private final MatchPersister persister;
+
     @Autowired
-    private PageParser pageParser;
-    @Autowired
-    private PageDownloader pageDownloader;
-    @Autowired
-    private MatchRepo matchRepo;
+    public StatsUpdater(PageParser pageParser, PageDownloader pageDownloader, MatchLister matchLister, MatchPersister persister) {
+        this.pageParser = pageParser;
+        this.pageDownloader = pageDownloader;
+        this.matchLister = matchLister;
+        this.persister = persister;
+    }
 
     public void updateStats() {
         LOG.info("updater batch started.");
-        long matchesCountBefore = matchRepo.countMatches();
-        if (matchRepo.noMatchesAvailable()) {
+        long matchesCountBefore = matchLister.countMatches();
+        if (matchLister.noMatchesAvailable()) {
             getAllData();
         } else {
             updateData();
         }
-        long matchesCountAfter = matchRepo.countMatches();
+        long matchesCountAfter = matchLister.countMatches();
         LOG.info(String.format("updater batch finished and found %s new matches.",
                 matchesCountAfter - matchesCountBefore));
     }
@@ -68,7 +76,7 @@ public class StatsUpdater {
                 .map(this::getMatches)//
                 .flatMap(matchLists -> matchLists.stream())//
                 .map(this::createMatchWithGames)//
-                .forEach(matchRepo::save);
+                .forEach(persister::save);
     }
 
     protected void updateData() {
@@ -77,9 +85,9 @@ public class StatsUpdater {
                 .stream()//
                 .map(this::getMatches)//
                 .flatMap(lists -> lists.stream())//
-                .filter(matchRepo::isNewMatch)//
+                .filter(matchLister::isNewMatch)//
                 .map(this::createMatchWithGames)//
-                .forEach(matchRepo::save);
+                .forEach(persister::save);
     }
 
     private Match createMatchWithGames(Match match) {
@@ -88,8 +96,10 @@ public class StatsUpdater {
                 .build();
     }
 
-    protected int getCurrentSeasonId(List<Integer> seasons) {
-        return seasons.stream().max(Integer::compare).get();
+    static int getCurrentSeasonId(List<Integer> seasons) {
+        return seasons.stream()
+                .max(Integer::compare)
+                .orElseThrow(() -> new IllegalStateException("no seasons found."));
     }
 
     protected List<Game> getGames(String matchLink) {

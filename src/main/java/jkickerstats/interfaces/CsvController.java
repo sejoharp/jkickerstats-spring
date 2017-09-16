@@ -1,6 +1,6 @@
 package jkickerstats.interfaces;
 
-import jkickerstats.domain.MatchRepo;
+import jkickerstats.domain.MatchLister;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +16,7 @@ import java.util.List;
 public class CsvController {
 
     @Autowired
-    private MatchRepo matchRepo;
+    private MatchLister matchLister;
 
     @Autowired
     private StatsUpdater statsUpdater;
@@ -33,7 +33,7 @@ public class CsvController {
     @RequestMapping("/csvexport")
     public void exportAsCSV(HttpSession session, HttpServletRequest request,
                             HttpServletResponse response) throws IOException {
-        List<String> csvList = csvCreator.createCsvRowList(matchRepo
+        List<String> csvList = csvCreator.createCsvRowList(matchLister
                 .getAllMatches());
 
         response.setContentType("text/csv;charset=UTF-8");

@@ -1,24 +1,26 @@
 package jkickerstats.interfaces;
 
-import jkickerstats.GameTestdata;
-import jkickerstats.MatchTestdata;
-import jkickerstats.domain.MatchRepo;
-import jkickerstats.types.Match;
+import jkickerstats.domain.MatchPersister;
+import jkickerstats.domain.MatchLister;
 import org.jsoup.nodes.Document;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
 
+import static java.util.Collections.singletonList;
+import static jkickerstats.GameTestdata.createDoubleGame;
+import static jkickerstats.MatchTestdata.createMatchLinkWithDoubleGame;
+import static jkickerstats.interfaces.StatsUpdater.getCurrentSeasonId;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -29,86 +31,75 @@ public class StatsUpdaterUnitTest {
     @Mock
     private PageDownloader pageDownloaderMock;
     @Mock
-    private MatchRepo matchRepoMock;
-    @InjectMocks
-    private StatsUpdater statsUpdater;
+    private MatchLister matchListerMock;
 
     @Before
     public void setup() {
+
         when(pageParserMock.findGames(any(Document.class))).thenReturn(
-                Arrays.asList(GameTestdata.createDoubleGame()));
+                singletonList(createDoubleGame()));
         when(pageParserMock.findMatches(any(Document.class))).thenReturn(
-                Arrays.asList(MatchTestdata.createMatchLinkWithDoubleGame()));
+                singletonList(createMatchLinkWithDoubleGame()));
         when(pageParserMock.findSeasonIDs(any(Document.class))).thenReturn(
-                Arrays.asList(7));
+                singletonList(7));
         when(pageParserMock.findLigaLinks(any(Document.class))).thenReturn(
-                Arrays.asList(""));
+                singletonList(""));
         when(pageParserMock.findMatchLinks(any(Document.class))).thenReturn(
-                Arrays.asList(""));
+                singletonList(""));
     }
 
     @Test
     public void returnsTheCurrentSeasonId() {
-        assertThat(
-                statsUpdater.getCurrentSeasonId(Arrays.asList(7, 5, 2, 4, 1)),
-                is(7));
+        assertThat(getCurrentSeasonId(Arrays.asList(7, 5, 2, 4, 1)), is(7));
 
-        assertThat(
-                statsUpdater.getCurrentSeasonId(Arrays.asList(4, 5, 2, 7, 1)),
-                is(7));
+        assertThat(getCurrentSeasonId(Arrays.asList(4, 5, 2, 7, 1)), is(7));
     }
 
     @Test
     public void downloadsAllGamesAndMatchesWhenDBisEmpty() {
-        when(matchRepoMock.noMatchesAvailable()).thenReturn(true);
+        // given
+        StatsUpdater statsUpdater = new StatsUpdater(
+                pageParserMock,
+                pageDownloaderMock,
+                Collections::emptyList,
+                match -> {
+                });
 
+        // when
         statsUpdater.updateStats();
 
-        verify(matchRepoMock, times(0)).isNewMatch(
-                eq(MatchTestdata.createMatchLinkWithDoubleGame()));
+        // then
     }
 
     @Test
-    public void downloadsNewGamesAndMatchesWhenDBisFilled() {
-        when(matchRepoMock.noMatchesAvailable()).thenReturn(false);
-        when(matchRepoMock.isNewMatch(any(Match.class))).thenReturn(true);
+    public void savesOneMatch() {
+        // given
+        MatchLister lister = Collections::emptyList;
+        MatchPersister persister = match -> {
+            assertThat(match, equalTo(createMatchLinkWithDoubleGame()));
+        };
+        StatsUpdater statsUpdater = new StatsUpdater(
+                pageParserMock,
+                pageDownloaderMock,
+                lister,
+                persister);
 
+        // then
         statsUpdater.updateStats();
-
-        verify(matchRepoMock, times(1)).isNewMatch(
-                eq(MatchTestdata.createMatchLinkWithDoubleGame()));
     }
 
-    @Test
-    public void savesOneMatchWhenDBisFilled() {
-        when(matchRepoMock.noMatchesAvailable()).thenReturn(false);
-        when(matchRepoMock.isNewMatch(any(Match.class))).thenReturn(true);
-
-        statsUpdater.updateStats();
-
-        verify(matchRepoMock, times(1)).save(
-                eq(MatchTestdata.createMatchLinkWithDoubleGame()));
-    }
-
-    @Test
-    public void savesOneMatchWhenDBisEmpty() {
-        when(matchRepoMock.noMatchesAvailable()).thenReturn(true);
-        when(matchRepoMock.isNewMatch(any(Match.class))).thenReturn(true);
-
-        statsUpdater.updateStats();
-
-        verify(matchRepoMock, times(1)).save(
-                eq(MatchTestdata.createMatchLinkWithDoubleGame()));
-    }
-
-    @SuppressWarnings("unchecked")
     @Test
     public void doesNotSaveOldMatches() {
-        when(matchRepoMock.noMatchesAvailable()).thenReturn(false);
-        when(matchRepoMock.isNewMatch(any(Match.class))).thenReturn(false);
+        // given
+        MatchLister lister = () -> singletonList(createMatchLinkWithDoubleGame());
+        MatchPersister persister = match -> {
+            fail("should not save old matches");
+        };
+        StatsUpdater statsUpdater = new StatsUpdater(pageParserMock, pageDownloaderMock,
+                lister,
+                persister);
 
+        // then
         statsUpdater.updateStats();
-
-        verify(matchRepoMock, times(0)).save(any(List.class));
     }
 }
