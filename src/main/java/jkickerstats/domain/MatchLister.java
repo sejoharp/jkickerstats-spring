@@ -7,8 +7,12 @@ import java.util.List;
 public interface MatchLister {
     List<Match> getAllMatches();
 
-    default boolean isNewMatch(Match match){
-        return !getAllMatches().contains(match);
+    default boolean isNewMatch(Match match) {
+        return getAllMatches().stream().filter(storedMatch ->
+                storedMatch.getMatchDate().equals(match.getMatchDate())
+                        && storedMatch.getHomeTeam().equals(match.getHomeTeam())
+                        && storedMatch.getGuestTeam().equals(match.getGuestTeam())
+        ).count() == 0;
     }
 
     default boolean noMatchesAvailable() {

@@ -8,11 +8,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
 class PageDownloader {
     private static int TIMEOUT = 10 * 1000;
 
-    public Document downloadPage(String url) {
+    public static Document downloadPage(String url) {
         try {
             return Jsoup.connect(url)
                     .validateTLSCertificates(false)
@@ -23,7 +22,7 @@ class PageDownloader {
         }
     }
 
-    public Document downloadSeason(int seasonId) {
+    public static Document downloadSeason(int seasonId) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("filter_saison_id", String.valueOf(seasonId));
         parameters.put("ok", "Los");

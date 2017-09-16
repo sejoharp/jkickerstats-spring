@@ -27,10 +27,9 @@ public class MongoMatchLister implements MatchLister {
     @Override
     public boolean isNewMatch(Match match) {
 
-        Query q = new Query(Criteria.where("matchDate")
-                .is(match.getMatchDate()).and("homeTeam")
-                .is(match.getHomeTeam()).and("guestTeam")
-                .is(match.getGuestTeam()));
+        Query q = new Query(Criteria.where("matchDate").is(match.getMatchDate())
+                .and("homeTeam").is(match.getHomeTeam())
+                .and("guestTeam").is(match.getGuestTeam()));
         return mongoTemplate.count(q, MatchFromDb.class) == 0;
     }
 

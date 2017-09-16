@@ -25,6 +25,9 @@ public class StatsUpdaterTest {
     @Autowired
     private CsvCreator csvCreator;
 
+    @Autowired
+    private ParsedMatchesRetriever retriever;
+
     @Ignore
     @Test
     public void createCSVFileWithAllGames() {
@@ -42,7 +45,7 @@ public class StatsUpdaterTest {
     @Ignore
     @Test
     public void getsSeasonIds() {
-        List<Integer> seasonIDs = statsUpdater.getSeasonIDs();
+        List<Integer> seasonIDs = retriever.getSeasonIDs();
         assertThat(getCurrentSeasonId(seasonIDs)).isEqualTo((12));
     }
 
@@ -55,18 +58,18 @@ public class StatsUpdaterTest {
     @Ignore
     @Test
     public void getsLinks() {
-        assertThat(statsUpdater.getLigaLinks(11)).isNotEmpty();
+        assertThat(ParsedMatchesRetrieverImpl.getLigaLinks(11)).isNotEmpty();
     }
 
     @Ignore
     @Test
     public void findsMatches() {
-        statsUpdater.getLigaLinks(11).forEach(ligaLink -> {
+        ParsedMatchesRetrieverImpl.getLigaLinks(11).forEach(ligaLink -> {
             System.out.println("processing liga link: " + ligaLink);
-            statsUpdater.getMatchLinks(ligaLink)//
+            ParsedMatchesRetrieverImpl.getMatchLinks(ligaLink)//
                     .forEach(matchLink -> {
                         System.out.println("processing match link: " + matchLink);
-                        List<Game> games = statsUpdater.getGames(matchLink);
+                        List<Game> games = ParsedMatchesRetrieverImpl.getGames(matchLink);
                         System.out.println(games);
                     });
         });
@@ -76,11 +79,11 @@ public class StatsUpdaterTest {
     @Ignore
     @Test
     public void findsAllMatches() {
-        statsUpdater.getLigaLinks(11)//
-                .forEach(ligaLink -> statsUpdater.getMatches(ligaLink)//
+        ParsedMatchesRetrieverImpl.getLigaLinks(11)//
+                .forEach(ligaLink -> ParsedMatchesRetrieverImpl.getMatches(ligaLink)//
                         .forEach(match -> {
                             Match fullMatch = new Match.MatchBuilder(match)//
-                                    .withGames(statsUpdater.getGames(match.getMatchLink()))//
+                                    .withGames(ParsedMatchesRetrieverImpl.getGames(match.getMatchLink()))//
                                     .build();
                             System.out.println(String.format("Datum:%s home:%s guest:%s spiele:%s",
                                     fullMatch.getMatchDate(), fullMatch.getHomeTeam(), fullMatch.getGuestTeam(),

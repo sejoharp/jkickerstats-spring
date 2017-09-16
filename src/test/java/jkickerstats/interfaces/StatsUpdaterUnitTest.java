@@ -2,49 +2,23 @@ package jkickerstats.interfaces;
 
 import jkickerstats.domain.MatchLister;
 import jkickerstats.domain.MatchPersister;
-import org.jsoup.nodes.Document;
-import org.junit.Before;
+import jkickerstats.types.Game;
+import jkickerstats.types.Match;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Stream;
 
 import static java.util.Collections.singletonList;
-import static jkickerstats.GameTestdata.createDoubleGame;
 import static jkickerstats.MatchTestdata.createMatchLinkWithDoubleGame;
+import static jkickerstats.MatchTestdata.createMatchWithLink;
 import static jkickerstats.interfaces.StatsUpdater.getCurrentSeasonId;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Fail.fail;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
 public class StatsUpdaterUnitTest {
-
-    @Mock
-    private PageParser pageParserMock;
-    @Mock
-    private PageDownloader pageDownloaderMock;
-    @Mock
-    private MatchLister matchListerMock;
-
-    @Before
-    public void setup() {
-
-        when(pageParserMock.findGames(any(Document.class))).thenReturn(
-                singletonList(createDoubleGame()));
-        when(pageParserMock.findMatches(any(Document.class))).thenReturn(
-                singletonList(createMatchLinkWithDoubleGame()));
-        when(pageParserMock.findSeasonIDs(any(Document.class))).thenReturn(
-                singletonList(7));
-        when(pageParserMock.findLigaLinks(any(Document.class))).thenReturn(
-                singletonList(""));
-        when(pageParserMock.findMatchLinks(any(Document.class))).thenReturn(
-                singletonList(""));
-    }
 
     @Test
     public void returnsTheCurrentSeasonId() {
@@ -54,33 +28,29 @@ public class StatsUpdaterUnitTest {
     }
 
     @Test
-    public void downloadsAllGamesAndMatchesWhenDBisEmpty() {
-        // given
-        StatsUpdater statsUpdater = new StatsUpdater(
-                pageParserMock,
-                pageDownloaderMock,
-                Collections::emptyList,
-                match -> {
-                });
-
-        // when
-        statsUpdater.updateStats();
-
-        // then
-    }
-
-    @Test
     public void savesOneMatch() {
         // given
+        ParsedMatchesRetriever downloader = new ParsedMatchesRetriever() {
+            @Override
+            public Stream<Match> get(Integer seasonId) {
+                return Stream.of(createMatchWithLink());
+            }
+
+            @Override
+            public Match downloadGamesFromMatch(Match match) {
+                return createMatchLinkWithDoubleGame();
+            }
+
+            @Override
+            public List<Integer> getSeasonIDs() {
+                return singletonList(1);
+            }
+        };
         MatchLister lister = Collections::emptyList;
         MatchPersister persister = match -> {
             assertThat(match).isEqualTo(createMatchLinkWithDoubleGame());
         };
-        StatsUpdater statsUpdater = new StatsUpdater(
-                pageParserMock,
-                pageDownloaderMock,
-                lister,
-                persister);
+        StatsUpdater statsUpdater = new StatsUpdater(lister, persister, downloader);
 
         // then
         statsUpdater.updateStats();
@@ -90,12 +60,27 @@ public class StatsUpdaterUnitTest {
     public void doesNotSaveOldMatches() {
         // given
         MatchLister lister = () -> singletonList(createMatchLinkWithDoubleGame());
+        ParsedMatchesRetriever downloader = new ParsedMatchesRetriever() {
+            @Override
+            public Stream<Match> get(Integer seasonId) {
+                return Stream.of(createMatchWithLink());
+            }
+
+            @Override
+            public Match downloadGamesFromMatch(Match match) {
+                return createMatchLinkWithDoubleGame();
+            }
+
+            @Override
+            public List<Integer> getSeasonIDs() {
+                return singletonList(1);
+            }
+        };
         MatchPersister persister = match -> {
             fail("should not save old matches");
         };
-        StatsUpdater statsUpdater = new StatsUpdater(pageParserMock, pageDownloaderMock,
-                lister,
-                persister);
+
+        StatsUpdater statsUpdater = new StatsUpdater(lister, persister, downloader);
 
         // then
         statsUpdater.updateStats();
