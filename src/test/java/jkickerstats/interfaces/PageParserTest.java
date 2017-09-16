@@ -7,7 +7,9 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
 import static jkickerstats.interfaces.PageParser.findLigaLinks;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,7 +24,7 @@ public class PageParserTest {
         Document doc = Jsoup.parse(testFile, "UTF-8", "");
 
         // when
-        List<String> ligaLinksIDs = findLigaLinks(doc);
+        List<String> ligaLinksIDs = findLigaLinks(doc).collect(toList());
 
         // then
         assertThat(ligaLinksIDs).hasSize(11);

@@ -17,7 +17,9 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
 import static jkickerstats.interfaces.PageParser.filterMatchLinkSnippets;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -66,7 +68,7 @@ public class PageParserUnitTest {
     public void returnsAllSeasons() throws IOException {
         List<Integer> expectedSeasonsIDs = Arrays.asList(12, 11, 9, 8, 7, 4, 3, 2, 1);
 
-        List<Integer> seasonsIDs = PageParser.findSeasonIDs(uebersichtDoc);
+        List<Integer> seasonsIDs = PageParser.findSeasonIDs(uebersichtDoc).collect(toList());
 
         assertThat(seasonsIDs).isEqualTo(expectedSeasonsIDs);
         assertThat(seasonsIDs.get(0)).isEqualTo(expectedSeasonsIDs.get(0));
@@ -74,7 +76,7 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAllMatchLinks() throws IOException {
-        List<String> matchLinks = PageParser.findMatchLinks(begegnungenDoc);
+        List<String> matchLinks = PageParser.findMatchLinks(begegnungenDoc).collect(toList());
 
         assertThat(matchLinks).hasSize(14);
         String expectedMatchLink = "http://www.kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=118&id=8675";
@@ -83,14 +85,14 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAllConfirmedMatchLinks() throws IOException {
-        List<String> matchLinks = PageParser.findMatchLinks(begegnungenLiveDoc);
+        List<String> matchLinks = PageParser.findMatchLinks(begegnungenLiveDoc).collect(toList());
 
         assertThat(matchLinks).hasSize(13);
     }
 
     @Test
     public void returnsAllLigaLinks() throws IOException {
-        List<String> ligaLinksIDs = PageParser.findLigaLinks(uebersichtDoc);
+        List<String> ligaLinksIDs = PageParser.findLigaLinks(uebersichtDoc).collect(toList());
 
         assertThat(ligaLinksIDs).hasSize(11);
         assertThat(ligaLinksIDs.get(0)).isEqualTo(
@@ -283,14 +285,14 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAllGamesFromAMatch() {
-        List<Game> games = PageParser.findGames(begegnungDoc);
+        List<Game> games = PageParser.findGames(begegnungDoc).collect(toList());
 
         assertThat(games).hasSize(16);
     }
 
     @Test
     public void returnsAllGamesWithImagesFromAMatch() {
-        List<Game> games = PageParser.findGames(begegnungBildDoc);
+        List<Game> games = PageParser.findGames(begegnungBildDoc).collect(toList());
 
         assertThat(games).hasSize(16);
     }
@@ -305,7 +307,7 @@ public class PageParserUnitTest {
         builder.withHomeScore(5);
         builder.withPosition(2);
 
-        List<Game> games = PageParser.findGames(begegnungDoc);
+        List<Game> games = PageParser.findGames(begegnungDoc).collect(toList());
 
         assertThat(games.get(1)).isEqualTo(builder.build());
     }
@@ -322,7 +324,7 @@ public class PageParserUnitTest {
         builder.withHomeScore(4);
         builder.withPosition(3);
 
-        List<Game> games = PageParser.findGames(begegnungDoc);
+        List<Game> games = PageParser.findGames(begegnungDoc).collect(toList());
 
         assertThat(games.get(2)).isEqualTo(builder.build());
     }
@@ -331,7 +333,7 @@ public class PageParserUnitTest {
     public void returnsAFullFilledSingleGameWithImages() {
         Game game = GameTestdata.createSecondSingleGame();
 
-        List<Game> games = PageParser.findGames(begegnungBildDoc);
+        List<Game> games = PageParser.findGames(begegnungBildDoc).collect(toList());
 
         assertThat(games.get(0)).isEqualTo(game);
     }
@@ -340,21 +342,21 @@ public class PageParserUnitTest {
     public void returnsAFullFilledDoubleGameWithImages() {
         Game game = GameTestdata.createDoubleGame();
 
-        List<Game> games = PageParser.findGames(begegnungBildDoc);
+        List<Game> games = PageParser.findGames(begegnungBildDoc).collect(toList());
 
         assertThat(games.get(15)).isEqualTo(game);
     }
 
     @Test
     public void doesNotReturnGamesFromRelagation() {
-        List<Game> games = PageParser.findGames(uebersichtRelegationDoc);
+        List<Game> games = PageParser.findGames(uebersichtRelegationDoc).collect(toList());
 
         assertThat(games).isEmpty();
     }
 
     @Test
     public void parsesAllGamesInCorrectOrder() {
-        List<Game> games = PageParser.findGames(begegnungNoNamesDoc);
+        List<Game> games = PageParser.findGames(begegnungNoNamesDoc).collect(toList());
         assertThat(games.get(0).getPosition()).isEqualTo(1);
         assertThat(games.get(1).getPosition()).isEqualTo(2);
         assertThat(games.get(2).getPosition()).isEqualTo(3);
@@ -375,7 +377,7 @@ public class PageParserUnitTest {
 
     @Test
     public void parsesGamesWithoutPlayernames() {
-        List<Game> games = PageParser.findGames(begegnungNoNamesDoc);
+        List<Game> games = PageParser.findGames(begegnungNoNamesDoc).collect(toList());
 
         Game gameWithoutPlayernames = games.get(1);
         assertThat(gameWithoutPlayernames.getGuestPlayer1()).isEmpty();
@@ -388,7 +390,7 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAFilledMatch() {
-        List<Match> matches = PageParser.findMatches(begegnungenDoc);
+        List<Match> matches = PageParser.findMatches(begegnungenDoc).collect(toList());
         Match match = matches.get(0);
 
         assertThat(match).isEqualTo(MatchTestdata.createMatchWithLink2());
@@ -396,7 +398,7 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAllMatchesWithoutNumberFormatException() {
-        List<Match> matches = PageParser.findMatches(begegnungenNumberFormatExceptionDoc);
+        List<Match> matches = PageParser.findMatches(begegnungenNumberFormatExceptionDoc).collect(toList());
         Match match = matches.get(0);
 
         assertThat(match.getHomeGoals()).isEqualTo(0);
@@ -407,7 +409,7 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsTeamNamesWithoutDescriptions() {
-        List<Match> matches = PageParser.findMatches(begegnungenDoc);
+        List<Match> matches = PageParser.findMatches(begegnungenDoc).collect(toList());
         Match match = matches.get(0);
 
         assertThat(match.getHomeTeam()).isEqualTo("Krabbeltüte");
@@ -415,7 +417,7 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAFilledMatchWithoutDate() {
-        List<Match> matches = PageParser.findMatches(begegnungenNoDateDoc);
+        List<Match> matches = PageParser.findMatches(begegnungenNoDateDoc).collect(toList());
         Match match = matches.get(0);
 
         assertThat(match).isEqualTo(MatchTestdata.createMatchLinkWithoutDate());
@@ -423,7 +425,7 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAllMatches() {
-        List<Match> matches = PageParser.findMatches(begegnungenDoc);
+        List<Match> matches = PageParser.findMatches(begegnungenDoc).collect(toList());
         assertThat(matches.size()).hasSameClassAs(14);
     }
 

@@ -2,13 +2,11 @@ package jkickerstats.interfaces;
 
 import jkickerstats.domain.MatchLister;
 import jkickerstats.domain.MatchPersister;
-import jkickerstats.types.Game;
 import jkickerstats.types.Match;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.stream.Stream;
 
 import static java.util.Collections.singletonList;
@@ -22,9 +20,9 @@ public class StatsUpdaterUnitTest {
 
     @Test
     public void returnsTheCurrentSeasonId() {
-        assertThat(getCurrentSeasonId(Arrays.asList(7, 5, 2, 4, 1))).isEqualTo(7);
+        assertThat(getCurrentSeasonId(Stream.of(7, 5, 2, 4, 1))).isEqualTo(7);
 
-        assertThat(getCurrentSeasonId(Arrays.asList(4, 5, 2, 7, 1))).isEqualTo(7);
+        assertThat(getCurrentSeasonId(Stream.of(4, 5, 2, 7, 1))).isEqualTo(7);
     }
 
     @Test
@@ -42,8 +40,8 @@ public class StatsUpdaterUnitTest {
             }
 
             @Override
-            public List<Integer> getSeasonIDs() {
-                return singletonList(1);
+            public Stream<Integer> getSeasonIDs() {
+                return Stream.of(1);
             }
         };
         MatchLister lister = Collections::emptyList;
@@ -72,8 +70,8 @@ public class StatsUpdaterUnitTest {
             }
 
             @Override
-            public List<Integer> getSeasonIDs() {
-                return singletonList(1);
+            public Stream<Integer> getSeasonIDs() {
+                return Stream.of(1);
             }
         };
         MatchPersister persister = match -> {

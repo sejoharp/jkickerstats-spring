@@ -2,9 +2,6 @@ package jkickerstats.interfaces;
 
 import jkickerstats.types.Match;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public interface ParsedMatchesRetriever {
@@ -12,5 +9,5 @@ public interface ParsedMatchesRetriever {
 
     Match downloadGamesFromMatch(Match match);
 
-    List<Integer> getSeasonIDs();
+    Stream<Integer> getSeasonIDs();
 }

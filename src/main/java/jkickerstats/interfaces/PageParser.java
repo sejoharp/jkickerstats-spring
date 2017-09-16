@@ -14,15 +14,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 class PageParser {
     private static final String DOMAIN = "http://www.kickern-hamburg.de";
     private static final String CSS_QUERY_MATCH_DATE = "table.contentpaneopen:nth-child(2) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1)";
 
-    static List<Game> findGames(Document doc) {
+    static Stream<Game> findGames(Document doc) {
         Elements gameSnippets = filterGameSnippets(doc);
-        return isValidGameList(gameSnippets) ? extractGames(gameSnippets) : new ArrayList<>();
+        return isValidGameList(gameSnippets) ? extractGames(gameSnippets) : Stream.empty();
     }
 
     static Game createGame(final boolean withImages, Element snippet) {
@@ -114,32 +115,29 @@ class PageParser {
         }
     }
 
-    static List<String> findLigaLinks(Document doc) {
+    static Stream<String> findLigaLinks(Document doc) {
         Elements elements = doc.select("table.contentpaneopen > tbody > tr > td > a.readon");
         return elements.stream()//
                 .map(element -> DOMAIN + element.attr("href"))
-                .filter(link -> !link.contains("ticker"))
-                .collect(Collectors.toList());
+                .filter(link -> !link.contains("ticker"));
     }
 
-    static List<Integer> findSeasonIDs(Document doc) {
+    static Stream<Integer> findSeasonIDs(Document doc) {
         Elements elements = doc.select("select option");
         return elements.stream()//
-                .map(element -> Integer.valueOf(element.attr("value")))//
-                .collect(Collectors.toList());
+                .map(element -> Integer.valueOf(element.attr("value")));
     }
 
-    static List<String> findMatchLinks(Document doc) {
+    static Stream<String> findMatchLinks(Document doc) {
         Elements elements = filterMatchLinkSnippets(doc);
         return elements.stream()//
                 .filter(PageParser::isValidMatchLink)//
-                .map(PageParser::parseMatchLink)//
-                .collect(Collectors.toList());
+                .map(PageParser::parseMatchLink);
     }
 
-    static List<Match> findMatches(Document doc) {
+    static Stream<Match> findMatches(Document doc) {
         Elements elements = filterMatchSnippets(doc);
-        return recursiveFindMatches(elements, 0, new ArrayList<>());
+        return recursiveFindMatches(elements, 0, new ArrayList<>()).stream();
     }
 
     static Elements filterMatchLinkSnippets(Document doc) {
@@ -194,7 +192,8 @@ class PageParser {
     }
 
     private static boolean isMatchDayElement(Element element) {
-        return element.hasClass("sectiontableheader") && element.select("i").text().isEmpty() == false;
+        return element.hasClass("sectiontableheader")
+                && element.select("i").text().isEmpty() == false;
     }
 
     private static boolean isNewMatchFormat(Element element) {
@@ -284,10 +283,9 @@ class PageParser {
         return rawPlayerNames.size() > position ? rawPlayerNames.get(position).text() : "";
     }
 
-    private static List<Game> extractGames(Elements gameSnippets) {
+    private static Stream<Game> extractGames(Elements gameSnippets) {
         final boolean withImages = hasImages(gameSnippets);
         return gameSnippets.stream()//
-                .map(snippet -> createGame(withImages, snippet))//
-                .collect(Collectors.toList());
+                .map(snippet -> createGame(withImages, snippet));
     }
 }

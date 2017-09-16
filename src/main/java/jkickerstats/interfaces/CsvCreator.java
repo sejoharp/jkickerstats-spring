@@ -1,5 +1,6 @@
 package jkickerstats.interfaces;
 
+import jkickerstats.types.Game;
 import jkickerstats.types.Match;
 import org.springframework.stereotype.Component;
 
@@ -13,10 +14,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Component
-public class CsvCreator {
-    public void createCsvFile(List<String> csvRowList) {
+class CsvCreator {
+    void createCsvFile(List<String> csvRowList) {
         Path path = Paths.get("allGames.csv");
         try (BufferedWriter writer = Files.newBufferedWriter(path,
                 StandardCharsets.UTF_8)) {
@@ -32,29 +34,33 @@ public class CsvCreator {
     public List<String> createCsvRowList(List<Match> matches) {
         List<String> csvList = new ArrayList<>();
         matches.forEach(match -> match.getGames().forEach(game -> {
-            List<String> content = new ArrayList<>();
-            content.add(formatDate(match.getMatchDate()));
-            content.add(String.valueOf(match.getMatchDay()));
-            content.add(String.valueOf(game.getPosition()));
-            content.add(match.getHomeTeam());
-            content.add(replaceEmptyNames(game.getHomePlayer1()));
-            content.add(replaceEmptyNames(game.getHomePlayer2()));
-            content.add(String.valueOf(game.getHomeScore()));
-            content.add(String.valueOf(game.getGuestScore()));
-            content.add(replaceEmptyNames(game.getGuestPlayer1()));
-            content.add(replaceEmptyNames(game.getGuestPlayer2()));
-            content.add(match.getGuestTeam());
-            csvList.add(String.join(";", content));
+            addRow(csvList, match, game);
         }));
         return csvList;
     }
 
-    protected String formatDate(Date matchDate) {
+    private void addRow(List<String> csvList, Match match, Game game) {
+        List<String> content = new ArrayList<>();
+        content.add(formatDate(match.getMatchDate()));
+        content.add(String.valueOf(match.getMatchDay()));
+        content.add(String.valueOf(game.getPosition()));
+        content.add(match.getHomeTeam());
+        content.add(replaceEmptyNames(game.getHomePlayer1()));
+        content.add(replaceEmptyNames(game.getHomePlayer2()));
+        content.add(String.valueOf(game.getHomeScore()));
+        content.add(String.valueOf(game.getGuestScore()));
+        content.add(replaceEmptyNames(game.getGuestPlayer1()));
+        content.add(replaceEmptyNames(game.getGuestPlayer2()));
+        content.add(match.getGuestTeam());
+        csvList.add(String.join(";", content));
+    }
+
+    String formatDate(Date matchDate) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(matchDate);
     }
 
-    protected String replaceEmptyNames(String name) {
+    String replaceEmptyNames(String name) {
         String placeHolder = "XXXX";
         if (name == null) {
             return placeHolder;
