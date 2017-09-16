@@ -28,9 +28,7 @@ public class StatsUpdaterUnitTest {
     public void savesOneMatch() {
         // given
         MatchLister lister = Collections::emptyList;
-        MatchPersister persister = match -> {
-            assertThat(match).isEqualTo(createMatchLinkWithDoubleGame());
-        };
+        MatchPersister persister = match -> assertThat(match).isEqualTo(createMatchLinkWithDoubleGame());
         StatsUpdater statsUpdater = new StatsUpdater(lister, persister, createRetriever());
 
         // then
@@ -41,10 +39,7 @@ public class StatsUpdaterUnitTest {
     public void doesNotSaveOldMatches() {
         // given
         MatchLister lister = () -> singletonList(createMatchLinkWithDoubleGame());
-        MatchPersister persister = match -> {
-            fail("should not save old matches");
-        };
-
+        MatchPersister persister = match -> fail("should not save old matches");
         StatsUpdater statsUpdater = new StatsUpdater(lister, persister, createRetriever());
 
         // then
