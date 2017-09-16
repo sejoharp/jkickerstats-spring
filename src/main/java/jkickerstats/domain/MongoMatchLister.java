@@ -1,7 +1,6 @@
 package jkickerstats.domain;
 
 import jkickerstats.types.Game;
-import jkickerstats.types.Game.GameBuilder;
 import jkickerstats.types.Match;
 import jkickerstats.types.Match.MatchBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static jkickerstats.types.Game.game;
 
 @Repository
 public class MongoMatchLister implements MatchLister {
@@ -121,16 +122,14 @@ public class MongoMatchLister implements MatchLister {
     }
 
     private static Game convertToGame(GameFromDb gameCouchDb) {
-        GameBuilder builder = new Game.GameBuilder();
-        builder.withDoubleMatch(gameCouchDb.isDoubleMatch());
-        builder.withGuestPlayer1(gameCouchDb.getGuestPlayer1());
-        builder.withGuestPlayer2(gameCouchDb.getGuestPlayer2());
-        builder.withGuestScore(gameCouchDb.getGuestScore());
-        builder.withHomePlayer1(gameCouchDb.getHomePlayer1());
-        builder.withHomePlayer2(gameCouchDb.getHomePlayer2());
-        builder.withHomeScore(gameCouchDb.getHomeScore());
-        builder.withPosition(gameCouchDb.getPosition());
-        return builder.build();
+        return game().withDoubleMatch(gameCouchDb.isDoubleMatch())
+                .withGuestPlayer1(gameCouchDb.getGuestPlayer1())
+                .withGuestPlayer2(gameCouchDb.getGuestPlayer2())
+                .withGuestScore(gameCouchDb.getGuestScore())
+                .withHomePlayer1(gameCouchDb.getHomePlayer1())
+                .withHomePlayer2(gameCouchDb.getHomePlayer2())
+                .withHomeScore(gameCouchDb.getHomeScore())
+                .withPosition(gameCouchDb.getPosition());
     }
 
 }

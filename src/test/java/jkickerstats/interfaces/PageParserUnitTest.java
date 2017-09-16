@@ -3,7 +3,6 @@ package jkickerstats.interfaces;
 import jkickerstats.GameTestdata;
 import jkickerstats.MatchTestdata;
 import jkickerstats.types.Game;
-import jkickerstats.types.Game.GameBuilder;
 import jkickerstats.types.Match;
 import org.assertj.core.api.exception.RuntimeIOException;
 import org.jsoup.Jsoup;
@@ -17,10 +16,10 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 import static jkickerstats.interfaces.PageParser.filterMatchLinkSnippets;
+import static jkickerstats.types.Game.game;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PageParserUnitTest {
@@ -299,34 +298,34 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAFullFilledSingleGame() {
-        GameBuilder builder = new GameBuilder();
-        builder.withDoubleMatch(false);
-        builder.withGuestPlayer1("Matheuszik, Sven");
-        builder.withGuestScore(7);
-        builder.withHomePlayer1("Kränz, Ludwig");
-        builder.withHomeScore(5);
-        builder.withPosition(2);
+        Game game = game()
+                .withDoubleMatch(false)
+                .withGuestPlayer1("Matheuszik, Sven")
+                .withGuestScore(7)
+                .withHomePlayer1("Kränz, Ludwig")
+                .withHomeScore(5)
+                .withPosition(2);
 
         List<Game> games = PageParser.findGames(begegnungDoc).collect(toList());
 
-        assertThat(games.get(1)).isEqualTo(builder.build());
+        assertThat(games.get(1)).isEqualTo(game);
     }
 
     @Test
     public void returnsAFullFilledDoubleGame() {
-        GameBuilder builder = new GameBuilder();
-        builder.withDoubleMatch(true);
-        builder.withGuestPlayer1("Zierott, Ulli");
-        builder.withGuestPlayer2("Hojas, René");
-        builder.withGuestScore(5);
-        builder.withHomePlayer1("Fischer, Harro");
-        builder.withHomePlayer2("Kränz, Ludwig");
-        builder.withHomeScore(4);
-        builder.withPosition(3);
+        Game game = game()
+                .withDoubleMatch(true)
+                .withGuestPlayer1("Zierott, Ulli")
+                .withGuestPlayer2("Hojas, René")
+                .withGuestScore(5)
+                .withHomePlayer1("Fischer, Harro")
+                .withHomePlayer2("Kränz, Ludwig")
+                .withHomeScore(4)
+                .withPosition(3);
 
         List<Game> games = PageParser.findGames(begegnungDoc).collect(toList());
 
-        assertThat(games.get(2)).isEqualTo(builder.build());
+        assertThat(games.get(2)).isEqualTo(game);
     }
 
     @Test

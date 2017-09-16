@@ -10,15 +10,55 @@ public class Game {
     private final int position;
     private final boolean doubleMatch;
 
-    private Game(GameBuilder builder) {
-        this.homePlayer1 = builder.homePlayer1;
-        this.homePlayer2 = builder.homePlayer2;
-        this.homeScore = builder.homeScore;
-        this.guestPlayer1 = builder.guestPlayer1;
-        this.guestPlayer2 = builder.guestPlayer2;
-        this.guestScore = builder.guestScore;
-        this.position = builder.position;
-        this.doubleMatch = builder.doubleMatch;
+    private Game(String homePlayer1, String homePlayer2, int homeScore, String guestPlayer1, String guestPlayer2, int guestScore, int position, boolean doubleMatch) {
+        this.homePlayer1 = homePlayer1;
+        this.homePlayer2 = homePlayer2;
+        this.homeScore = homeScore;
+        this.guestPlayer1 = guestPlayer1;
+        this.guestPlayer2 = guestPlayer2;
+        this.guestScore = guestScore;
+        this.position = position;
+        this.doubleMatch = doubleMatch;
+    }
+
+    public static Game game(Game game) {
+        return new Game(game.homePlayer1, game.homePlayer2, game.homeScore, game.guestPlayer1, game.guestPlayer2, game.guestScore, game.position, game.doubleMatch);
+    }
+
+    public static Game game() {
+        return new Game(null, null, 0, null, null, 0, 0, false);
+    }
+
+    public Game withHomePlayer1(String homePlayer1) {
+        return new Game(homePlayer1, homePlayer2, homeScore, guestPlayer1, guestPlayer2, guestScore, position, doubleMatch);
+    }
+
+    public Game withHomePlayer2(String homePlayer2) {
+        return new Game(homePlayer1, homePlayer2, homeScore, guestPlayer1, guestPlayer2, guestScore, position, doubleMatch);
+    }
+
+    public Game withHomeScore(int homeScore) {
+        return new Game(homePlayer1, homePlayer2, homeScore, guestPlayer1, guestPlayer2, guestScore, position, doubleMatch);
+    }
+
+    public Game withGuestPlayer1(String guestPlayer1) {
+        return new Game(homePlayer1, homePlayer2, homeScore, guestPlayer1, guestPlayer2, guestScore, position, doubleMatch);
+    }
+
+    public Game withGuestPlayer2(String guestPlayer2) {
+        return new Game(homePlayer1, homePlayer2, homeScore, guestPlayer1, guestPlayer2, guestScore, position, doubleMatch);
+    }
+
+    public Game withGuestScore(int guestScore) {
+        return new Game(homePlayer1, homePlayer2, homeScore, guestPlayer1, guestPlayer2, guestScore, position, doubleMatch);
+    }
+
+    public Game withPosition(int position) {
+        return new Game(homePlayer1, homePlayer2, homeScore, guestPlayer1, guestPlayer2, guestScore, position, doubleMatch);
+    }
+
+    public Game withDoubleMatch(boolean doubleMatch) {
+        return new Game(homePlayer1, homePlayer2, homeScore, guestPlayer1, guestPlayer2, guestScore, position, doubleMatch);
     }
 
     public String getHomePlayer1() {
@@ -119,75 +159,5 @@ public class Game {
                 + guestPlayer1 + ", guestPlayer2=" + guestPlayer2
                 + ", guestScore=" + guestScore + ", position=" + position
                 + ", doubleMatch=" + doubleMatch + "]";
-    }
-
-    public static class GameBuilder {
-
-        private String homePlayer1;
-        private String homePlayer2;
-        private int homeScore;
-        private String guestPlayer1;
-        private String guestPlayer2;
-        private int guestScore;
-        private int position;
-        private boolean doubleMatch;
-
-        public GameBuilder() {
-        }
-
-        public GameBuilder(Game game) {
-            this.homePlayer1 = game.getHomePlayer1();
-            this.homePlayer2 = game.getHomePlayer2();
-            this.homeScore = game.getHomeScore();
-            this.guestPlayer1 = game.getGuestPlayer1();
-            this.guestPlayer2 = game.getGuestPlayer2();
-            this.guestScore = game.getGuestScore();
-            this.position = game.getPosition();
-            this.doubleMatch = game.isDoubleMatch();
-        }
-
-        public GameBuilder withHomePlayer1(String homePlayer1) {
-            this.homePlayer1 = homePlayer1;
-            return this;
-        }
-
-        public GameBuilder withHomePlayer2(String homePlayer2) {
-            this.homePlayer2 = homePlayer2;
-            return this;
-        }
-
-        public GameBuilder withHomeScore(int homeScore) {
-            this.homeScore = homeScore;
-            return this;
-        }
-
-        public GameBuilder withGuestPlayer1(String guestPlayer1) {
-            this.guestPlayer1 = guestPlayer1;
-            return this;
-        }
-
-        public GameBuilder withGuestPlayer2(String guestPlayer2) {
-            this.guestPlayer2 = guestPlayer2;
-            return this;
-        }
-
-        public GameBuilder withGuestScore(int guestScore) {
-            this.guestScore = guestScore;
-            return this;
-        }
-
-        public GameBuilder withPosition(int position) {
-            this.position = position;
-            return this;
-        }
-
-        public GameBuilder withDoubleMatch(boolean doubleMatch) {
-            this.doubleMatch = doubleMatch;
-            return this;
-        }
-
-        public Game build() {
-            return new Game(this);
-        }
     }
 }

@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static jkickerstats.types.Game.game;
+
 @Component
 class PageParser {
     private static final String DOMAIN = "http://www.kickern-hamburg.de";
@@ -29,7 +31,7 @@ class PageParser {
     static Game createGame(final boolean withImages, Element snippet) {
         Elements rawPlayerNames = snippet.select("td a");
         Boolean doubleMatch = isDoubleMatch(snippet);
-        return new Game.GameBuilder()//
+        return game()//
                 .withDoubleMatch(doubleMatch)//
                 .withPosition(parseGamePosition(snippet))//
                 .withHomeScore(parseHomeScore(snippet, withImages))//
@@ -37,8 +39,7 @@ class PageParser {
                 .withHomePlayer1(parsePlayerName(rawPlayerNames, 0))//
                 .withHomePlayer2(parseDoublePlayerName(rawPlayerNames, 1, doubleMatch))//
                 .withGuestPlayer1(parseGuestPlayerName(rawPlayerNames, doubleMatch))//
-                .withGuestPlayer2(parseDoublePlayerName(rawPlayerNames, 3, doubleMatch))//
-                .build();
+                .withGuestPlayer2(parseDoublePlayerName(rawPlayerNames, 3, doubleMatch));
     }
 
     static boolean isValidGameList(Elements elements) {
