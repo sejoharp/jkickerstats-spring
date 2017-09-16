@@ -18,75 +18,75 @@ public class MatchFromDb {
     private int matchDay;
     private List<GameFromDb> games;
 
-    public String getHomeTeam() {
+    String getHomeTeam() {
         return homeTeam;
     }
 
-    public void setHomeTeam(String homeTeam) {
+    void setHomeTeam(String homeTeam) {
         this.homeTeam = homeTeam;
     }
 
-    public String getGuestTeam() {
+    String getGuestTeam() {
         return guestTeam;
     }
 
-    public void setGuestTeam(String guestTeam) {
+    void setGuestTeam(String guestTeam) {
         this.guestTeam = guestTeam;
     }
 
-    public int getHomeGoals() {
+    int getHomeGoals() {
         return homeGoals;
     }
 
-    public void setHomeGoals(int homeGoals) {
+    void setHomeGoals(int homeGoals) {
         this.homeGoals = homeGoals;
     }
 
-    public int getGuestGoals() {
+    int getGuestGoals() {
         return guestGoals;
     }
 
-    public void setGuestGoals(int guestGoals) {
+    void setGuestGoals(int guestGoals) {
         this.guestGoals = guestGoals;
     }
 
-    public int getHomeScore() {
+    int getHomeScore() {
         return homeScore;
     }
 
-    public void setHomeScore(int homeScore) {
+    void setHomeScore(int homeScore) {
         this.homeScore = homeScore;
     }
 
-    public int getGuestScore() {
+    int getGuestScore() {
         return guestScore;
     }
 
-    public void setGuestScore(int guestScore) {
+    void setGuestScore(int guestScore) {
         this.guestScore = guestScore;
     }
 
-    public Date getMatchDate() {
+    Date getMatchDate() {
         return matchDate;
     }
 
-    public void setMatchDate(Date matchDate) {
+    void setMatchDate(Date matchDate) {
         this.matchDate = matchDate;
     }
 
-    public int getMatchDay() {
+    int getMatchDay() {
         return matchDay;
     }
 
-    public void setMatchDay(int matchDay) {
+    void setMatchDay(int matchDay) {
         this.matchDay = matchDay;
     }
 
-    public List<GameFromDb> getGames() {
+    List<GameFromDb> getGames() {
         return games;
     }
 
-    public void setGames(List<GameFromDb> games) {
+    void setGames(List<GameFromDb> games) {
         this.games = games;
     }
 

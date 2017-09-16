@@ -10,7 +10,7 @@ public class GameFromDb {
     private int position;
     private boolean doubleMatch;
 
-    public String getHomePlayer1() {
+    String getHomePlayer1() {
         return homePlayer1;
     }
 
@@ -18,7 +18,7 @@ public class GameFromDb {
         this.homePlayer1 = homePlayer1;
     }
 
-    public String getHomePlayer2() {
+    String getHomePlayer2() {
         return homePlayer2;
     }
 
@@ -26,7 +26,7 @@ public class GameFromDb {
         this.homePlayer2 = homePlayer2;
     }
 
-    public int getHomeScore() {
+    int getHomeScore() {
         return homeScore;
     }
 
@@ -34,7 +34,7 @@ public class GameFromDb {
         this.homeScore = homeScore;
     }
 
-    public String getGuestPlayer1() {
+    String getGuestPlayer1() {
         return guestPlayer1;
     }
 
@@ -42,7 +42,7 @@ public class GameFromDb {
         this.guestPlayer1 = guestPlayer1;
     }
 
-    public String getGuestPlayer2() {
+    String getGuestPlayer2() {
         return guestPlayer2;
     }
 
@@ -50,7 +50,7 @@ public class GameFromDb {
         this.guestPlayer2 = guestPlayer2;
     }
 
-    public int getGuestScore() {
+    int getGuestScore() {
         return guestScore;
     }
 
@@ -66,7 +66,7 @@ public class GameFromDb {
         this.position = position;
     }
 
-    public boolean isDoubleMatch() {
+    boolean isDoubleMatch() {
         return doubleMatch;
     }
 

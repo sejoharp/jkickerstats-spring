@@ -8,11 +8,12 @@ public interface MatchLister {
     List<Match> getAllMatches();
 
     default boolean isNewMatch(Match match) {
-        return getAllMatches().stream().filter(storedMatch ->
-                storedMatch.getMatchDate().equals(match.getMatchDate())
-                        && storedMatch.getHomeTeam().equals(match.getHomeTeam())
-                        && storedMatch.getGuestTeam().equals(match.getGuestTeam())
-        ).count() == 0;
+        return getAllMatches().stream()
+                .filter(storedMatch ->
+                        storedMatch.getMatchDate().equals(match.getMatchDate())
+                                && storedMatch.getHomeTeam().equals(match.getHomeTeam())
+                                && storedMatch.getGuestTeam().equals(match.getGuestTeam()))
+                .count() == 0;
     }
 
     default boolean noMatchesAvailable() {
