@@ -1,7 +1,7 @@
 package jkickerstats.interfaces;
 
-import jkickerstats.domain.MatchPersister;
 import jkickerstats.domain.MatchLister;
+import jkickerstats.domain.MatchPersister;
 import org.jsoup.nodes.Document;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,12 +16,10 @@ import static java.util.Collections.singletonList;
 import static jkickerstats.GameTestdata.createDoubleGame;
 import static jkickerstats.MatchTestdata.createMatchLinkWithDoubleGame;
 import static jkickerstats.interfaces.StatsUpdater.getCurrentSeasonId;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Fail.fail;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class StatsUpdaterUnitTest {
@@ -50,9 +48,9 @@ public class StatsUpdaterUnitTest {
 
     @Test
     public void returnsTheCurrentSeasonId() {
-        assertThat(getCurrentSeasonId(Arrays.asList(7, 5, 2, 4, 1)), is(7));
+        assertThat(getCurrentSeasonId(Arrays.asList(7, 5, 2, 4, 1))).isEqualTo(7);
 
-        assertThat(getCurrentSeasonId(Arrays.asList(4, 5, 2, 7, 1)), is(7));
+        assertThat(getCurrentSeasonId(Arrays.asList(4, 5, 2, 7, 1))).isEqualTo(7);
     }
 
     @Test
@@ -76,7 +74,7 @@ public class StatsUpdaterUnitTest {
         // given
         MatchLister lister = Collections::emptyList;
         MatchPersister persister = match -> {
-            assertThat(match, equalTo(createMatchLinkWithDoubleGame()));
+            assertThat(match).isEqualTo(createMatchLinkWithDoubleGame());
         };
         StatsUpdater statsUpdater = new StatsUpdater(
                 pageParserMock,

@@ -11,9 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CsvCreatorTest {
     private CsvCreator csvCreator;
@@ -29,9 +27,7 @@ public class CsvCreatorTest {
 
         List<String> csvGames = csvCreator.createCsvRowList(matches);
 
-        assertThat(
-                csvGames.get(0),
-                is("2013-02-27;1;2;Tingeltangel FC St. Pauli;Kränz, Ludwig;XXXX;5;7;Matheuszik, Sven;XXXX;Hamburg Privateers 08"));
+        assertThat(csvGames.get(0)).isEqualTo("2013-02-27;1;2;Tingeltangel FC St. Pauli;Kränz, Ludwig;XXXX;5;7;Matheuszik, Sven;XXXX;Hamburg Privateers 08");
     }
 
     @Test
@@ -41,8 +37,7 @@ public class CsvCreatorTest {
         List<String> csvGames = csvCreator.createCsvRowList(matches);
 
         assertThat(
-                csvGames.get(0),
-                is("2013-02-28;1;16;Cim Bom Bom;Arslan, Mehmet Emin;Böckeler, Frank;4;5;Bai, Minyoung;Linnenberg, Sebastian;Die Maschinerie"));
+                csvGames.get(0)).isEqualTo("2013-02-28;1;16;Cim Bom Bom;Arslan, Mehmet Emin;Böckeler, Frank;4;5;Bai, Minyoung;Linnenberg, Sebastian;Die Maschinerie");
     }
 
     @Test
@@ -64,8 +59,8 @@ public class CsvCreatorTest {
             throw new IllegalStateException(e);
         }
         path.toFile().delete();
-        assertThat(resultGameStrings.get(0), containsString(gameStrings.get(0)));
-        assertThat(resultGameStrings.get(1), containsString(gameStrings.get(1)));
+        assertThat(resultGameStrings.get(0)).contains(gameStrings.get(0));
+        assertThat(resultGameStrings.get(1)).contains(gameStrings.get(1));
     }
 
     @Test
@@ -74,22 +69,22 @@ public class CsvCreatorTest {
         date.setTimeInMillis(0);
         date.set(2013, 1, 27, 20, 0);
 
-        assertThat(csvCreator.formatDate(date.getTime()), is("2013-02-27"));
+        assertThat(csvCreator.formatDate(date.getTime())).isEqualTo("2013-02-27");
     }
 
     @Test
     public void replacesEmptyName() {
-        assertThat(csvCreator.replaceEmptyNames(""), is("XXXX"));
+        assertThat(csvCreator.replaceEmptyNames("")).isEqualTo("XXXX");
     }
 
     @Test
     public void replacesUnsetName() {
-        assertThat(csvCreator.replaceEmptyNames(null), is("XXXX"));
+        assertThat(csvCreator.replaceEmptyNames(null)).isEqualTo("XXXX");
     }
 
     @Test
     public void doesNotReplaceFilledNames() {
-        assertThat(csvCreator.replaceEmptyNames("Ich"), is("Ich"));
+        assertThat(csvCreator.replaceEmptyNames("Ich")).isEqualTo("Ich");
     }
 
 }

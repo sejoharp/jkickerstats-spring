@@ -13,10 +13,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.is;
+import static jkickerstats.interfaces.StatsUpdater.getCurrentSeasonId;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
@@ -45,7 +43,7 @@ public class StatsUpdaterTest {
     @Test
     public void getsSeasonIds() {
         List<Integer> seasonIDs = statsUpdater.getSeasonIDs();
-        assertThat(statsUpdater.getCurrentSeasonId(seasonIDs), is(12));
+        assertThat(getCurrentSeasonId(seasonIDs)).isEqualTo((12));
     }
 
     @Ignore
@@ -57,7 +55,7 @@ public class StatsUpdaterTest {
     @Ignore
     @Test
     public void getsLinks() {
-        assertThat(statsUpdater.getLigaLinks(11), is(not(empty())));
+        assertThat(statsUpdater.getLigaLinks(11)).isNotEmpty();
     }
 
     @Ignore

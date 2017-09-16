@@ -15,9 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsNull.notNullValue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
@@ -30,7 +28,7 @@ public class PageParserTest {
 
     @Before
     public void checkPreconditions() {
-        assertThat(parser, notNullValue());
+        assertThat(parser).isNotNull();
     }
 
     @Test
@@ -40,9 +38,8 @@ public class PageParserTest {
 
         List<String> ligaLinksIDs = parser.findLigaLinks(doc);
 
-        assertThat(ligaLinksIDs.size(), is(11));
+        assertThat(ligaLinksIDs).hasSize(11);
         assertThat(
-                ligaLinksIDs.get(0),
-                is("http://www.kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=118"));
+                ligaLinksIDs.get(0)).isEqualTo("http://www.kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=118");
     }
 }

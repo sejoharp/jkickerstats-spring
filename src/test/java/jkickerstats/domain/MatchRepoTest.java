@@ -16,8 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static jkickerstats.domain.MongoMatchLister.convertToMatch;
 import static jkickerstats.domain.MongoMatchLister.convertToMatchFromDb;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
@@ -38,35 +37,33 @@ public class MatchRepoTest {
 
     @Test
     public void dbHasNoMatches() {
-        assertThat(lister.noMatchesAvailable(), is(true));
+        assertThat(lister.noMatchesAvailable()).isTrue();
     }
 
     @Test
     public void countesTheNumberOfMatches() {
-        assertThat(lister.countMatches(), is(0L));
+        assertThat(lister.countMatches()).isEqualTo(0);
         persister.save(MatchTestdata.createMatch());
-        assertThat(lister.countMatches(), is(1L));
+        assertThat(lister.countMatches()).isEqualTo(1);
         persister.save(MatchTestdata.createMatchWithSinglegame());
-        assertThat(lister.countMatches(), is(2L));
+        assertThat(lister.countMatches()).isEqualTo(2);
     }
 
     @Test
     public void detectsAlreadyPersistedMatches() {
         persister.save(MatchTestdata.createMatch());
-        assertThat(lister.isNewMatch(MatchTestdata.createMatch()), is(false));
-        assertThat(
-                lister.isNewMatch(MatchTestdata.createMatchWithSinglegame()),
-                is(true));
+        assertThat(lister.isNewMatch(MatchTestdata.createMatch())).isFalse();
+        assertThat(lister.isNewMatch(MatchTestdata.createMatchWithSinglegame())).isTrue();
     }
 
     @Test
     public void dbHasMatches() {
         persister.save(MatchTestdata.createMatch());
 
-        assertThat(lister.noMatchesAvailable(), is(false));
+        assertThat(lister.noMatchesAvailable()).isFalse();
         MatchFromDb matchFromDb = mongoTemplate.findOne(new Query(
                 new Criteria()), MatchFromDb.class);
-        assertThat(matchFromDb.getGames().size(), is(2));
+        assertThat(matchFromDb.getGames()).hasSize(2);
     }
 
     @Test
@@ -75,13 +72,13 @@ public class MatchRepoTest {
         MatchFromDb matchFromDb = mongoTemplate.findOne(new Query(
                 new Criteria()), MatchFromDb.class);
 
-        assertThat(convertToMatch(matchFromDb), is(MatchTestdata.createMatch()));
+        assertThat(convertToMatch(matchFromDb)).isEqualTo(MatchTestdata.createMatch());
     }
 
     @Test
     public void convertsBothWays() {
         MatchFromDb matchFromDb = convertToMatchFromDb(MatchTestdata.createMatch());
         Match match = convertToMatch(matchFromDb);
-        assertThat(match, is(MatchTestdata.createMatch()));
+        assertThat(match).isEqualTo(MatchTestdata.createMatch());
     }
 }
