@@ -4,7 +4,6 @@ import jkickerstats.domain.MatchLister;
 import jkickerstats.domain.MatchPersister;
 import jkickerstats.types.Game;
 import jkickerstats.types.Match;
-import jkickerstats.types.Match.MatchBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +15,7 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 import static jkickerstats.interfaces.ParsedMatchesRetrieverImpl.*;
+import static jkickerstats.types.Match.createMatch;
 
 @Component
 class StatsUpdater {
@@ -74,10 +74,8 @@ class StatsUpdater {
             getLigaLinks(seasonId).forEach(ligaLink -> {
                 System.out.println("processing ligalink:" + ligaLink);
                 getMatches(ligaLink).forEach(match -> {
-                    System.out.println("processing match:" + match.getMatchDate());
-                    allMatches.add(new MatchBuilder(match)//
-                            .withGames(getGames(match.getMatchLink()).collect(toList()))//
-                            .build());
+                    System.out.println("processing createMatch:" + match.getMatchDate());
+                    allMatches.add(createMatch(match).withGames(getGames(match.getMatchLink()).collect(toList())));
                 });
             });
         });

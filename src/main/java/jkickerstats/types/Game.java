@@ -21,11 +21,11 @@ public class Game {
         this.doubleMatch = doubleMatch;
     }
 
-    public static Game game(Game game) {
+    public static Game createGame(Game game) {
         return new Game(game.homePlayer1, game.homePlayer2, game.homeScore, game.guestPlayer1, game.guestPlayer2, game.guestScore, game.position, game.doubleMatch);
     }
 
-    public static Game game() {
+    public static Game createGame() {
         return new Game(null, null, 0, null, null, 0, 0, false);
     }
 

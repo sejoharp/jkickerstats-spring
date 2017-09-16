@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 import static jkickerstats.interfaces.ParsedMatchesRetrieverImpl.getGames;
 import static jkickerstats.interfaces.StatsUpdater.getCurrentSeasonId;
+import static jkickerstats.types.Match.createMatch;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -68,9 +69,9 @@ public class StatsUpdaterTest {
     public void findsMatches() {
         ParsedMatchesRetrieverImpl.getLigaLinks(11).forEach(ligaLink -> {
             System.out.println("processing liga link: " + ligaLink);
-            ParsedMatchesRetrieverImpl.getMatchLinks(ligaLink)//
+            ParsedMatchesRetrieverImpl.getMatchLinks(ligaLink)
                     .forEach(matchLink -> {
-                        System.out.println("processing match link: " + matchLink);
+                        System.out.println("processing createMatch link: " + matchLink);
                         getGames(matchLink).forEach(System.out::println);
                     });
         });
@@ -80,12 +81,11 @@ public class StatsUpdaterTest {
     @Ignore
     @Test
     public void findsAllMatches() {
-        ParsedMatchesRetrieverImpl.getLigaLinks(11)//
-                .forEach(ligaLink -> ParsedMatchesRetrieverImpl.getMatches(ligaLink)//
+        ParsedMatchesRetrieverImpl.getLigaLinks(11)
+                .forEach(ligaLink -> ParsedMatchesRetrieverImpl.getMatches(ligaLink)
                         .forEach(match -> {
-                            Match fullMatch = new Match.MatchBuilder(match)//
-                                    .withGames(getGames(match.getMatchLink()).collect(toList()))//
-                                    .build();
+                            Match fullMatch = createMatch(match)
+                                    .withGames(getGames(match.getMatchLink()).collect(toList()));
                             System.out.println(String.format("Datum:%s home:%s guest:%s spiele:%s",
                                     fullMatch.getMatchDate(), fullMatch.getHomeTeam(), fullMatch.getGuestTeam(),
                                     fullMatch.getGames().size()));

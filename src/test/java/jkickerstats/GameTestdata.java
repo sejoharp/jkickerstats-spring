@@ -6,12 +6,12 @@ import jkickerstats.types.Game;
 import java.util.Calendar;
 import java.util.Date;
 
-import static jkickerstats.types.Game.game;
+import static jkickerstats.types.Game.createGame;
 
 public class GameTestdata {
 
     public static Game createSingleGame() {
-        return game()
+        return createGame()
                 .withDoubleMatch(false)
                 .withGuestPlayer1("Matheuszik, Sven")
                 .withGuestScore(7)
@@ -21,7 +21,7 @@ public class GameTestdata {
     }
 
     public static Game createSecondSingleGame() {
-        return game()
+        return createGame()
                 .withDoubleMatch(false)
                 .withGuestPlayer1("Bai, Minyoung")
                 .withGuestScore(7)
@@ -31,7 +31,7 @@ public class GameTestdata {
     }
 
     public static Game createDoubleGame() {
-        return game()
+        return createGame()
                 .withDoubleMatch(true)
                 .withHomePlayer1("Arslan, Mehmet Emin")
                 .withHomePlayer2("Böckeler, Frank")
@@ -74,7 +74,7 @@ public class GameTestdata {
     }
 
     public Game createDoubleGame2() {
-        return game().withDoubleMatch(true)
+        return createGame().withDoubleMatch(true)
                 .withGuestPlayer1("guest player1")
                 .withGuestPlayer2("guest player2")
                 .withGuestScore(10)

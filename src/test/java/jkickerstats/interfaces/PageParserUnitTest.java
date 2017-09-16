@@ -19,7 +19,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 import static jkickerstats.interfaces.PageParser.filterMatchLinkSnippets;
-import static jkickerstats.types.Game.game;
+import static jkickerstats.types.Game.createGame;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PageParserUnitTest {
@@ -298,7 +298,7 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAFullFilledSingleGame() {
-        Game game = game()
+        Game game = createGame()
                 .withDoubleMatch(false)
                 .withGuestPlayer1("Matheuszik, Sven")
                 .withGuestScore(7)
@@ -313,7 +313,7 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAFullFilledDoubleGame() {
-        Game game = game()
+        Game game = createGame()
                 .withDoubleMatch(true)
                 .withGuestPlayer1("Zierott, Ulli")
                 .withGuestPlayer2("Hojas, René")

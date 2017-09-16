@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static jkickerstats.types.Game.game;
+import static jkickerstats.types.Game.createGame;
+import static jkickerstats.types.Match.createMatch;
 
 @Component
 class PageParser {
@@ -31,14 +31,14 @@ class PageParser {
     static Game createGame(final boolean withImages, Element snippet) {
         Elements rawPlayerNames = snippet.select("td a");
         Boolean doubleMatch = isDoubleMatch(snippet);
-        return game()//
-                .withDoubleMatch(doubleMatch)//
-                .withPosition(parseGamePosition(snippet))//
-                .withHomeScore(parseHomeScore(snippet, withImages))//
-                .withGuestScore(parseGuestScore(snippet, withImages))//
-                .withHomePlayer1(parsePlayerName(rawPlayerNames, 0))//
-                .withHomePlayer2(parseDoublePlayerName(rawPlayerNames, 1, doubleMatch))//
-                .withGuestPlayer1(parseGuestPlayerName(rawPlayerNames, doubleMatch))//
+        return Game.createGame()
+                .withDoubleMatch(doubleMatch)
+                .withPosition(parseGamePosition(snippet))
+                .withHomeScore(parseHomeScore(snippet, withImages))
+                .withGuestScore(parseGuestScore(snippet, withImages))
+                .withHomePlayer1(parsePlayerName(rawPlayerNames, 0))
+                .withHomePlayer2(parseDoublePlayerName(rawPlayerNames, 1, doubleMatch))
+                .withGuestPlayer1(parseGuestPlayerName(rawPlayerNames, doubleMatch))
                 .withGuestPlayer2(parseDoublePlayerName(rawPlayerNames, 3, doubleMatch));
     }
 
@@ -118,21 +118,21 @@ class PageParser {
 
     static Stream<String> findLigaLinks(Document doc) {
         Elements elements = doc.select("table.contentpaneopen > tbody > tr > td > a.readon");
-        return elements.stream()//
+        return elements.stream()
                 .map(element -> DOMAIN + element.attr("href"))
                 .filter(link -> !link.contains("ticker"));
     }
 
     static Stream<Integer> findSeasonIDs(Document doc) {
         Elements elements = doc.select("select option");
-        return elements.stream()//
+        return elements.stream()
                 .map(element -> Integer.valueOf(element.attr("value")));
     }
 
     static Stream<String> findMatchLinks(Document doc) {
         Elements elements = filterMatchLinkSnippets(doc);
-        return elements.stream()//
-                .filter(PageParser::isValidMatchLink)//
+        return elements.stream()
+                .filter(PageParser::isValidMatchLink)
                 .map(PageParser::parseMatchLink);
     }
 
@@ -179,17 +179,16 @@ class PageParser {
     }
 
     private static Match parseMatch(Element element, int matchDay) {
-        return new Match.MatchBuilder()//
-                .withMatchDate(parseMatchDate(element))//
-                .withMatchDay(matchDay)//
-                .withHomeScore(parseMatchHomeScore(element))//
-                .withGuestScore(parseMatchGuestScore(element))//
-                .withHomeTeam(removeTeamDescriptions(element.children().eq(1).text()))//
-                .withGuestTeam(removeTeamDescriptions(element.children().eq(2).text()))//
-                .withGuestGoals(parseMatchGuestGoals(element))//
-                .withHomeGoals(parseMatchHomeGoals(element))//
-                .withMatchLink(parseMatchLink(element))//
-                .build();
+        return createMatch()
+                .withMatchDate(parseMatchDate(element))
+                .withMatchDay(matchDay)
+                .withHomeScore(parseMatchHomeScore(element))
+                .withGuestScore(parseMatchGuestScore(element))
+                .withHomeTeam(removeTeamDescriptions(element.children().eq(1).text()))
+                .withGuestTeam(removeTeamDescriptions(element.children().eq(2).text()))
+                .withGuestGoals(parseMatchGuestGoals(element))
+                .withHomeGoals(parseMatchHomeGoals(element))
+                .withMatchLink(parseMatchLink(element));
     }
 
     private static boolean isMatchDayElement(Element element) {
@@ -286,7 +285,7 @@ class PageParser {
 
     private static Stream<Game> extractGames(Elements gameSnippets) {
         final boolean withImages = hasImages(gameSnippets);
-        return gameSnippets.stream()//
+        return gameSnippets.stream()
                 .map(snippet -> createGame(withImages, snippet));
     }
 }

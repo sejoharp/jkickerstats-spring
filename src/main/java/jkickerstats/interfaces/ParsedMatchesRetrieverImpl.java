@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 import static jkickerstats.interfaces.PageDownloader.downloadPage;
 import static jkickerstats.interfaces.PageDownloader.downloadSeason;
 import static jkickerstats.interfaces.PageParser.*;
+import static jkickerstats.types.Match.createMatch;
 
 @Component
 public class ParsedMatchesRetrieverImpl implements ParsedMatchesRetriever {
@@ -32,9 +32,8 @@ public class ParsedMatchesRetrieverImpl implements ParsedMatchesRetriever {
     }
 
     public Match downloadGamesFromMatch(Match match) {
-        return new Match.MatchBuilder(match)//
-                .withGames(getGames(match.getMatchLink()).collect(toList()))//
-                .build();
+        return createMatch(match)
+                .withGames(getGames(match.getMatchLink()).collect(toList()));
     }
 
     static Stream<Game> getGames(String matchLink) {
@@ -42,7 +41,7 @@ public class ParsedMatchesRetrieverImpl implements ParsedMatchesRetriever {
         try {
             return findGames(matchDoc);
         } catch (Exception e) {
-            LOG.severe("processing match: " + matchLink);
+            LOG.severe("processing createMatch: " + matchLink);
             throw e;
         }
     }

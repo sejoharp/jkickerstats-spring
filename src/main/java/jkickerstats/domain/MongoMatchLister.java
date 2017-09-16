@@ -2,7 +2,6 @@ package jkickerstats.domain;
 
 import jkickerstats.types.Game;
 import jkickerstats.types.Match;
-import jkickerstats.types.Match.MatchBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static jkickerstats.types.Game.game;
+import static jkickerstats.types.Game.createGame;
 
 @Repository
 public class MongoMatchLister implements MatchLister {
@@ -57,14 +56,14 @@ public class MongoMatchLister implements MatchLister {
     }
 
     private static List<MatchFromDb> convertToMatchFromDbList(List<Match> matches) {
-        return matches.stream()//
-                .map(MongoMatchLister::convertToMatchFromDb)//
+        return matches.stream()
+                .map(MongoMatchLister::convertToMatchFromDb)
                 .collect(Collectors.toList());
     }
 
     private static List<Match> convertToMatchList(List<MatchFromDb> matchFromDbs) {
-        return matchFromDbs.stream()//
-                .map(MongoMatchLister::convertToMatch)//
+        return matchFromDbs.stream()
+                .map(MongoMatchLister::convertToMatch)
                 .collect(Collectors.toList());
     }
 
@@ -83,28 +82,27 @@ public class MongoMatchLister implements MatchLister {
     }
 
     static Match convertToMatch(MatchFromDb matchFromDb) {
-        return new MatchBuilder()//
-                .withGuestGoals(matchFromDb.getGuestGoals())//
-                .withGuestScore(matchFromDb.getGuestScore())//
-                .withGuestTeam(matchFromDb.getGuestTeam())//
-                .withHomeGoals(matchFromDb.getHomeGoals())//
-                .withHomeScore(matchFromDb.getHomeScore())//
-                .withHomeTeam(matchFromDb.getHomeTeam())//
-                .withMatchDate(matchFromDb.getMatchDate())//
-                .withMatchDay(matchFromDb.getMatchDay())//
-                .withGames(convertToGameList(matchFromDb.getGames()))//
-                .build();
+        return Match.createMatch()
+                .withGuestGoals(matchFromDb.getGuestGoals())
+                .withGuestScore(matchFromDb.getGuestScore())
+                .withGuestTeam(matchFromDb.getGuestTeam())
+                .withHomeGoals(matchFromDb.getHomeGoals())
+                .withHomeScore(matchFromDb.getHomeScore())
+                .withHomeTeam(matchFromDb.getHomeTeam())
+                .withMatchDate(matchFromDb.getMatchDate())
+                .withMatchDay(matchFromDb.getMatchDay())
+                .withGames(convertToGameList(matchFromDb.getGames()));
     }
 
     private static List<GameFromDb> convertToGameFromDbList(List<Game> games) {
-        return games.stream()//
-                .map(MongoMatchLister::convertToGameFromDb)//
+        return games.stream()
+                .map(MongoMatchLister::convertToGameFromDb)
                 .collect(Collectors.toList());
     }
 
     private static List<Game> convertToGameList(List<GameFromDb> gameCouchDbList) {
-        return gameCouchDbList.stream()//
-                .map(MongoMatchLister::convertToGame)//
+        return gameCouchDbList.stream()
+                .map(MongoMatchLister::convertToGame)
                 .collect(Collectors.toList());
     }
 
@@ -122,7 +120,7 @@ public class MongoMatchLister implements MatchLister {
     }
 
     private static Game convertToGame(GameFromDb gameCouchDb) {
-        return game().withDoubleMatch(gameCouchDb.isDoubleMatch())
+        return createGame().withDoubleMatch(gameCouchDb.isDoubleMatch())
                 .withGuestPlayer1(gameCouchDb.getGuestPlayer1())
                 .withGuestPlayer2(gameCouchDb.getGuestPlayer2())
                 .withGuestScore(gameCouchDb.getGuestScore())

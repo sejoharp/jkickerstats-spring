@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+import static jkickerstats.MatchTestdata.createTestMatch;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CsvCreatorTest {
@@ -42,7 +43,7 @@ public class CsvCreatorTest {
 
     @Test
     public void createsCsvFile() {
-        List<Match> matches = Arrays.asList(MatchTestdata.createMatch());
+        List<Match> matches = Arrays.asList(createTestMatch());
 
         List<String> gameStrings = csvCreator.createCsvRowList(matches);
 

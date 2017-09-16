@@ -3,6 +3,8 @@ package jkickerstats.types;
 import java.util.Date;
 import java.util.List;
 
+import static java.util.Collections.emptyList;
+
 public class Match {
     private final String homeTeam;
     private final String guestTeam;
@@ -15,17 +17,65 @@ public class Match {
     private final List<Game> games;
     private final String matchLink;
 
-    private Match(MatchBuilder builder) {
-        this.homeTeam = builder.homeTeam;
-        this.guestTeam = builder.guestTeam;
-        this.homeGoals = builder.homeGoals;
-        this.guestGoals = builder.guestGoals;
-        this.homeScore = builder.homeScore;
-        this.guestScore = builder.guestScore;
-        this.matchDate = builder.matchDate;
-        this.matchDay = builder.matchDay;
-        this.games = builder.games;
-        this.matchLink = builder.matchLink;
+    private Match(String homeTeam, String guestTeam, int homeGoals, int guestGoals, int homeScore, int guestScore, Date matchDate, int matchDay, List<Game> games, String matchLink) {
+        this.homeTeam = homeTeam;
+        this.guestTeam = guestTeam;
+        this.homeGoals = homeGoals;
+        this.guestGoals = guestGoals;
+        this.homeScore = homeScore;
+        this.guestScore = guestScore;
+        this.matchDate = matchDate;
+        this.matchDay = matchDay;
+        this.games = games;
+        this.matchLink = matchLink;
+    }
+
+    public static Match createMatch(Match match) {
+        return new Match(match.homeTeam, match.guestTeam, match.homeGoals, match.guestGoals, match.homeScore, match.guestScore, match.matchDate, match.matchDay, match.games, match.matchLink);
+    }
+
+    public static Match createMatch() {
+        return new Match(null, null, 0, 0, 0, 0, null, 0, emptyList(), null);
+    }
+
+    public Match withMatchLink(String matchLink) {
+        return new Match(homeTeam, guestTeam, homeGoals, guestGoals, homeScore, guestScore, matchDate, matchDay, games, matchLink);
+    }
+
+    public Match withHomeTeam(String homeTeam) {
+        return new Match(homeTeam, guestTeam, homeGoals, guestGoals, homeScore, guestScore, matchDate, matchDay, games, matchLink);
+    }
+
+    public Match withGuestTeam(String guestTeam) {
+        return new Match(homeTeam, guestTeam, homeGoals, guestGoals, homeScore, guestScore, matchDate, matchDay, games, matchLink);
+    }
+
+    public Match withHomeGoals(int homeGoals) {
+        return new Match(homeTeam, guestTeam, homeGoals, guestGoals, homeScore, guestScore, matchDate, matchDay, games, matchLink);
+    }
+
+    public Match withGuestGoals(int guestGoals) {
+        return new Match(homeTeam, guestTeam, homeGoals, guestGoals, homeScore, guestScore, matchDate, matchDay, games, matchLink);
+    }
+
+    public Match withHomeScore(int homeScore) {
+        return new Match(homeTeam, guestTeam, homeGoals, guestGoals, homeScore, guestScore, matchDate, matchDay, games, matchLink);
+    }
+
+    public Match withGuestScore(int guestScore) {
+        return new Match(homeTeam, guestTeam, homeGoals, guestGoals, homeScore, guestScore, matchDate, matchDay, games, matchLink);
+    }
+
+    public Match withMatchDate(Date matchDate) {
+        return new Match(homeTeam, guestTeam, homeGoals, guestGoals, homeScore, guestScore, matchDate, matchDay, games, matchLink);
+    }
+
+    public Match withMatchDay(int matchDay) {
+        return new Match(homeTeam, guestTeam, homeGoals, guestGoals, homeScore, guestScore, matchDate, matchDay, games, matchLink);
+    }
+
+    public Match withGames(List<Game> games) {
+        return new Match(homeTeam, guestTeam, homeGoals, guestGoals, homeScore, guestScore, matchDate, matchDay, games, matchLink);
     }
 
     public String getMatchLink() {
@@ -141,89 +191,5 @@ public class Match {
         } else if (!matchLink.equals(other.matchLink))
             return false;
         return true;
-    }
-
-    public static class MatchBuilder {
-
-        private String homeTeam;
-        private String guestTeam;
-        private int homeGoals;
-        private int guestGoals;
-        private int homeScore;
-        private int guestScore;
-        private Date matchDate;
-        private int matchDay;
-        private List<Game> games;
-        private String matchLink;
-
-        public MatchBuilder(Match match) {
-            this.homeTeam = match.getHomeTeam();
-            this.guestTeam = match.getGuestTeam();
-            this.homeGoals = match.getHomeGoals();
-            this.guestGoals = match.getGuestGoals();
-            this.homeScore = match.getHomeScore();
-            this.guestScore = match.getGuestScore();
-            this.matchDate = match.getMatchDate();
-            this.matchDay = match.getMatchDay();
-            this.games = match.getGames();
-            this.matchLink = match.getMatchLink();
-        }
-
-        public MatchBuilder() {
-        }
-
-        public MatchBuilder withMatchLink(String matchLink) {
-            this.matchLink = matchLink;
-            return this;
-        }
-
-        public MatchBuilder withHomeTeam(String homeTeam) {
-            this.homeTeam = homeTeam;
-            return this;
-        }
-
-        public MatchBuilder withGuestTeam(String guestTeam) {
-            this.guestTeam = guestTeam;
-            return this;
-        }
-
-        public MatchBuilder withHomeGoals(int homeGoals) {
-            this.homeGoals = homeGoals;
-            return this;
-        }
-
-        public MatchBuilder withGuestGoals(int guestGoals) {
-            this.guestGoals = guestGoals;
-            return this;
-        }
-
-        public MatchBuilder withHomeScore(int homeScore) {
-            this.homeScore = homeScore;
-            return this;
-        }
-
-        public MatchBuilder withGuestScore(int guestScore) {
-            this.guestScore = guestScore;
-            return this;
-        }
-
-        public MatchBuilder withMatchDate(Date matchDate) {
-            this.matchDate = matchDate;
-            return this;
-        }
-
-        public MatchBuilder withMatchDay(int matchDay) {
-            this.matchDay = matchDay;
-            return this;
-        }
-
-        public MatchBuilder withGames(List<Game> games) {
-            this.games = games;
-            return this;
-        }
-
-        public Match build() {
-            return new Match(this);
-        }
     }
 }
