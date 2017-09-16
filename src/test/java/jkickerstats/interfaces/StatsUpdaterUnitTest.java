@@ -5,7 +5,6 @@ import jkickerstats.domain.MatchPersister;
 import jkickerstats.types.Match;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.stream.Stream;
 
@@ -28,27 +27,11 @@ public class StatsUpdaterUnitTest {
     @Test
     public void savesOneMatch() {
         // given
-        ParsedMatchesRetriever downloader = new ParsedMatchesRetriever() {
-            @Override
-            public Stream<Match> get(Integer seasonId) {
-                return Stream.of(createMatchWithLink());
-            }
-
-            @Override
-            public Match downloadGamesFromMatch(Match match) {
-                return createMatchLinkWithDoubleGame();
-            }
-
-            @Override
-            public Stream<Integer> getSeasonIDs() {
-                return Stream.of(1);
-            }
-        };
         MatchLister lister = Collections::emptyList;
         MatchPersister persister = match -> {
             assertThat(match).isEqualTo(createMatchLinkWithDoubleGame());
         };
-        StatsUpdater statsUpdater = new StatsUpdater(lister, persister, downloader);
+        StatsUpdater statsUpdater = new StatsUpdater(lister, persister, createRetriever());
 
         // then
         statsUpdater.updateStats();
@@ -58,7 +41,20 @@ public class StatsUpdaterUnitTest {
     public void doesNotSaveOldMatches() {
         // given
         MatchLister lister = () -> singletonList(createMatchLinkWithDoubleGame());
-        ParsedMatchesRetriever downloader = new ParsedMatchesRetriever() {
+        MatchPersister persister = match -> {
+            fail("should not save old matches");
+        };
+
+        StatsUpdater statsUpdater = new StatsUpdater(lister, persister, createRetriever());
+
+        // then
+        statsUpdater.updateStats();
+    }
+
+    // fixtures
+
+    private ParsedMatchesRetriever createRetriever() {
+        return new ParsedMatchesRetriever() {
             @Override
             public Stream<Match> get(Integer seasonId) {
                 return Stream.of(createMatchWithLink());
@@ -74,13 +70,5 @@ public class StatsUpdaterUnitTest {
                 return Stream.of(1);
             }
         };
-        MatchPersister persister = match -> {
-            fail("should not save old matches");
-        };
-
-        StatsUpdater statsUpdater = new StatsUpdater(lister, persister, downloader);
-
-        // then
-        statsUpdater.updateStats();
     }
 }
