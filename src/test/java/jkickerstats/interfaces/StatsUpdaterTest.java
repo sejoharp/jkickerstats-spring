@@ -1,14 +1,10 @@
 package jkickerstats.interfaces;
 
-import jkickerstats.Application;
 import jkickerstats.types.Match;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationContextLoader;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -19,8 +15,7 @@ import static jkickerstats.interfaces.StatsUpdater.getCurrentSeasonId;
 import static jkickerstats.types.Match.createMatch;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
+@SpringBootTest
 public class StatsUpdaterTest {
     @Autowired
     private StatsUpdater statsUpdater;

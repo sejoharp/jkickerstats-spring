@@ -1,26 +1,26 @@
 package jkickerstats.domain;
 
-import jkickerstats.Application;
 import jkickerstats.MatchTestdata;
 import jkickerstats.types.Match;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationContextLoader;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.stereotype.Repository;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static jkickerstats.MatchTestdata.createTestMatch;
 import static jkickerstats.domain.MongoMatchLister.convertToMatch;
 import static jkickerstats.domain.MongoMatchLister.convertToMatchFromDb;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
+@DataMongoTest(includeFilters = @ComponentScan.Filter(Repository.class))
+@RunWith(SpringRunner.class)
 public class MatchRepoTest {
     @Autowired
     private MatchLister lister;
