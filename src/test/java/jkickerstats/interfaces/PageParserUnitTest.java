@@ -78,7 +78,7 @@ public class PageParserUnitTest {
         List<String> matchLinks = PageParser.findMatchLinks(begegnungenDoc).collect(toList());
 
         assertThat(matchLinks).hasSize(14);
-        String expectedMatchLink = "http://www.kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=118&id=8675";
+        String expectedMatchLink = "https://kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=118&id=8675";
         assertThat(matchLinks.get(0)).isEqualTo(expectedMatchLink);
     }
 
@@ -95,7 +95,7 @@ public class PageParserUnitTest {
 
         assertThat(ligaLinksIDs).hasSize(11);
         assertThat(ligaLinksIDs.get(0)).isEqualTo(
-                "http://www.kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=118");
+                "https://kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=118");
     }
 
     @Test

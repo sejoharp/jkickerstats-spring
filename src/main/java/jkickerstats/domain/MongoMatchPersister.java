@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import static jkickerstats.domain.MongoMatchLister.convertToMatchFromDb;
 
 @Repository
-public class MongoMatchPersister implements MatchPersister{
+public class MongoMatchPersister implements MatchPersister {
 
     private final MongoTemplate mongoTemplate;
 

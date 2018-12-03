@@ -14,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Component
 class CsvCreator {
@@ -33,9 +32,10 @@ class CsvCreator {
 
     public List<String> createCsvRowList(List<Match> matches) {
         List<String> csvList = new ArrayList<>();
-        matches.forEach(match -> match.getGames().forEach(game -> {
-            addRow(csvList, match, game);
-        }));
+        matches.forEach(match -> match.getGames()
+                .forEach(game -> {
+                    addRow(csvList, match, game);
+                }));
         return csvList;
     }
 

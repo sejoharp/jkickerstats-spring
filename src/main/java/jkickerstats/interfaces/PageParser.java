@@ -20,7 +20,7 @@ import static jkickerstats.types.Match.createMatch;
 
 @Component
 class PageParser {
-    private static final String DOMAIN = "http://www.kickern-hamburg.de";
+    private static final String DOMAIN = "https://kickern-hamburg.de";
     private static final String CSS_QUERY_MATCH_DATE = "table.contentpaneopen:nth-child(2) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1)";
 
     static Stream<Game> findGames(Document doc) {

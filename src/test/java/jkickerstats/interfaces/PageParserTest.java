@@ -28,6 +28,20 @@ public class PageParserTest {
 
         // then
         assertThat(ligaLinksIDs).hasSize(11);
-        assertThat(ligaLinksIDs.get(0)).isEqualTo("http://www.kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=118");
+        assertThat(ligaLinksIDs.get(0)).isEqualTo("https://kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=118");
+    }
+
+    @Test
+    public void returnsAllLigaLinksFor2018() throws IOException {
+        // given
+        File testFile = new File(RECOURCES_DIRECTORY + "uebersicht2018_2019.html");
+        Document doc = Jsoup.parse(testFile, "UTF-8", "");
+
+        // when
+        List<String> ligaLinksIDs = findLigaLinks(doc).collect(toList());
+
+        // then
+        assertThat(ligaLinksIDs).hasSize(13);
+        assertThat(ligaLinksIDs.get(12)).isEqualTo("https://kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=164");
     }
 }

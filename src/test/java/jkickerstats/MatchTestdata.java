@@ -57,7 +57,7 @@ public class MatchTestdata {
                 .withHomeScore(32)
                 .withGuestScore(0)
                 .withMatchLink(
-                        "http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=64&id=3815");
+                        "https://kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=64&id=3815");
     }
 
     public static Match createMatchWithLink2() {
@@ -71,7 +71,7 @@ public class MatchTestdata {
                 .withHomeScore(13)
                 .withGuestScore(19)
                 .withMatchLink(
-                        "http://www.kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=118&id=8675");
+                        "https://kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=118&id=8675");
     }
 
     public static Match createMatchLinkWithDoubleGame() {
@@ -86,7 +86,7 @@ public class MatchTestdata {
                 .withGuestScore(0)
                 .withGames(Arrays.asList(GameTestdata.createDoubleGame()))
                 .withMatchLink(
-                        "http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=64&id=3815");
+                        "https://kickern-hamburg.de/liga-tool/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=64&id=3815");
     }
 
     public static Match createMatchLinkWithoutDate() {
@@ -100,6 +100,6 @@ public class MatchTestdata {
                 .withHomeScore(13)
                 .withGuestScore(19)
                 .withMatchLink(
-                        "http://www.kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=118&id=8675");
+                        "https://kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=118&id=8675");
     }
 }

@@ -18,7 +18,7 @@ import static jkickerstats.types.Match.createMatch;
 @Component
 public class ParsedMatchesRetrieverImpl implements ParsedMatchesRetriever {
     private static final Logger LOG = Logger.getLogger(ParsedMatchesRetrieverImpl.class.getName());
-    private static final String SEASONS_URL = "http://www.kickern-hamburg.de/liga-tool/mannschaftswettbewerbe";
+    private static final String SEASONS_URL = "http://kickern-hamburg.de/liga-tool/mannschaftswettbewerbe";
 
     public Stream<Integer> getSeasonIDs() {
         Document seasonsDoc = downloadPage(SEASONS_URL);
