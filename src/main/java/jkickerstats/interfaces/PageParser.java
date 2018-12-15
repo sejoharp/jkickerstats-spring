@@ -6,6 +6,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,7 +16,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static jkickerstats.types.Game.createGame;
 import static jkickerstats.types.Match.createMatch;
 
 @Component
@@ -98,13 +98,19 @@ class PageParser {
     }
 
     static int parseHomeScore(Element doc, boolean imagesAvailable) {
-        String homescore = parseScore(doc, imagesAvailable)[0].trim();
-        return Integer.parseInt(homescore);
+        String[] score = parseScore(doc, imagesAvailable);
+        if (score.length < 1 || StringUtils.isEmpty(score[0].trim())){
+            return 0;
+        }
+        return Integer.parseInt(score[0].trim());
     }
 
     static int parseGuestScore(Element doc, boolean imagesAvailable) {
-        String guestscore = parseScore(doc, imagesAvailable)[1].trim();
-        return Integer.parseInt(guestscore);
+        String[] score = parseScore(doc, imagesAvailable);
+        if (score.length < 2 || StringUtils.isEmpty(score[1].trim())){
+            return 0;
+        }
+        return Integer.parseInt(score[1].trim());
     }
 
     static Date parseDate(String rawDate) {
@@ -147,7 +153,7 @@ class PageParser {
     }
 
     static boolean isValidMatchLink(Element element) {
-        boolean alreadyPlayed = element.select("a").size() == 4;
+        boolean alreadyPlayed = element.select("a[href]").size() == 4;
         if (!alreadyPlayed) {
             return false;
         }

@@ -26,19 +26,21 @@ public class PageParserUnitTest {
 
     private static final Document begegnungDoc = loadFile("begegnung.html");
     private static final Document begegnungNoDateDoc = loadFile("begegnung_no_date.html");
-    private static final Document begegnungenDoc = loadFile("begegnungen.html");
-    private static final Document begegnungenNoDateDoc = loadFile("begegnungen_no_date.html");
+    private static final Document begegnungNoResultDoc = loadFile("begegnung_no_result.html");
+    private static final Document ligaDoc = loadFile("liga.html");
+    private static final Document ligaNoDateDoc = loadFile("liga_no_date.html");
     private static final Document begegnungBildDoc = loadFile("begegnung_bild.html");
-    private static final Document begegnungenLiveDoc = loadFile("begegnungen_live.html");
+    private static final Document ligaLiveDoc = loadFile("liga_20182019_live.html");
+    private static final Document liga20182019 = loadFile("liga_20182019.html");
     private static final Document uebersichtDoc = loadFile("uebersicht.html");
     private static final Document uebersichtRelegationDoc = loadFile("uebersicht_relegation.html");
     private static final Document begegnungNoNamesDoc = loadFile("begegnung_no_names.html");
-    private static final Document begegnungenNumberFormatExceptionDoc = loadFile("begegnungen_NFE.html");
-    private static final Document begegnungenUnconfirmedDoc = loadFile("begegnungen_unconfirmed.html");
+    private static final Document ligaNumberFormatExceptionDoc = loadFile("liga_NFE.html");
+    private static final Document ligaUnconfirmedDoc = loadFile("liga_unconfirmed.html");
 
     @Test
     public void anUnconfirmedMatchIsNotAValidMatch() {
-        Elements linkSnippets = filterMatchLinkSnippets(begegnungenUnconfirmedDoc);
+        Elements linkSnippets = filterMatchLinkSnippets(ligaUnconfirmedDoc);
 
         boolean isValid = PageParser.isValidMatchLink(linkSnippets.get(0));
 
@@ -47,7 +49,7 @@ public class PageParserUnitTest {
 
     @Test
     public void aRunningMatchIsNotAValidMatch() {
-        Elements linkSnippets = filterMatchLinkSnippets(begegnungenLiveDoc);
+        Elements linkSnippets = filterMatchLinkSnippets(ligaLiveDoc);
 
         boolean isValid = PageParser.isValidMatchLink(linkSnippets.get(0));
 
@@ -56,7 +58,7 @@ public class PageParserUnitTest {
 
     @Test
     public void aConfirmedMatchIsAValidMatch() {
-        Elements linkSnippets = filterMatchLinkSnippets(begegnungenLiveDoc);
+        Elements linkSnippets = filterMatchLinkSnippets(ligaLiveDoc);
 
         boolean isValid = PageParser.isValidMatchLink(linkSnippets.get(1));
 
@@ -75,7 +77,7 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAllMatchLinks() throws IOException {
-        List<String> matchLinks = PageParser.findMatchLinks(begegnungenDoc).collect(toList());
+        List<String> matchLinks = PageParser.findMatchLinks(ligaDoc).collect(toList());
 
         assertThat(matchLinks).hasSize(14);
         String expectedMatchLink = "https://kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=begegnung_spielplan&veranstaltungid=118&id=8675";
@@ -84,9 +86,16 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAllConfirmedMatchLinks() throws IOException {
-        List<String> matchLinks = PageParser.findMatchLinks(begegnungenLiveDoc).collect(toList());
+        List<String> matchLinks = PageParser.findMatchLinks(ligaLiveDoc).collect(toList());
 
-        assertThat(matchLinks).hasSize(13);
+        assertThat(matchLinks).hasSize(27);
+    }
+
+    @Test
+    public void returnsAllConfirmedMatchLinks20182019() throws IOException {
+        List<String> matchLinks = PageParser.findMatchLinks(liga20182019).collect(toList());
+
+        assertThat(matchLinks).hasSize(28);
     }
 
     @Test
@@ -100,7 +109,7 @@ public class PageParserUnitTest {
 
     @Test
     public void filtersAllMatchLinkSnippets() throws IOException {
-        Elements elements = filterMatchLinkSnippets(begegnungenDoc);
+        Elements elements = filterMatchLinkSnippets(ligaDoc);
 
         assertThat(elements).hasSize(90);
     }
@@ -202,6 +211,20 @@ public class PageParserUnitTest {
         Elements rawGames = PageParser.filterGameSnippets(begegnungDoc);
 
         assertThat(PageParser.parseHomeScore(rawGames.first(), true)).isEqualTo(4);
+    }
+
+    @Test
+    public void parsesMissingHomeScore() throws IOException {
+        Elements rawGames = PageParser.filterGameSnippets(begegnungNoResultDoc);
+
+        assertThat(PageParser.parseHomeScore(rawGames.first(), true)).isEqualTo(0);
+    }
+
+    @Test
+    public void parsesMissingGuestScore() throws IOException {
+        Elements rawGames = PageParser.filterGameSnippets(begegnungNoResultDoc);
+
+        assertThat(PageParser.parseGuestScore(rawGames.first(), true)).isEqualTo(0);
     }
 
     @Test
@@ -389,7 +412,7 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAFilledMatch() {
-        List<Match> matches = PageParser.findMatches(begegnungenDoc).collect(toList());
+        List<Match> matches = PageParser.findMatches(ligaDoc).collect(toList());
         Match match = matches.get(0);
 
         assertThat(match).isEqualTo(MatchTestdata.createMatchWithLink2());
@@ -397,7 +420,7 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAllMatchesWithoutNumberFormatException() {
-        List<Match> matches = PageParser.findMatches(begegnungenNumberFormatExceptionDoc).collect(toList());
+        List<Match> matches = PageParser.findMatches(ligaNumberFormatExceptionDoc).collect(toList());
         Match match = matches.get(0);
 
         assertThat(match.getHomeGoals()).isEqualTo(0);
@@ -408,7 +431,7 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsTeamNamesWithoutDescriptions() {
-        List<Match> matches = PageParser.findMatches(begegnungenDoc).collect(toList());
+        List<Match> matches = PageParser.findMatches(ligaDoc).collect(toList());
         Match match = matches.get(0);
 
         assertThat(match.getHomeTeam()).isEqualTo("Krabbeltüte");
@@ -416,7 +439,7 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAFilledMatchWithoutDate() {
-        List<Match> matches = PageParser.findMatches(begegnungenNoDateDoc).collect(toList());
+        List<Match> matches = PageParser.findMatches(ligaNoDateDoc).collect(toList());
         Match match = matches.get(0);
 
         assertThat(match).isEqualTo(MatchTestdata.createMatchLinkWithoutDate());
@@ -424,11 +447,17 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAllMatches() {
-        List<Match> matches = PageParser.findMatches(begegnungenDoc).collect(toList());
-        assertThat(matches.size()).hasSameClassAs(14);
+        List<Match> matches = PageParser.findMatches(ligaDoc).collect(toList());
+        assertThat(matches).hasSize(14);
     }
 
-    private static Document loadFile(String fileName) {
+    @Test
+    public void returnsAllMatchesFrom20182019() {
+        List<Match> matches = PageParser.findMatches(liga20182019).collect(toList());
+        assertThat(matches).hasSize(28);
+    }
+
+    static Document loadFile(String fileName) {
         File testFile = new File(PageParserTest.RECOURCES_DIRECTORY + fileName);
         try {
             return Jsoup.parse(testFile, "UTF-8", "");

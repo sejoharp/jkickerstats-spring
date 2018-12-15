@@ -62,27 +62,30 @@ public class StatsUpdaterTest {
     @Ignore
     @Test
     public void findsMatches() {
-        ParsedMatchesRetrieverImpl.getLigaLinks(11).forEach(ligaLink -> {
-            System.out.println("processing liga link: " + ligaLink);
-            ParsedMatchesRetrieverImpl.getMatchLinks(ligaLink)
-                    .forEach(matchLink -> {
-                        System.out.println("processing createMatch link: " + matchLink);
-                        getGames(matchLink).forEach(System.out::println);
-                    });
-        });
+        ParsedMatchesRetrieverImpl.getLigaLinks(13)
+                .forEach(ligaLink -> {
+                    System.out.println("processing liga link: " + ligaLink);
+                    ParsedMatchesRetrieverImpl.getMatchLinks(ligaLink)
+                            .forEach(matchLink -> {
+                                System.out.println("processing createMatch link: " + matchLink);
+                                getGames(matchLink).forEach(System.out::println);
+                            });
+                });
 
     }
 
     @Ignore
     @Test
     public void findsAllMatches() {
-        ParsedMatchesRetrieverImpl.getLigaLinks(11)
+        ParsedMatchesRetrieverImpl.getLigaLinks(16)
                 .forEach(ligaLink -> ParsedMatchesRetrieverImpl.getMatches(ligaLink)
                         .forEach(match -> {
                             Match fullMatch = createMatch(match)
                                     .withGames(getGames(match.getMatchLink()).collect(toList()));
                             System.out.println(String.format("Datum:%s home:%s guest:%s spiele:%s",
-                                    fullMatch.getMatchDate(), fullMatch.getHomeTeam(), fullMatch.getGuestTeam(),
+                                    fullMatch.getMatchDate(),
+                                    fullMatch.getHomeTeam(),
+                                    fullMatch.getGuestTeam(),
                                     fullMatch.getGames().size()));
                         }));
     }
