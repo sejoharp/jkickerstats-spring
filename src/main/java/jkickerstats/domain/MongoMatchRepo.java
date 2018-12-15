@@ -15,12 +15,11 @@ import java.util.stream.Collectors;
 import static jkickerstats.types.Game.createGame;
 
 @Repository
-public class MongoMatchLister implements MatchLister {
-
+public class MongoMatchRepo implements MatchPersister, MatchLister {
     private final MongoTemplate mongoTemplate;
 
     @Autowired
-    public MongoMatchLister(MongoTemplate mongoTemplate) {
+    public MongoMatchRepo(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
     }
 
@@ -55,15 +54,19 @@ public class MongoMatchLister implements MatchLister {
                 .count(new Query(new Criteria()), MatchFromDb.class);
     }
 
+    public void save(Match match) {
+        mongoTemplate.save(convertToMatchFromDb(match));
+    }
+
     private static List<MatchFromDb> convertToMatchFromDbList(List<Match> matches) {
         return matches.stream()
-                .map(MongoMatchLister::convertToMatchFromDb)
+                .map(MongoMatchRepo::convertToMatchFromDb)
                 .collect(Collectors.toList());
     }
 
     private static List<Match> convertToMatchList(List<MatchFromDb> matchFromDbs) {
         return matchFromDbs.stream()
-                .map(MongoMatchLister::convertToMatch)
+                .map(MongoMatchRepo::convertToMatch)
                 .collect(Collectors.toList());
     }
 
@@ -96,13 +99,13 @@ public class MongoMatchLister implements MatchLister {
 
     private static List<GameFromDb> convertToGameFromDbList(List<Game> games) {
         return games.stream()
-                .map(MongoMatchLister::convertToGameFromDb)
+                .map(MongoMatchRepo::convertToGameFromDb)
                 .collect(Collectors.toList());
     }
 
     private static List<Game> convertToGameList(List<GameFromDb> gameCouchDbList) {
         return gameCouchDbList.stream()
-                .map(MongoMatchLister::convertToGame)
+                .map(MongoMatchRepo::convertToGame)
                 .collect(Collectors.toList());
     }
 
@@ -129,5 +132,4 @@ public class MongoMatchLister implements MatchLister {
                 .withHomeScore(gameCouchDb.getHomeScore())
                 .withPosition(gameCouchDb.getPosition());
     }
-
 }
