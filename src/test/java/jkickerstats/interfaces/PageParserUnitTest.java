@@ -29,7 +29,7 @@ public class PageParserUnitTest {
     private static final Document begegnungNoResultDoc = loadFile("begegnung_no_result.html");
     private static final Document ligaDoc = loadFile("liga.html");
     private static final Document ligaNoDateDoc = loadFile("liga_no_date.html");
-    private static final Document begegnungBildDoc = loadFile("begegnung_bild.html");
+    private static final Document begegnungBildDoc = loadFile("begegnung_with_image.html");
     private static final Document ligaLiveDoc = loadFile("liga_20182019_live.html");
     private static final Document liga20182019 = loadFile("liga_20182019.html");
     private static final Document uebersichtDoc = loadFile("uebersicht.html");
