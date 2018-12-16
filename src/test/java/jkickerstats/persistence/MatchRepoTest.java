@@ -14,6 +14,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static jkickerstats.MatchTestdata.createTestMatch;
 import static jkickerstats.persistence.MongoMatchRepo.convertToMatch;
 import static jkickerstats.persistence.MongoMatchRepo.convertToMatchFromDb;
@@ -74,6 +76,19 @@ public class MatchRepoTest {
                 new Criteria()), MatchFromDb.class);
 
         assertThat(convertToMatch(matchFromDb)).isEqualTo(createTestMatch());
+    }
+
+    @Test
+    public void findesAllMatches() {
+        //given
+        Match expectedMatch = createTestMatch();
+        persister.save(expectedMatch);
+
+        //when
+        List<Match> matchFromDb = lister.getAllMatches();
+
+        //then
+        assertThat(matchFromDb.get(0)).isEqualTo(expectedMatch);
     }
 
     @Test

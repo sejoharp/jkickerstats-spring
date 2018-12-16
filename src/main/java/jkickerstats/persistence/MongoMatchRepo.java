@@ -41,8 +41,7 @@ public class MongoMatchRepo implements MatchPersister, MatchLister {
 
     @Override
     public List<Match> getAllMatches() {
-        Criteria criteria = new Criteria().all(MatchFromDb.class);
-        Query query = new Query(criteria);
+        Query query = new Query(new Criteria());
         query.with(new Sort(Sort.Direction.DESC, "matchDate"));
         List<MatchFromDb> matches = mongoTemplate.find(query, MatchFromDb.class);
         return convertToMatchList(matches);
