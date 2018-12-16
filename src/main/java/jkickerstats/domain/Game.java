@@ -1,4 +1,4 @@
-package jkickerstats.types;
+package jkickerstats.domain;
 
 public class Game {
     private final String homePlayer1;

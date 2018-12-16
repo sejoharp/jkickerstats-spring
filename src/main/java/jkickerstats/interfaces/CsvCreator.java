@@ -1,7 +1,7 @@
 package jkickerstats.interfaces;
 
-import jkickerstats.types.Game;
-import jkickerstats.types.Match;
+import jkickerstats.domain.Game;
+import jkickerstats.domain.Match;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
@@ -16,8 +16,8 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-class CsvCreator {
-    void createCsvFile(List<String> csvRowList) {
+public class CsvCreator {
+    public void createCsvFile(List<String> csvRowList) {
         Path path = Paths.get("allGames.csv");
         try (BufferedWriter writer = Files.newBufferedWriter(path,
                 StandardCharsets.UTF_8)) {

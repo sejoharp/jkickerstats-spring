@@ -1,9 +1,9 @@
-package jkickerstats.interfaces;
+package jkickerstats.services;
 
 import jkickerstats.GameTestdata;
 import jkickerstats.MatchTestdata;
-import jkickerstats.types.Game;
-import jkickerstats.types.Match;
+import jkickerstats.domain.Game;
+import jkickerstats.domain.Match;
 import org.assertj.core.api.exception.RuntimeIOException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,8 +18,8 @@ import java.util.Date;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
-import static jkickerstats.interfaces.MatchParser.filterMatchLinkSnippets;
-import static jkickerstats.types.Game.createGame;
+import static jkickerstats.domain.Game.createGame;
+import static jkickerstats.services.MatchParser.filterMatchLinkSnippets;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PageParserUnitTest {

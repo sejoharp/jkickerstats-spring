@@ -1,7 +1,9 @@
-package jkickerstats.interfaces;
+package jkickerstats.services;
 
-import jkickerstats.types.Game;
-import jkickerstats.types.Match;
+import jkickerstats.domain.Game;
+import jkickerstats.domain.Match;
+import jkickerstats.persistence.MatchLister;
+import jkickerstats.persistence.MatchPersister;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,11 +14,11 @@ import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
-import static jkickerstats.interfaces.ParsedMatchesRetrieverImpl.*;
-import static jkickerstats.types.Match.createMatch;
+import static jkickerstats.domain.Match.createMatch;
+import static jkickerstats.services.ParsedMatchesRetrieverImpl.*;
 
 @Component
-class StatsUpdater {
+public class StatsUpdater {
     private static final Logger LOG = Logger.getLogger(StatsUpdater.class.getName());
 
     private final MatchLister matchLister;
@@ -30,7 +32,7 @@ class StatsUpdater {
         this.parsedMatchesRetriever = parsedMatchesRetriever;
     }
 
-    void updateStats() {
+    public void updateStats() {
         LOG.info("updater batch started.");
         long matchesCountBefore = matchLister.countMatches();
         if (matchLister.noMatchesAvailable()) {

@@ -1,17 +1,18 @@
-package jkickerstats.interfaces;
+package jkickerstats.services;
 
-import jkickerstats.types.Match;
+import jkickerstats.MatchTestdata;
+import jkickerstats.domain.Match;
+import jkickerstats.persistence.MatchLister;
+import jkickerstats.persistence.MatchPersister;
+import org.assertj.core.api.Fail;
 import org.junit.Test;
 
 import java.util.Collections;
 import java.util.stream.Stream;
 
 import static java.util.Collections.singletonList;
-import static jkickerstats.MatchTestdata.createMatchLinkWithDoubleGame;
-import static jkickerstats.MatchTestdata.createMatchWithLink;
-import static jkickerstats.interfaces.StatsUpdater.getCurrentSeasonId;
+import static jkickerstats.services.StatsUpdater.getCurrentSeasonId;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Fail.fail;
 
 public class StatsUpdaterUnitTest {
 
@@ -26,7 +27,7 @@ public class StatsUpdaterUnitTest {
     public void savesOneMatch() {
         // given
         MatchLister lister = Collections::emptyList;
-        MatchPersister persister = match -> assertThat(match).isEqualTo(createMatchLinkWithDoubleGame());
+        MatchPersister persister = match -> assertThat(match).isEqualTo(MatchTestdata.createMatchLinkWithDoubleGame());
         StatsUpdater statsUpdater = new StatsUpdater(lister, persister, createRetriever());
 
         // then
@@ -36,8 +37,8 @@ public class StatsUpdaterUnitTest {
     @Test
     public void doesNotSaveOldMatches() {
         // given
-        MatchLister lister = () -> singletonList(createMatchLinkWithDoubleGame());
-        MatchPersister persister = match -> fail("should not save old matches");
+        MatchLister lister = () -> singletonList(MatchTestdata.createMatchLinkWithDoubleGame());
+        MatchPersister persister = match -> Fail.fail("should not save old matches");
         StatsUpdater statsUpdater = new StatsUpdater(lister, persister, createRetriever());
 
         // then
@@ -50,12 +51,12 @@ public class StatsUpdaterUnitTest {
         return new ParsedMatchesRetriever() {
             @Override
             public Stream<Match> get(Integer seasonId) {
-                return Stream.of(createMatchWithLink());
+                return Stream.of(MatchTestdata.createMatchWithLink());
             }
 
             @Override
             public Match downloadGamesFromMatch(Match match) {
-                return createMatchLinkWithDoubleGame();
+                return MatchTestdata.createMatchLinkWithDoubleGame();
             }
 
             @Override

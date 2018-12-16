@@ -1,6 +1,6 @@
-package jkickerstats.interfaces;
+package jkickerstats.services;
 
-import jkickerstats.types.Match;
+import jkickerstats.domain.Match;
 
 import java.util.stream.Stream;
 

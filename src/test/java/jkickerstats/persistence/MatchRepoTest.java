@@ -1,7 +1,7 @@
-package jkickerstats.domain;
+package jkickerstats.persistence;
 
 import jkickerstats.MatchTestdata;
-import jkickerstats.types.Match;
+import jkickerstats.domain.Match;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,8 +15,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static jkickerstats.MatchTestdata.createTestMatch;
-import static jkickerstats.domain.MongoMatchRepo.convertToMatch;
-import static jkickerstats.domain.MongoMatchRepo.convertToMatchFromDb;
+import static jkickerstats.persistence.MongoMatchRepo.convertToMatch;
+import static jkickerstats.persistence.MongoMatchRepo.convertToMatchFromDb;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataMongoTest(includeFilters = @ComponentScan.Filter(Repository.class))

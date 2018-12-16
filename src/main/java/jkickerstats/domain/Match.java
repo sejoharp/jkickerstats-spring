@@ -1,4 +1,4 @@
-package jkickerstats.types;
+package jkickerstats.domain;
 
 import java.util.Date;
 import java.util.List;

@@ -1,7 +1,7 @@
-package jkickerstats.domain;
+package jkickerstats.persistence;
 
-import jkickerstats.types.Game;
-import jkickerstats.types.Match;
+import jkickerstats.domain.Game;
+import jkickerstats.domain.Match;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static jkickerstats.types.Game.createGame;
+import static jkickerstats.domain.Game.createGame;
 
 @Repository
 public class MongoMatchRepo implements MatchPersister, MatchLister {

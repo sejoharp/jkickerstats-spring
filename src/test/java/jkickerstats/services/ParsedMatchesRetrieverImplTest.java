@@ -1,4 +1,4 @@
-package jkickerstats.interfaces;
+package jkickerstats.services;
 
 import org.junit.Test;
 

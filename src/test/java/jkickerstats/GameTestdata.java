@@ -1,16 +1,15 @@
 package jkickerstats;
 
-import jkickerstats.domain.GameFromDb;
-import jkickerstats.types.Game;
+import jkickerstats.domain.Game;
 
 import java.util.Calendar;
 import java.util.Date;
 
-import static jkickerstats.types.Game.createGame;
+import static jkickerstats.domain.Game.createGame;
 
 public class GameTestdata {
 
-    public static Game createSingleGame() {
+    static Game createSingleGame() {
         return createGame()
                 .withDoubleMatch(false)
                 .withGuestPlayer1("Matheuszik, Sven")
@@ -42,8 +41,8 @@ public class GameTestdata {
                 .withPosition(16);
     }
 
-    public static Date createDate(int year, int month, int day, int hour,
-                                  int min) {
+    static Date createDate(int year, int month, int day, int hour,
+                           int min) {
         Calendar calendar = Calendar.getInstance();
         calendar.clear();
         calendar.set(Calendar.YEAR, year);
@@ -54,33 +53,4 @@ public class GameTestdata {
         return calendar.getTime();
     }
 
-    public static Date createZeroCalendar() {
-        Calendar matchDate = Calendar.getInstance();
-        matchDate.setTimeInMillis(0);
-        return matchDate.getTime();
-    }
-
-    public static GameFromDb createDoubleGameCouchDb() {
-        GameFromDb gameCouchDb = new GameFromDb();
-        gameCouchDb.setDoubleMatch(true);
-        gameCouchDb.setGuestPlayer1("guest player1");
-        gameCouchDb.setGuestPlayer2("guest player2");
-        gameCouchDb.setGuestScore(10);
-        gameCouchDb.setHomePlayer1("home player1");
-        gameCouchDb.setHomePlayer2("home player2");
-        gameCouchDb.setHomeScore(22);
-        gameCouchDb.setPosition(2);
-        return gameCouchDb;
-    }
-
-    public Game createDoubleGame2() {
-        return createGame().withDoubleMatch(true)
-                .withGuestPlayer1("guest player1")
-                .withGuestPlayer2("guest player2")
-                .withGuestScore(10)
-                .withHomePlayer1("home player1")
-                .withHomePlayer2("home player2")
-                .withHomeScore(22)
-                .withPosition(2);
-    }
 }

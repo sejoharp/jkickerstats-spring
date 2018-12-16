@@ -1,6 +1,6 @@
-package jkickerstats.domain;
+package jkickerstats.persistence;
 
-import jkickerstats.types.Match;
+import jkickerstats.domain.Match;
 
 import java.util.List;
 

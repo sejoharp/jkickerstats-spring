@@ -1,10 +1,10 @@
-package jkickerstats.interfaces;
+package jkickerstats.services;
 
 import org.jsoup.nodes.Document;
 import org.junit.Test;
 
-import static jkickerstats.interfaces.PageDownloader.downloadPage;
-import static jkickerstats.interfaces.PageDownloader.downloadSeason;
+import static jkickerstats.services.PageDownloader.downloadPage;
+import static jkickerstats.services.PageDownloader.downloadSeason;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PageDownloaderTest {

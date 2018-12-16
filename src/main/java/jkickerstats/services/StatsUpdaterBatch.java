@@ -1,4 +1,4 @@
-package jkickerstats.interfaces;
+package jkickerstats.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;

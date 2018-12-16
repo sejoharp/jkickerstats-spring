@@ -1,4 +1,4 @@
-package jkickerstats.domain;
+package jkickerstats.persistence;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 

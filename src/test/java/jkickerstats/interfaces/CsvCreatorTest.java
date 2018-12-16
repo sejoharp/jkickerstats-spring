@@ -1,7 +1,7 @@
 package jkickerstats.interfaces;
 
 import jkickerstats.MatchTestdata;
-import jkickerstats.types.Match;
+import jkickerstats.domain.Match;
 import org.junit.Before;
 import org.junit.Test;
 

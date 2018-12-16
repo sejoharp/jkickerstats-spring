@@ -1,7 +1,7 @@
-package jkickerstats.interfaces;
+package jkickerstats.services;
 
-import jkickerstats.types.Game;
-import jkickerstats.types.Match;
+import jkickerstats.domain.Game;
+import jkickerstats.domain.Match;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
@@ -10,10 +10,11 @@ import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
-import static jkickerstats.interfaces.PageDownloader.downloadPage;
-import static jkickerstats.interfaces.PageDownloader.downloadSeason;
-import static jkickerstats.interfaces.PageParser.*;
-import static jkickerstats.types.Match.createMatch;
+import static jkickerstats.domain.Match.createMatch;
+import static jkickerstats.services.PageDownloader.downloadPage;
+import static jkickerstats.services.PageDownloader.downloadSeason;
+import static jkickerstats.services.PageParser.findLigaLinks;
+import static jkickerstats.services.PageParser.findSeasonIDs;
 
 @Component
 public class ParsedMatchesRetrieverImpl implements ParsedMatchesRetriever {

@@ -1,6 +1,8 @@
-package jkickerstats.interfaces;
+package jkickerstats.services;
 
-import jkickerstats.types.Match;
+import jkickerstats.domain.Match;
+import jkickerstats.interfaces.CsvCreator;
+import org.assertj.core.api.Assertions;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +12,9 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
-import static jkickerstats.interfaces.ParsedMatchesRetrieverImpl.getGames;
-import static jkickerstats.interfaces.StatsUpdater.getCurrentSeasonId;
-import static jkickerstats.types.Match.createMatch;
+import static jkickerstats.domain.Match.createMatch;
+import static jkickerstats.services.ParsedMatchesRetrieverImpl.getGames;
+import static jkickerstats.services.StatsUpdater.getCurrentSeasonId;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest

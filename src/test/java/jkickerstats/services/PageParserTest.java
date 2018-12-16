@@ -1,4 +1,4 @@
-package jkickerstats.interfaces;
+package jkickerstats.services;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -7,10 +7,9 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
-import static jkickerstats.interfaces.PageParser.findLigaLinks;
+import static jkickerstats.services.PageParser.findLigaLinks;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PageParserTest {

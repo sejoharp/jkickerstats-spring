@@ -1,16 +1,10 @@
-package jkickerstats.interfaces;
+package jkickerstats.services;
 
-import jkickerstats.types.Game;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
-import java.util.*;
 import java.util.stream.Stream;
-
-import static jkickerstats.types.Match.createMatch;
 
 @Component
 class PageParser {

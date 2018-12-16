@@ -1,5 +1,7 @@
 package jkickerstats.interfaces;
 
+import jkickerstats.persistence.MatchLister;
+import jkickerstats.services.StatsUpdater;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

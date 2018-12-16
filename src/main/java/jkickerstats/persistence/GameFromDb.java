@@ -1,4 +1,4 @@
-package jkickerstats.domain;
+package jkickerstats.persistence;
 
 public class GameFromDb {
     private String homePlayer1;

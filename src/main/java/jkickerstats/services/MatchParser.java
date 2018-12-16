@@ -1,6 +1,6 @@
-package jkickerstats.interfaces;
+package jkickerstats.services;
 
-import jkickerstats.types.Match;
+import jkickerstats.domain.Match;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static jkickerstats.types.Match.createMatch;
+import static jkickerstats.domain.Match.createMatch;
 
 public class MatchParser {
     static final String DOMAIN = "https://kickern-hamburg.de";
