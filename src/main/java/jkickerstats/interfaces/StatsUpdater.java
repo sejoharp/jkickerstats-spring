@@ -1,7 +1,5 @@
 package jkickerstats.interfaces;
 
-import jkickerstats.domain.MatchLister;
-import jkickerstats.domain.MatchPersister;
 import jkickerstats.types.Game;
 import jkickerstats.types.Match;
 import org.springframework.beans.factory.annotation.Autowired;

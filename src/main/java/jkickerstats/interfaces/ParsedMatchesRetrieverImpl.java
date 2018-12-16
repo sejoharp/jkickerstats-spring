@@ -39,7 +39,7 @@ public class ParsedMatchesRetrieverImpl implements ParsedMatchesRetriever {
     static Stream<Game> getGames(String matchLink) {
         Document matchDoc = downloadPage(matchLink);
         try {
-            return findGames(matchDoc);
+            return GameParser.findGames(matchDoc);
         } catch (Exception e) {
             LOG.severe("processing createMatch: " + matchLink);
             throw e;
@@ -48,13 +48,13 @@ public class ParsedMatchesRetrieverImpl implements ParsedMatchesRetriever {
 
     static Stream<String> getMatchLinks(String ligaLink) {
         Document ligaDoc = downloadPage(ligaLink);
-        return findMatchLinks(ligaDoc);
+        return MatchParser.findMatchLinks(ligaDoc);
     }
 
     static Stream<Match> getMatches(String ligaLink) {
         Document ligaDoc = downloadPage(ligaLink);
         try {
-            return findMatches(ligaDoc);
+            return MatchParser.findMatches(ligaDoc);
         } catch (Exception e) {
             LOG.severe("processing liga: " + ligaLink);
             throw e;
