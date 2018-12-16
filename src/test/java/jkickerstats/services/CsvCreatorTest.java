@@ -1,7 +1,8 @@
-package jkickerstats.interfaces;
+package jkickerstats.services;
 
 import jkickerstats.MatchTestdata;
 import jkickerstats.domain.Match;
+import jkickerstats.services.CsvCreator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+import static java.util.Arrays.asList;
 import static jkickerstats.MatchTestdata.createTestMatch;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,7 +26,7 @@ public class CsvCreatorTest {
 
     @Test
     public void createsACompleteCsvFile() {
-        List<Match> matches = Arrays.asList(MatchTestdata.createMatchWithSinglegame());
+        List<Match> matches = asList(MatchTestdata.createMatchWithSinglegame());
 
         List<String> csvGames = csvCreator.createCsvRowList(matches);
 
@@ -33,7 +35,7 @@ public class CsvCreatorTest {
 
     @Test
     public void createsACompleteCsvFileWithADoubleGame() {
-        List<Match> matches = Arrays.asList(MatchTestdata.createMatchWithDoublegame());
+        List<Match> matches = asList(MatchTestdata.createMatchWithDoublegame());
 
         List<String> csvGames = csvCreator.createCsvRowList(matches);
 
@@ -43,7 +45,7 @@ public class CsvCreatorTest {
 
     @Test
     public void createsCsvFile() {
-        List<Match> matches = Arrays.asList(createTestMatch());
+        List<Match> matches = asList(createTestMatch());
 
         List<String> gameStrings = csvCreator.createCsvRowList(matches);
 

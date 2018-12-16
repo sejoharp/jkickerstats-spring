@@ -1,8 +1,6 @@
 package jkickerstats.services;
 
 import jkickerstats.domain.Match;
-import jkickerstats.interfaces.CsvCreator;
-import org.assertj.core.api.Assertions;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package jkickerstats.interfaces;
+package jkickerstats.services;
 
 import jkickerstats.domain.Game;
 import jkickerstats.domain.Match;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @Component
 public class CsvCreator {
-    public void createCsvFile(List<String> csvRowList) {
+    void createCsvFile(List<String> csvRowList) {
         Path path = Paths.get("allGames.csv");
         try (BufferedWriter writer = Files.newBufferedWriter(path,
                 StandardCharsets.UTF_8)) {
