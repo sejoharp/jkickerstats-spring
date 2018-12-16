@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 
 import static jkickerstats.domain.Match.createMatch;
 
-public class MatchParser {
+class MatchParser {
     static final String DOMAIN = "https://kickern-hamburg.de";
     private static final String MATCH_DATE_CSS_SELECTOR = "table.contentpaneopen:nth-child(2) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1)";
 

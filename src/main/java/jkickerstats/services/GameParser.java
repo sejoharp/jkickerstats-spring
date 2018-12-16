@@ -9,7 +9,7 @@ import org.springframework.util.StringUtils;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class GameParser {
+class GameParser {
     static Stream<Game> findGames(Document doc) {
         Elements gameSnippets = filterGameSnippets(doc);
         return isValidGameList(gameSnippets) ? extractGames(gameSnippets) : Stream.empty();

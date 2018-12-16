@@ -10,7 +10,7 @@ import java.util.Map;
 class PageDownloader {
     private static int TIMEOUT = 10 * 1000;
 
-    public static Document downloadPage(String url) {
+    static Document downloadPage(String url) {
         try {
             return Jsoup.connect(url)
                     .validateTLSCertificates(false)
@@ -21,7 +21,7 @@ class PageDownloader {
         }
     }
 
-    public static Document downloadSeason(int seasonId) {
+    static Document downloadSeason(int seasonId) {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("filter_saison_id", String.valueOf(seasonId));
         parameters.put("ok", "Los");
