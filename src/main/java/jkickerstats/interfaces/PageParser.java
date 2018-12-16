@@ -10,10 +10,7 @@ import org.springframework.util.StringUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 import static jkickerstats.types.Match.createMatch;
@@ -98,19 +95,23 @@ class PageParser {
     }
 
     static int parseHomeScore(Element doc, boolean imagesAvailable) {
-        String[] score = parseScore(doc, imagesAvailable);
-        if (score.length < 1 || StringUtils.isEmpty(score[0].trim())){
-            return 0;
-        }
-        return Integer.parseInt(score[0].trim());
+        return parseScore(doc, imagesAvailable, 0);
     }
 
     static int parseGuestScore(Element doc, boolean imagesAvailable) {
-        String[] score = parseScore(doc, imagesAvailable);
-        if (score.length < 2 || StringUtils.isEmpty(score[1].trim())){
-            return 0;
-        }
-        return Integer.parseInt(score[1].trim());
+        return parseScore(doc, imagesAvailable, 1);
+    }
+
+    private static int parseScore(Element doc, boolean imagesAvailable, int scorePosition) {
+        int index = imagesAvailable ? 3 : 2;
+        String scoreString = doc.children().eq(index).text().trim();
+        return StringUtils.isEmpty(scoreString) ?
+                0 :
+                Optional.of(scoreString)
+                        .map(scores -> scores.split(":"))
+                        .filter(scores -> scores.length == 2)
+                        .map(scores -> Integer.parseInt(scores[scorePosition]))
+                        .orElse(0);
     }
 
     static Date parseDate(String rawDate) {
@@ -159,12 +160,6 @@ class PageParser {
         }
         String scoreDescription = element.select("td:nth-child(5) small").text();
         return isMatchConfirmed(scoreDescription) && isMatchCompleted(scoreDescription);
-    }
-
-    private static String[] parseScore(Element doc, boolean imagesAvailable) {
-        int index = imagesAvailable ? 3 : 2;
-        String scoreString = doc.children().eq(index).text();
-        return scoreString.split(":");
     }
 
     private static String parseMatchLink(Element element) {
