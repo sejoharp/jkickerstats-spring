@@ -9,7 +9,6 @@ tmp
 .history
 dist
 /.idea
-/*.iml
 /out
 /.idea_modules
 .classpath
@@ -17,3 +16,6 @@ dist
 /RUNNING_PID
 /.settings
 allGames.csv
+jkickerstats.*
+.gradle/
+build/

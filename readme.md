@@ -16,10 +16,10 @@ This app grabs all matches vom kickern-hamburg.de and makes it available as csv.
 
 ## compile 
 * clone this repo
-* maven build (`mvn package` or `mvn package -Dmaven.test.skip=true`)
-		
+* ./gradlew bootJar
+
 ## deployment
-* copy the jar-file from the target-directory to the server
+* copy the jar-file from the `build/libs`-directory to the server
 * copy the file application.properties to the same directory
 * customize the config to your setup 
 * start the application with the following command: `java -Djava.awt.headless=true -server -Xms48m -Xmx250m -XX:MaxPermSize=150m -jar jkickerstats.jar`

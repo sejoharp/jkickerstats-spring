@@ -4,7 +4,6 @@ import jkickerstats.GameTestdata;
 import jkickerstats.MatchTestdata;
 import jkickerstats.domain.Game;
 import jkickerstats.domain.Match;
-import org.assertj.core.api.exception.RuntimeIOException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -425,7 +424,7 @@ public class PageParserUnitTest {
         try {
             return Jsoup.parse(testFile, "UTF-8", "");
         } catch (IOException e) {
-            throw new RuntimeIOException(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 

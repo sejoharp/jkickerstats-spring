@@ -21,10 +21,10 @@ public class Application {
 
 
     @Autowired
-    MongoDbFactory mongoDbFactory;
+    private MongoDbFactory mongoDbFactory;
 
     @Autowired
-    MongoMappingContext mongoMappingContext;
+    private MongoMappingContext mongoMappingContext;
 
     @Bean
     public MappingMongoConverter mappingMongoConverter() {
