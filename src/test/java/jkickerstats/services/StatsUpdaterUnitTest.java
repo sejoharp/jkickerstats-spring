@@ -31,7 +31,7 @@ public class StatsUpdaterUnitTest {
         StatsUpdater statsUpdater = new StatsUpdater(lister, persister, createRetriever());
 
         // then
-        statsUpdater.updateStats();
+        statsUpdater.updateStats(null);
     }
 
     @Test
@@ -42,15 +42,14 @@ public class StatsUpdaterUnitTest {
         StatsUpdater statsUpdater = new StatsUpdater(lister, persister, createRetriever());
 
         // then
-        statsUpdater.updateStats();
+        statsUpdater.updateStats(null);
     }
 
     // fixtures
-
     private ParsedMatchesRetriever createRetriever() {
         return new ParsedMatchesRetriever() {
             @Override
-            public Stream<Match> get(Integer seasonId) {
+            public Stream<Match> getViaDocs(Integer seasonId) {
                 return Stream.of(MatchTestdata.createMatchWithLink());
             }
 

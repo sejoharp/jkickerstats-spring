@@ -20,4 +20,8 @@ class PageParser {
         return elements.stream()
                 .map(element -> Integer.valueOf(element.attr("value")));
     }
+
+    static boolean isZwischenSaison2018(Document doc) {
+        return doc.getElementsContainingText("Zwischensaison 2018").size() > 0;
+    }
 }

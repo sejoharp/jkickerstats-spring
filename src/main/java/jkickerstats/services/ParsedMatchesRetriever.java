@@ -5,7 +5,7 @@ import jkickerstats.domain.Match;
 import java.util.stream.Stream;
 
 public interface ParsedMatchesRetriever {
-    Stream<Match> get(Integer seasonId);
+    Stream<Match> getViaDocs(Integer seasonId);
 
     Match downloadGamesFromMatch(Match match);
 

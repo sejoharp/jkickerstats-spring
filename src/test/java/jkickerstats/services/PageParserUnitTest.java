@@ -30,7 +30,8 @@ public class PageParserUnitTest {
     private static final Document ligaNoDateDoc = loadFile("liga_no_date.html");
     private static final Document begegnungBildDoc = loadFile("begegnung_with_image.html");
     private static final Document ligaLiveDoc = loadFile("liga_20182019_live.html");
-    private static final Document liga20182019 = loadFile("liga_20182019.html");
+    private static final Document liga20182019Doc = loadFile("liga_20182019.html");
+    private static final Document liga2018Doc = loadFile("begegnung_2018.html");
     private static final Document uebersichtDoc = loadFile("uebersicht.html");
     private static final Document uebersichtRelegationDoc = loadFile("uebersicht_relegation.html");
     private static final Document begegnungNoNamesDoc = loadFile("begegnung_no_names.html");
@@ -65,7 +66,7 @@ public class PageParserUnitTest {
     }
 
     @Test
-    public void returnsAllSeasons() throws IOException {
+    public void returnsAllSeasons() {
         List<Integer> expectedSeasonsIDs = Arrays.asList(12, 11, 9, 8, 7, 4, 3, 2, 1);
 
         List<Integer> seasonsIDs = PageParser.findSeasonIDs(uebersichtDoc).collect(toList());
@@ -75,7 +76,7 @@ public class PageParserUnitTest {
     }
 
     @Test
-    public void returnsAllMatchLinks() throws IOException {
+    public void returnsAllMatchLinks() {
         List<String> matchLinks = MatchParser.findMatchLinks(ligaDoc).collect(toList());
 
         assertThat(matchLinks).hasSize(14);
@@ -84,21 +85,21 @@ public class PageParserUnitTest {
     }
 
     @Test
-    public void returnsAllConfirmedMatchLinks() throws IOException {
+    public void returnsAllConfirmedMatchLinks() {
         List<String> matchLinks = MatchParser.findMatchLinks(ligaLiveDoc).collect(toList());
 
         assertThat(matchLinks).hasSize(27);
     }
 
     @Test
-    public void returnsAllConfirmedMatchLinks20182019() throws IOException {
-        List<String> matchLinks = MatchParser.findMatchLinks(liga20182019).collect(toList());
+    public void returnsAllConfirmedMatchLinks20182019() {
+        List<String> matchLinks = MatchParser.findMatchLinks(liga20182019Doc).collect(toList());
 
         assertThat(matchLinks).hasSize(28);
     }
 
     @Test
-    public void returnsAllLigaLinks() throws IOException {
+    public void returnsAllLigaLinks() {
         List<String> ligaLinksIDs = PageParser.findLigaLinks(uebersichtDoc).collect(toList());
 
         assertThat(ligaLinksIDs).hasSize(11);
@@ -107,28 +108,28 @@ public class PageParserUnitTest {
     }
 
     @Test
-    public void filtersAllMatchLinkSnippets() throws IOException {
+    public void filtersAllMatchLinkSnippets() {
         Elements elements = filterMatchLinkSnippets(ligaDoc);
 
         assertThat(elements).hasSize(90);
     }
 
     @Test
-    public void filtersAllGames() throws IOException {
+    public void filtersAllGames() {
         Elements gameCount = GameParser.filterGameSnippets(begegnungDoc);
 
         assertThat(gameCount).hasSize(16);
     }
 
     @Test
-    public void detectsGamelistAsValid() throws IOException {
+    public void detectsGamelistAsValid() {
         Elements gameSnippets = GameParser.filterGameSnippets(begegnungDoc);
 
         assertThat(GameParser.isValidGameList(gameSnippets)).isTrue();
     }
 
     @Test
-    public void detectsGameIsValidWithImagesAsValid() throws IOException {
+    public void detectsGameIsValidWithImagesAsValid() {
         Elements gameSnippets = GameParser.filterGameSnippets(begegnungBildDoc);
 
         assertThat(GameParser.isValidGameList(gameSnippets)).isTrue();
@@ -147,7 +148,7 @@ public class PageParserUnitTest {
     }
 
     @Test
-    public void parsesAStringToDate() throws IOException {
+    public void parsesAStringToDate() {
         String rawDate = "27.02.2013 20:00";
         Calendar expectedDate = Calendar.getInstance();
         expectedDate.setTimeInMillis(0);
@@ -159,94 +160,94 @@ public class PageParserUnitTest {
     }
 
     @Test
-    public void parsesMatchday() throws IOException {
+    public void parsesMatchday() {
         assertThat(MatchParser.parseMatchDay(begegnungDoc, true)).isEqualTo(1);
     }
 
     @Test
-    public void parsesMatchdayWithoutDate() throws IOException {
+    public void parsesMatchdayWithoutDate() {
         assertThat(MatchParser.parseMatchDay(begegnungNoDateDoc, false)).isEqualTo(5);
     }
 
     @Test
-    public void parsesHomeScore() throws IOException {
+    public void parsesHomeScore() {
         Elements rawGames = GameParser.filterGameSnippets(begegnungDoc);
 
         assertThat(GameParser.parseHomeScore(rawGames.first(), true)).isEqualTo(4);
     }
 
     @Test
-    public void parsesMissingHomeScore() throws IOException {
+    public void parsesMissingHomeScore() {
         Elements rawGames = GameParser.filterGameSnippets(begegnungNoResultDoc);
 
         assertThat(GameParser.parseHomeScore(rawGames.first(), true)).isEqualTo(0);
     }
 
     @Test
-    public void parsesMissingGuestScore() throws IOException {
+    public void parsesMissingGuestScore() {
         Elements rawGames = GameParser.filterGameSnippets(begegnungNoResultDoc);
 
         assertThat(GameParser.parseGuestScore(rawGames.first(), true)).isEqualTo(0);
     }
 
     @Test
-    public void parsesGuestScore() throws IOException {
+    public void parsesGuestScore() {
         Elements rawGames = GameParser.filterGameSnippets(begegnungDoc);
 
         assertThat(GameParser.parseGuestScore(rawGames.first(), true)).isEqualTo(7);
     }
 
     @Test
-    public void parsesHomeScoreFromGameSnippetWithImages() throws IOException {
+    public void parsesHomeScoreFromGameSnippetWithImages() {
         Elements rawGames = GameParser.filterGameSnippets(begegnungBildDoc);
 
         assertThat(GameParser.parseHomeScore(rawGames.first(), true)).isEqualTo(4);
     }
 
     @Test
-    public void parsesGuestScoreFromGameSnippetWithImages() throws IOException {
+    public void parsesGuestScoreFromGameSnippetWithImages() {
         Elements rawGames = GameParser.filterGameSnippets(begegnungBildDoc);
 
         assertThat(GameParser.parseGuestScore(rawGames.first(), true)).isEqualTo(7);
     }
 
     @Test
-    public void singleMatchIsNotADoubleMatch() throws IOException {
+    public void singleMatchIsNotADoubleMatch() {
         Elements rawGames = GameParser.filterGameSnippets(begegnungDoc);
 
         assertThat(GameParser.isDoubleMatch(rawGames.first())).isEqualTo(false);
     }
 
     @Test
-    public void detectsDoubleMatch() throws IOException {
+    public void detectsDoubleMatch() {
         Elements rawGames = GameParser.filterGameSnippets(begegnungDoc);
 
         assertThat(GameParser.isDoubleMatch(rawGames.last())).isTrue();
     }
 
     @Test
-    public void detectsDoubleMatchWithImages() throws IOException {
+    public void detectsDoubleMatchWithImages() {
         Elements rawGames = GameParser.filterGameSnippets(begegnungBildDoc);
 
         assertThat(GameParser.isDoubleMatch(rawGames.last())).isTrue();
     }
 
     @Test
-    public void parsesPositionOfFirstGame() throws IOException {
+    public void parsesPositionOfFirstGame() {
         Elements rawGames = GameParser.filterGameSnippets(begegnungDoc);
 
         assertThat(GameParser.parseGamePosition(rawGames.first())).isEqualTo(1);
     }
 
     @Test
-    public void parsesPositionOfLastGame() throws IOException {
+    public void parsesPositionOfLastGame() {
         Elements rawGames = GameParser.filterGameSnippets(begegnungDoc);
 
         assertThat(GameParser.parseGamePosition(rawGames.last())).isEqualTo(16);
     }
 
     @Test
-    public void parsesPlayerNamesOfLastGame() throws IOException {
+    public void parsesPlayerNamesOfLastGame() {
         Elements rawGames = GameParser.filterGameSnippets(begegnungDoc);
 
         Game game = GameParser.createGame(true, rawGames.last());
@@ -258,7 +259,7 @@ public class PageParserUnitTest {
     }
 
     @Test
-    public void parsesPlayerNamesOfFirstGame() throws IOException {
+    public void parsesPlayerNamesOfFirstGame() {
         Elements rawGames = GameParser.filterGameSnippets(begegnungDoc);
 
         Game game = GameParser.createGame(true, rawGames.first());
@@ -415,8 +416,14 @@ public class PageParserUnitTest {
 
     @Test
     public void returnsAllMatchesFrom20182019() {
-        List<Match> matches = MatchParser.findMatches(liga20182019).collect(toList());
+        List<Match> matches = MatchParser.findMatches(liga20182019Doc).collect(toList());
         assertThat(matches).hasSize(28);
+    }
+
+    @Test
+    public void returnsAllMatchesFrom2018() {
+        List<Match> matches = MatchParser.findMatches(liga2018Doc).collect(toList());
+        assertThat(matches).hasSize(378);
     }
 
     static Document loadFile(String fileName) {

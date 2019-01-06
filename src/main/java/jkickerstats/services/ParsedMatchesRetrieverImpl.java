@@ -13,8 +13,7 @@ import static java.util.stream.Collectors.toList;
 import static jkickerstats.domain.Match.createMatch;
 import static jkickerstats.services.PageDownloader.downloadPage;
 import static jkickerstats.services.PageDownloader.downloadSeason;
-import static jkickerstats.services.PageParser.findLigaLinks;
-import static jkickerstats.services.PageParser.findSeasonIDs;
+import static jkickerstats.services.PageParser.*;
 
 @Component
 public class ParsedMatchesRetrieverImpl implements ParsedMatchesRetriever {
@@ -26,12 +25,12 @@ public class ParsedMatchesRetrieverImpl implements ParsedMatchesRetriever {
         return findSeasonIDs(seasonsDoc);
     }
 
-    public Stream<Match> get(Integer seasonId) {
-        return getLigaLinks(seasonId)
-                .map(ParsedMatchesRetrieverImpl::getMatches)//
+    @Override
+    public Stream<Match> getViaDocs(Integer seasonId) {
+        return getLigaDocuments(seasonId)
+                .map(ParsedMatchesRetrieverImpl::parseMatches)//
                 .flatMap(Function.identity());
     }
-
     public Match downloadGamesFromMatch(Match match) {
         return createMatch(match)
                 .withGames(getGames(match.getMatchLink()).collect(toList()));
@@ -62,8 +61,26 @@ public class ParsedMatchesRetrieverImpl implements ParsedMatchesRetriever {
         }
     }
 
+    private static Stream<Match> parseMatches(Document ligaDoc) {
+        try {
+            return MatchParser.findMatches(ligaDoc);
+        } catch (Exception e) {
+            LOG.severe("processing liga: " + ligaDoc.location());
+            throw e;
+        }
+    }
+
     static Stream<String> getLigaLinks(Integer seasonId) {
         Document seasonDoc = downloadSeason(seasonId);
         return findLigaLinks(seasonDoc);
+    }
+
+    static Stream<Document> getLigaDocuments(Integer seasonId) {
+        Document seasonDoc = downloadSeason(seasonId);
+        if (isZwischenSaison2018(seasonDoc)) {
+            return Stream.of(seasonDoc);
+        }
+        return findLigaLinks(seasonDoc)
+                .map(PageDownloader::downloadPage);
     }
 }

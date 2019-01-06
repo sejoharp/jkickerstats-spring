@@ -2,7 +2,6 @@ package jkickerstats.services;
 
 import jkickerstats.MatchTestdata;
 import jkickerstats.domain.Match;
-import jkickerstats.services.CsvCreator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,7 +9,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Scanner;
 
 import static java.util.Arrays.asList;
 import static jkickerstats.MatchTestdata.createTestMatch;

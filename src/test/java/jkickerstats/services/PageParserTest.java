@@ -43,4 +43,17 @@ public class PageParserTest {
         assertThat(ligaLinksIDs).hasSize(13);
         assertThat(ligaLinksIDs.get(12)).isEqualTo("https://kickern-hamburg.de/de/competitions/mannschaftswettbewerbe?task=veranstaltung&veranstaltungid=164");
     }
+
+    @Test
+    public void detectsZwischenSaison2018() throws IOException {
+        //given
+        File testFile = new File(RECOURCES_DIRECTORY + "begegnung_2018.html");
+        Document doc = Jsoup.parse(testFile, "UTF-8", "");
+
+        //when
+        boolean zwischenSaison2018 = PageParser.isZwischenSaison2018(doc);
+
+        //then
+        assertThat(zwischenSaison2018).isTrue();
+    }
 }
