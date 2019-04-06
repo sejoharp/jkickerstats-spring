@@ -20,7 +20,20 @@ public class MatchTestdata {
                 .withGames(asList(GameTestdata.createSingleGame(), GameTestdata.createDoubleGame()));
     }
 
-    public static Match createMatchWithSinglegame() {
+    public static Match createTestMatchForId() {
+        return createMatch()
+                .withGuestScore(10)
+                .withGuestTeam("guest team")
+                .withHomeScore(22)
+                .withHomeTeam("home team")
+                .withMatchDate(createDate(2013, 01, 27, 19, 1))
+                .withMatchDay(1)
+                .withHomeGoals(10)
+                .withGuestGoals(11)
+                .withGames(asList(GameTestdata.createSingleGame(), GameTestdata.createDoubleGame()));
+    }
+
+    public static Match createMatchWithSingleGame() {
         return createMatch()
                 .withGuestScore(10)
                 .withGuestTeam("Hamburg Privateers 08")
@@ -33,7 +46,7 @@ public class MatchTestdata {
                 .withGames(asList(GameTestdata.createSingleGame()));
     }
 
-    public static Match createMatchWithDoublegame() {
+    public static Match createMatchWithDoubleGame() {
         return createMatch()
                 .withGuestScore(10)
                 .withGuestTeam("Die Maschinerie")

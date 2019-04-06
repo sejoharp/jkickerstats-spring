@@ -28,7 +28,7 @@ public class CsvCreatorTest {
 
     @Test
     public void createsACompleteCsvFile() {
-        List<Match> matches = asList(MatchTestdata.createMatchWithSinglegame());
+        List<Match> matches = asList(MatchTestdata.createMatchWithSingleGame());
 
         List<String> csvGames = csvCreator.createCsvRowList(matches);
 
@@ -37,7 +37,7 @@ public class CsvCreatorTest {
 
     @Test
     public void createsACompleteCsvFileWithADoubleGame() {
-        List<Match> matches = asList(MatchTestdata.createMatchWithDoublegame());
+        List<Match> matches = asList(MatchTestdata.createMatchWithDoubleGame());
 
         List<String> csvGames = csvCreator.createCsvRowList(matches);
 

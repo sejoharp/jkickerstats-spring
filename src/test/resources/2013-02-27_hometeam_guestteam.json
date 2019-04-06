@@ -1,0 +1,32 @@
+{
+  "homeTeam": "hometeam",
+  "guestTeam": "guestteam",
+  "homeGoals": 10,
+  "guestGoals": 11,
+  "homeScore": 22,
+  "guestScore": 10,
+  "matchDate": 1361988060000,
+  "matchDay": 1,
+  "games": [
+    {
+      "homePlayer1": "Kränz, Ludwig",
+      "homePlayer2": null,
+      "homeScore": 5,
+      "guestPlayer1": "Matheuszik, Sven",
+      "guestPlayer2": null,
+      "guestScore": 7,
+      "position": 2,
+      "doubleMatch": false
+    },
+    {
+      "homePlayer1": "Arslan, Mehmet Emin",
+      "homePlayer2": "Böckeler, Frank",
+      "homeScore": 4,
+      "guestPlayer1": "Bai, Minyoung",
+      "guestPlayer2": "Linnenberg, Sebastian",
+      "guestScore": 5,
+      "position": 16,
+      "doubleMatch": true
+    }
+  ]
+}

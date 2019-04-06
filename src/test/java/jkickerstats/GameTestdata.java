@@ -41,8 +41,8 @@ public class GameTestdata {
                 .withPosition(16);
     }
 
-    static Date createDate(int year, int month, int day, int hour,
-                           int min) {
+    public static Date createDate(int year, int month, int day, int hour,
+                                  int min) {
         Calendar calendar = Calendar.getInstance();
         calendar.clear();
         calendar.set(Calendar.YEAR, year);

@@ -48,7 +48,7 @@ public class MatchRepoTest {
         assertThat(lister.countMatches()).isEqualTo(0);
         persister.save(createTestMatch());
         assertThat(lister.countMatches()).isEqualTo(1);
-        persister.save(MatchTestdata.createMatchWithSinglegame());
+        persister.save(MatchTestdata.createMatchWithSingleGame());
         assertThat(lister.countMatches()).isEqualTo(2);
     }
 
@@ -56,7 +56,7 @@ public class MatchRepoTest {
     public void detectsAlreadyPersistedMatches() {
         persister.save(createTestMatch());
         assertThat(lister.isNewMatch(createTestMatch())).isFalse();
-        assertThat(lister.isNewMatch(MatchTestdata.createMatchWithSinglegame())).isTrue();
+        assertThat(lister.isNewMatch(MatchTestdata.createMatchWithSingleGame())).isTrue();
     }
 
     @Test

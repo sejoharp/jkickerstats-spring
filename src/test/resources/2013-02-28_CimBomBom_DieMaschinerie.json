@@ -1,0 +1,22 @@
+{
+  "homeTeam": "Cim Bom Bom",
+  "guestTeam": "Die Maschinerie",
+  "homeGoals": 10,
+  "guestGoals": 11,
+  "homeScore": 22,
+  "guestScore": 10,
+  "matchDate": 1362074460000,
+  "matchDay": 1,
+  "games": [
+    {
+      "homePlayer1": "Arslan, Mehmet Emin",
+      "homePlayer2": "Böckeler, Frank",
+      "homeScore": 4,
+      "guestPlayer1": "Bai, Minyoung",
+      "guestPlayer2": "Linnenberg, Sebastian",
+      "guestScore": 5,
+      "position": 16,
+      "doubleMatch": true
+    }
+  ]
+}
