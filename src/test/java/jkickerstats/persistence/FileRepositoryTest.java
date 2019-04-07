@@ -47,7 +47,7 @@ public class FileRepositoryTest {
     public void readsMatchFromFileName() {
         //given
         Match match = createTestMatch();
-        String path = "src/test/resources/" + HOMETEAM_GUESTTEAM_FILE;
+        String path = TEST_RESOURCES_PATH + HOMETEAM_GUESTTEAM_FILE;
 
         //when
         Optional<FileMatch> fileMatch = fileRepository().readFile(Paths.get(path));
@@ -59,7 +59,7 @@ public class FileRepositoryTest {
     @Test
     public void handlesNonExistingFile() throws IOException {
         //given
-        String path = "src/test/resources/does-not-exist.json";
+        String path = TEST_RESOURCES_PATH + "does-not-exist.json";
 
         //when
         Optional<FileMatch> fileMatch = fileRepository().readFile(Paths.get(path));
@@ -71,11 +71,8 @@ public class FileRepositoryTest {
     @Test
     public void readsAllMatches() throws IOException {
         //given
-        String filename1 = HOMETEAM_GUESTTEAM_FILE;
-        String filename2 = CIMBOMBOM_DIEMASCHINERIE_FILE;
-        String path = TEST_RESOURCES_PATH;
-        copyFile(filename1);
-        copyFile(filename2);
+        copyFile(HOMETEAM_GUESTTEAM_FILE);
+        copyFile(CIMBOMBOM_DIEMASCHINERIE_FILE);
 
         //when
         List<Match> allMatches = fileRepository().getAllMatches();
