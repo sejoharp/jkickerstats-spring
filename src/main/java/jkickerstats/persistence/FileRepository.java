@@ -64,10 +64,6 @@ public class FileRepository implements MatchPersister, MatchLister {
         }
     }
 
-    Optional<FileMatch> readFile(Match match) {
-        return readFile(Paths.get(PATH + FileMatch.from(match).fileName()));
-    }
-
     Optional<FileMatch> readFile(Path path) {
         try {
             FileMatch fileMatch = new ObjectMapper().readValue(path.toUri().toURL(), FileMatch.class);

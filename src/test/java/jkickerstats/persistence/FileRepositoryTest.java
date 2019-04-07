@@ -44,20 +44,6 @@ public class FileRepositoryTest {
     }
 
     @Test
-    public void readsMatch() throws IOException {
-        //given
-        Match match = createTestMatch();
-        String filename = HOMETEAM_GUESTTEAM_FILE;
-        copyFile(filename);
-
-        //when
-        Optional<FileMatch> fileMatch = fileRepository().readFile(match);
-
-        //then
-        assertThat(fileMatch).isEqualTo(Optional.of(FileMatch.from(match)));
-    }
-
-    @Test
     public void readsMatchFromFileName() {
         //given
         Match match = createTestMatch();
