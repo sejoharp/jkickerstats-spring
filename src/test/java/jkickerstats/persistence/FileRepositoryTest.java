@@ -14,15 +14,20 @@ import java.util.Optional;
 
 import static jkickerstats.MatchTestdata.createMatchWithDoubleGame;
 import static jkickerstats.MatchTestdata.createTestMatch;
+import static jkickerstats.persistence.FileRepository.PATH;
 import static jkickerstats.persistence.FileRepository.fileRepository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FileRepositoryTest {
 
+    private static final String HOMETEAM_GUESTTEAM_FILE = "2013-02-27_hometeam_guestteam.json";
+    private static final String CIMBOMBOM_DIEMASCHINERIE_FILE = "2013-02-28_CimBomBom_DieMaschinerie.json";
+    private static final String TEST_RESOURCES_PATH = "src/test/resources/";
+
     @After
     public void after() {
-        new File("2013-02-27_hometeam_guestteam.json").delete();
-        new File("2013-02-28_CimBomBom_DieMaschinerie.json").delete();
+        new File(PATH + HOMETEAM_GUESTTEAM_FILE).delete();
+        new File(PATH + CIMBOMBOM_DIEMASCHINERIE_FILE).delete();
     }
 
     @Test
@@ -34,7 +39,7 @@ public class FileRepositoryTest {
         fileRepository().save(match);
 
         //then
-        FileMatch fileMatch = readFile("2013-02-27_hometeam_guestteam.json");
+        FileMatch fileMatch = readFile(PATH + HOMETEAM_GUESTTEAM_FILE);
         assertThat(fileMatch).isEqualTo(FileMatch.from(match));
     }
 
@@ -42,9 +47,8 @@ public class FileRepositoryTest {
     public void readsMatch() throws IOException {
         //given
         Match match = createTestMatch();
-        String filename = "2013-02-27_hometeam_guestteam.json";
-        String path = "src/test/resources/";
-        Files.copy(Paths.get(path + filename), Paths.get(filename));
+        String filename = HOMETEAM_GUESTTEAM_FILE;
+        copyFile(filename);
 
         //when
         Optional<FileMatch> fileMatch = fileRepository().readFile(match);
@@ -57,7 +61,7 @@ public class FileRepositoryTest {
     public void readsMatchFromFileName() {
         //given
         Match match = createTestMatch();
-        String path = "src/test/resources/2013-02-27_hometeam_guestteam.json";
+        String path = "src/test/resources/" + HOMETEAM_GUESTTEAM_FILE;
 
         //when
         Optional<FileMatch> fileMatch = fileRepository().readFile(Paths.get(path));
@@ -81,11 +85,11 @@ public class FileRepositoryTest {
     @Test
     public void readsAllMatches() throws IOException {
         //given
-        String filename1 = "2013-02-27_hometeam_guestteam.json";
-        String filename2 = "2013-02-28_CimBomBom_DieMaschinerie.json";
-        String path = "src/test/resources/";
-        Files.copy(Paths.get(path + filename1), Paths.get(filename1));
-        Files.copy(Paths.get(path + filename2), Paths.get(filename2));
+        String filename1 = HOMETEAM_GUESTTEAM_FILE;
+        String filename2 = CIMBOMBOM_DIEMASCHINERIE_FILE;
+        String path = TEST_RESOURCES_PATH;
+        copyFile(filename1);
+        copyFile(filename2);
 
         //when
         List<Match> allMatches = fileRepository().getAllMatches();
@@ -98,7 +102,7 @@ public class FileRepositoryTest {
     @Test
     public void detectsFilePattern() {
         //given
-        String pattern = "2013-02-27_hometeam_guestteam.json";
+        String pattern = HOMETEAM_GUESTTEAM_FILE;
 
         //when
         boolean matchFile = fileRepository().isMatchFile(Paths.get(pattern));
@@ -122,11 +126,8 @@ public class FileRepositoryTest {
     @Test
     public void countsMatchFiles() throws IOException {
         //given
-        String filename1 = "2013-02-27_hometeam_guestteam.json";
-        String filename2 = "2013-02-28_CimBomBom_DieMaschinerie.json";
-        String path = "src/test/resources/";
-        Files.copy(Paths.get(path + filename1), Paths.get(filename1));
-        Files.copy(Paths.get(path + filename2), Paths.get(filename2));
+        copyFile(HOMETEAM_GUESTTEAM_FILE);
+        copyFile(CIMBOMBOM_DIEMASCHINERIE_FILE);
 
         //when
         long matchFile = fileRepository().countMatches();
@@ -149,11 +150,8 @@ public class FileRepositoryTest {
     @Test
     public void detectsMatchFiles() throws IOException {
         //given
-        String filename1 = "2013-02-27_hometeam_guestteam.json";
-        String filename2 = "2013-02-28_CimBomBom_DieMaschinerie.json";
-        String path = "src/test/resources/";
-        Files.copy(Paths.get(path + filename1), Paths.get(filename1));
-        Files.copy(Paths.get(path + filename2), Paths.get(filename2));
+        copyFile(HOMETEAM_GUESTTEAM_FILE);
+        copyFile(CIMBOMBOM_DIEMASCHINERIE_FILE);
 
         //when
         boolean matchFile = fileRepository().noMatchesAvailable();
@@ -188,9 +186,7 @@ public class FileRepositoryTest {
     @Test
     public void detectsOldMatch() throws IOException {
         //given
-        String filename1 = "2013-02-27_hometeam_guestteam.json";
-        String path = "src/test/resources/";
-        Files.copy(Paths.get(path + filename1), Paths.get(filename1));
+        copyFile(HOMETEAM_GUESTTEAM_FILE);
 
         Match testMatch = createTestMatch();
 
@@ -199,6 +195,10 @@ public class FileRepositoryTest {
 
         //then
         assertThat(matchFile).isFalse();
+    }
+
+    private void copyFile(String filename) throws IOException {
+        Files.copy(Paths.get(TEST_RESOURCES_PATH + filename), Paths.get(PATH + filename));
     }
 
     private FileMatch readFile(String fileName) throws IOException {
