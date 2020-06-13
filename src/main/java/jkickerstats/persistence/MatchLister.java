@@ -15,7 +15,7 @@ public interface MatchLister {
     }
 
     default boolean noMatchesAvailable() {
-        return getAllMatches().size() == 0;
+        return countMatches() == 0;
     }
 
     default long countMatches() {

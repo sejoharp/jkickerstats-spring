@@ -19,7 +19,6 @@ import java.util.Arrays;
 @SpringBootApplication
 public class Application {
 
-
     @Autowired
     private MongoDbFactory mongoDbFactory;
 

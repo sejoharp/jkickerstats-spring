@@ -18,6 +18,6 @@ public class ParsedMatchesRetrieverImplTest {
         List<Integer> seasonIDs = parsedMatchesRetriever.getSeasonIDs().collect(toList());
 
         //then
-        assertThat(seasonIDs).hasSize(11);
+        assertThat(seasonIDs).hasSize(12);
     }
 }

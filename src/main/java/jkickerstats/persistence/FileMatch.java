@@ -50,7 +50,7 @@ public class FileMatch {
         this.guestScore = guestScore;
         this.matchDate = matchDate;
         this.matchDay = matchDay;
-        this.games = games;;
+        this.games = games;
     }
 
     public static FileMatch from(Match match) {
@@ -103,6 +103,7 @@ public class FileMatch {
         return guestScore;
     }
 
+
     public Date getMatchDate() {
         return matchDate;
     }
@@ -116,16 +117,16 @@ public class FileMatch {
     }
 
     public String fileName() {
-        return String.format("%s_%s_%s.json",formatDate(),
+        return String.format("%s_%s_%s.json", formatDate(),
                 removeSpaces(homeTeam),
                 removeSpaces(guestTeam));
     }
 
     private String removeSpaces(String team) {
-        return StringUtils.replace(team," ", "");
+        return StringUtils.replace(team, " ", "");
     }
 
-    private String formatDate(){
+    private String formatDate() {
         return new SimpleDateFormat("yyyy-MM-dd").format(matchDate);
     }
 

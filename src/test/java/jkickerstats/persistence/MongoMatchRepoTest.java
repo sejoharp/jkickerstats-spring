@@ -23,16 +23,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataMongoTest(includeFilters = @ComponentScan.Filter(Repository.class))
 @RunWith(SpringRunner.class)
-public class MatchRepoTest {
-    @Autowired
+public class MongoMatchRepoTest {
+
     private MatchLister lister;
-    @Autowired
     private MatchPersister persister;
+    @Autowired
+    private MongoMatchRepo mongoMatchRepo;
     @Autowired
     private MongoTemplate mongoTemplate;
 
     @Before
     public void cleanUpDb() {
+        persister = mongoMatchRepo;
+        lister = mongoMatchRepo;
         mongoTemplate.count(new Query(new Criteria()), MatchFromDb.class);
         Query query = new Query(new Criteria());
         mongoTemplate.remove(query, MatchFromDb.class);

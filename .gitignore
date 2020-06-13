@@ -19,3 +19,4 @@ allGames.csv
 jkickerstats.*
 .gradle/
 build/
+/nitrite-*.db
