@@ -12,7 +12,7 @@ This app grabs all matches vom kickern-hamburg.de and makes it available as csv.
 
 # Setup
 ## prepare db
-* install Mongodb and create a db
+* nothing to do
 
 ## compile 
 * clone this repo
@@ -25,14 +25,11 @@ This app grabs all matches vom kickern-hamburg.de and makes it available as csv.
 * start the application with the following command: `java -Djava.awt.headless=true -server -Xms48m -Xmx250m -XX:MaxPermSize=150m -jar jkickerstats.jar`
 
 # Dependencies
-* mongodb
 * java 1.8
 * gradle
 * jsoup
 * tomcat
 * spring boot
-* spring data mongo
 
 # My setup
 * A shared hosting service
-* mongodb
